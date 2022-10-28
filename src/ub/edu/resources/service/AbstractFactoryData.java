@@ -7,4 +7,7 @@ public interface AbstractFactoryData {
      DAORuta createDAORuta();
      DAOComarca createDAOComarca();
      DAORelacioComarcaRuta createDAORelacioRutaComarca();
+     DAOLocalitat createDAOLocalitat();
+
+     DAORelacioLocalitatRuta createDAORelacioRutaLocalitat();
 }

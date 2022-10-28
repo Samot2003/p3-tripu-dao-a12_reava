@@ -13,7 +13,7 @@ public class DAORutaMOCK implements DAORuta {
         addRuta("De la Cerdanya fins al Mar", "29/09/2021", 5);
         addRuta( "Terres de l'Ebre", "04/10/2021", 2);
         addRuta( "La Costa Brava", "10/10/2021", 10);
-        addRuta("Ribera del Ter", "11/10/2021", 4);
+        addRuta("Ribera del Ter", "11/10/2021", 2);
     }
 
     private void addRuta(String nom, String dataText, int numDies){

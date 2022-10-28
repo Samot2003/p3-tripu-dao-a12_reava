@@ -28,8 +28,10 @@ Tram <|-right- TramTrack
 TramEtapa "*" -- "1" Etapa: comença
 TramEtapa "*" -- "1" Etapa: acaba
 
-
-Grup "*" --- "*" Persona: estàFormatPer
+Persona "1" -left- "1" EstadistiquesIndividuals: <<Té
+EstadistiquesIndividuals "*" -left-* "1" RankingGrup: <<conformen
+Grup "*" *-- "*" Persona: <<conformen
+Grup "1" -down- "1" RankingGrup: <<Té
 
 Localitat "1..*" --"1" Comarca: pertany
 
@@ -49,7 +51,20 @@ TramTrack "*" -- "1" PuntDePas: acaba
 Persona "*" -- "1..*" Ruta : planifica
 Persona "1" -- "1" Direccio : resideix
 
-class TripUB
+Ruta "1" -right- "1" Estat: es troba en
+TramTrack"1" -right- "1" Estat: es troba en
+Estat <|-down- Iniciat
+Estat <|-down- EnProces
+Estat <|-down- Acabat
+
+LlistaRutes"1" *-right- "*" Ruta: <<Es conformada
+LlistaRutesPreferides <|-right- LlistaRutes
+LlistaRutesProgramades <|-right- LlistaRutes
+LlistaRutesSeleccionadesGrup <|-right- LlistaRutes
+
+
+class TripUB #aliceblue;line.bold;text:blue{
+}
 
 class Persona #aliceblue;line:blue;line.bold;text:blue {
  correu: String
@@ -59,11 +74,15 @@ class Persona #aliceblue;line:blue;line.bold;text:blue {
  dni: String
 }
 
-class Direccio{
+class Direccio #aliceblue;line:blue;line.bold;text:blue{
  carrer: String
  numero: int
  poblacio: String
  codi_postal: String
+}
+
+class Tram  #aliceblue;line:blue;line.bold;text:blue{
+ID: String
 }
 
 
@@ -78,14 +97,14 @@ class Ruta #aliceblue;line:blue;line.bold;text:blue {
  tipusRuta: String
 }
 
-class TramEtapa {
+class TramEtapa  #aliceblue;line:blue;line.bold;text:blue {
 kms: float
 \ tempsEstimat: Time
 \cost: Quantitat
 }
 
 
-class TramTrack {
+class TramTrack  #aliceblue;line:blue;line.bold;text:blue{
 duracióEstimada: Time
 distància: int
 desnivellPositiu: int
@@ -106,50 +125,88 @@ class Comarca #aliceblue;line:blue;line.bold;text:blue {
  id_comarca: int
 }
 
-class PuntDePas{
+class PuntDePas #aliceblue;line:blue;line.bold;text:blue{
  highlight: String
 }
 
-class Etapa{
+class Etapa #aliceblue;line:blue;line.bold;text:blue {
 }
 
-class Allotjament {
+class Allotjament #aliceblue;line:blue;line.bold;text:blue{
 nom: string
 preuPerNit: Quantitat
 }
 
-class Hotel {
+class Hotel #aliceblue;line:blue;line.bold;text:blue{
 preuEsmorzar: Quantitat
 preuMP: Quantitat
 preuPC: Quantitat
 }
 
-class CasaRural {
+class CasaRural #aliceblue;line:blue;line.bold;text:blue{
 preuEsmorzar: Quantitat
 preuMP: Quantitat
 }
 
-class Camping
+class Camping #aliceblue;line:blue;line.bold;text:blue{
+}
 
-class Refugi {
+class Refugi #aliceblue;line:blue;line.bold;text:blue{
 preuMP: Quantitat
 }
 
 
-class Transport {
-velocitatEstimada: float
+class Transport  #aliceblue;line:blue;line.bold;text:blue{
+velocitat: float
 }
 
-class Cotxe {
+class Cotxe  #aliceblue;line:blue;line.bold;text:blue{
 model: string
 tipusCombustible: booleà
 }
 
-class Bicicleta {
+class Bicicleta  #aliceblue;line:blue;line.bold;text:blue{
 model: string
 
 }
 
-class APeu {
+class APeu  #aliceblue;line:blue;line.bold;text:blue{
 }
+
+class RankingGrup #aliceblue;line:red;line.bold;text:blue {
+}
+
+class EstadistiquesIndividuals #aliceblue;line:red;line.bold;text:blue{
+estadistiques: String
+}
+
+class Estat #aliceblue;line:red;line.bold;text:blue{
+}
+
+class Iniciat #aliceblue;line:red;line.bold;text:blue{
+}
+
+class EnProces #aliceblue;line:red;line.bold;text:blue{
+puntsDeControl: posició
+}
+
+class Acabat #aliceblue;line:red;line.bold;text:blue{
+}
+
+class LlistaRutes #aliceblue;line:red;line.bold;text:blue{
+}
+
+class LlistaRutesProgramades #aliceblue;line:red;line.bold;text:blue{
+}
+
+class LlistaRutesSeleccionadesGrup #aliceblue;line:red;line.bold;text:blue{
+}
+
+class LlistaRutesPreferides #aliceblue;line:red;line.bold;text:blue{
+}
+
+class Grup #aliceblue;line:blue;line.bold;text:blue{
+}
+
+
 @enduml

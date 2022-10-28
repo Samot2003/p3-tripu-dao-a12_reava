@@ -2,22 +2,23 @@ package ub.edu.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Ruta {
     private String nom;
     private int durada;
     private LocalDate dataCreacio;
     private Set<Comarca> comarques;
+    private Set<Localitat> localitats;
 
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
         setDurada(numDies);
         setDataCreacio(dataText);
         comarques = new HashSet<>();
+        localitats = new HashSet<>();
+
+
     }
 
     public Ruta(String titol, int numDies, String dataText, List<Comarca> comarcaList) {
@@ -25,6 +26,7 @@ public class Ruta {
         setDurada(numDies);
         setDataCreacio(dataText);
         comarques = new HashSet<>(comarcaList);
+        localitats = new HashSet<>();
     }
 
     public String getNom() {
@@ -58,6 +60,18 @@ public class Ruta {
     }
 
     public List<Comarca> getComarques() { return new ArrayList<Comarca>(comarques);}
+
+    public void addLocalitat(Localitat localitat){
+        localitats.add(localitat);
+    }
+
+
+
+    public boolean containsLocalitat(Localitat localitat){
+        return localitats.contains(localitat);
+    }
+
+
 
 
 

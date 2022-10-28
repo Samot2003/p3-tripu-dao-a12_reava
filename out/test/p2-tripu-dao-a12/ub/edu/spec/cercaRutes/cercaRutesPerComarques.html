@@ -1,0 +1,124 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US4.1: Cercar rutes per  comarques</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US4: Cercar rutes per comarques</h1>
+
+<h2>Criteri d'acceptacio 0</h2>
+<p>
+<div concordion:example="zero" concordion:status="Unimplemented">
+    En aquest cas, no enregistrem cap comarca en el sistema. Cas que ja no cal comprovar.
+</div>
+</p>
+
+<h2>Criteris d'acceptació 1, 2 i 3</h2>
+<p>
+    <b>1</b>: Si la comarca no existeix, es mostra "Comarca no trobada"
+    <b>2</b>: Si la comarca no té rutes, es mostra "No hi han rutes en aquesta comarca"
+    <b>3</b>: Si la comarca té rutes, el sistema llista totes les comarques ordenades alfabeticament i amb el número de rutes al costat.
+</p>
+
+<p>
+    Les comarques i les seves rutes que hem enregistrat en el sistema són les següents:
+<table>
+    <tr>
+        <th>Comarques</th>
+        <th>Rutes</th>
+    </tr>
+    <tr>
+        <td>Ripollès</td>
+        <td>De la Cerdanya fins al Mar, Ribera del Ter</td>
+    </tr>
+
+    <tr>
+        <td>Cerdanya</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+    <tr>
+        <td>Alt Empordà</td>
+        <td>De la Cerdanya fins al Mar, La Costa Brava</td>
+    </tr>
+    <tr>
+        <td>La Selva</td>
+        <td>La Costa Brava, Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+    </tr>
+</table>
+</p>
+
+<div concordion:example="one">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per comarques, un cop
+        hem <span concordion:execute="afegirComarques()">afegit</span> les comarques de la taula anterior. Cerquem les
+        rutes que passen per la comarca <span concordion:set="#nom">Alt Camp</span>
+    <table concordion:verify-rows="#comarca : cercaRutesPerComarques(#nom)">
+        <tr>
+            <th concordion:assert-equals="#comarca">Llistat de comarques del "Alt Camp":</th>
+        </tr>
+        <tr>
+            <td>Comarca no trobada en el sistema</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+<div concordion:example="two">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per comarques, un cop
+        hem <span concordion:execute="afegirComarques()">afegit</span> les comarques de la taula anterior. Cerquem les
+        rutes que passen per la comarca <span concordion:set="#nom">Barcelonès</span>
+    <table concordion:verify-rows="#comarca : cercaRutesPerComarques(#nom)">
+        <tr>
+            <th concordion:assert-equals="#comarca">Llistat de comarques del "Barcelonès":</th>
+        </tr>
+        <tr>
+            <td>No hi han rutes en aquesta comarca</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+<div concordion:example="three">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per comarques, un cop
+        hem <span concordion:execute="afegirComarques()">afegit</span> les comarques de la taula anterior. Cerquem les
+        rutes que passen per la comarca <span concordion:set="#nom">Baix Ebre</span>
+    <table concordion:verify-rows="#comarca : cercaRutesPerComarques(#nom)">
+        <tr>
+            <th concordion:assert-equals="#comarca">Llistat de rutes del "Baix Ebre":</th>
+        </tr>
+        <tr>
+            <td>Terres de l'Ebre</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+<div concordion:example="threeplus">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per comarques, un cop
+        hem <span concordion:execute="afegirComarques()">afegit</span> les comarques de la taula anterior. Cerquem les
+        rutes que passen per la comarca <span concordion:set="#nom">Baix Empordà</span>
+    <table concordion:verify-rows="#comarca : cercaRutesPerComarques(#nom)">
+        <tr>
+            <th concordion:assert-equals="#comarca">Llistat de rutes del "Baix Empordà":</th>
+        </tr>
+        <tr>
+            <td>La Costa Brava</td>
+        </tr>
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+    </table>
+    </p>
+</div>
+
+</body>
+</html>

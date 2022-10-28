@@ -1,9 +1,6 @@
 package ub.edu.controller;
 
-import ub.edu.model.Comarca;
-import ub.edu.model.Persona;
-import ub.edu.model.Ruta;
-import ub.edu.model.XarxaPersones;
+import ub.edu.model.*;
 
 import ub.edu.resources.dao.Parell;
 import ub.edu.resources.service.AbstractFactoryData;
@@ -26,6 +23,8 @@ public class Controller {
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
 
+    private Map<String, Localitat> localitatMap;
+
     public Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
@@ -34,7 +33,9 @@ public class Controller {
             initXarxaPersones();
             initRutesMap();
             initComarquesMap();
+            initLocalitatMap();
             relacionarRutesComarques();
+            relacionarRutesLocalitats();
         } catch (Exception e) {
         }
 
@@ -65,15 +66,34 @@ public class Controller {
         else return false;
     }
 
+    private boolean initLocalitatMap() throws Exception {
+        localitatMap = (dataService.getAllLocalitats().stream()
+                .collect(Collectors.toMap(Localitat::getNom, Function.identity())));
+        if (localitatMap != null)
+            return true;
+        else return false;
+    }
+
     private void relacionarRutesComarques() throws Exception {
         List<Parell<String, String>> relacionsRC = dataService.getAllRelacionsRutesComarques();
-
         for (Parell p : relacionsRC) {
             Ruta r = rutaMap.get(p.getElement2());
             Comarca c = comarcaMap.get(p.getElement1());
             r.addComarca(c);
         }
     }
+
+    private void relacionarRutesLocalitats() throws Exception {
+        List<Parell<String, String>> relacionsRL = dataService.getAllRelacionsRutesLocalitats();
+        System.out.println(relacionsRL.toString());
+        for (Parell p : relacionsRL) {
+            Ruta r = rutaMap.get(p.getElement2());
+            Localitat l = localitatMap.get(p.getElement1());
+            r.addLocalitat(l);
+        }
+    }
+
+
 
     // Validem la Persona a la capa de persistencia i no a memoria, per seguretat en les possibles sincronitzacions
     public String validateRegisterPersona (String username, String password) {
@@ -217,4 +237,56 @@ public class Controller {
         return comarca;
     }
 
+    public Iterable<String> cercarRutesPerTempsDeDurada(int numDies){
+        SortedSet<String> llista = new TreeSet<>();
+        for(Ruta ruta: rutaMap.values()){
+            if (ruta.getDurada() == numDies){
+                llista.add(ruta.getNom());
+            }
+        }
+
+        if (llista.isEmpty()){
+            llista.add("No hi ha rutes amb aquest temps de durada");
+        }
+
+        return llista;
+
+    }
+
+    public Localitat afegirLocalitat(String nomLocalitat) {
+        Localitat l;
+        if(localitatMap.containsKey(nomLocalitat)){
+            l = localitatMap.get(nomLocalitat);
+        }else{
+            l = new Localitat(nomLocalitat);
+            localitatMap.put(nomLocalitat, l);
+        }
+        return l;
+    }
+
+    public Iterable<String>  cercaRutesPerLocalitat(String nomLocalitat) {
+        SortedSet<String> localitats = new TreeSet<>();
+
+        if (localitatMap.size() == 0){
+            localitats.add("No hi han localitats enregistrades");
+            return localitats;
+        }
+
+        Localitat localitat = localitatMap.get(nomLocalitat);
+        if (localitat == null)
+            localitats.add("Comarca no trobada en el sistema");
+
+        else {
+            int ncount = 0;
+            for (Ruta ruta : rutaMap.values()){
+                if (ruta.containsLocalitat(localitat)) {
+                    localitats.add(ruta.getNom());
+                    ncount++;
+                }
+            }
+            if (ncount == 0) localitats.add("No hi han rutes en aquesta comarca");
+        }
+
+        return localitats;
+    }
 }

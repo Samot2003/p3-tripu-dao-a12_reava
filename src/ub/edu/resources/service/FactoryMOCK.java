@@ -1,9 +1,6 @@
 package ub.edu.resources.service;
 
-import ub.edu.resources.dao.DAOComarca;
-import ub.edu.resources.dao.DAOPersona;
-import ub.edu.resources.dao.DAORelacioComarcaRuta;
-import ub.edu.resources.dao.DAORuta;
+import ub.edu.resources.dao.*;
 
 import ub.edu.resources.dao.MOCK.*;
 
@@ -28,6 +25,14 @@ public class FactoryMOCK implements AbstractFactoryData {
     @Override
     public DAORelacioComarcaRuta createDAORelacioRutaComarca() {
         return new DAORelacioComarcaRutaMOCK();
+    }
+
+    public DAOLocalitat createDAOLocalitat() {
+        return new DAOLocalitatMOCK();
+    }
+
+    public DAORelacioLocalitatRuta createDAORelacioRutaLocalitat() {
+        return new DAORelacioLocalitatRutaMOCK();
     }
 
     // TO DO Pràctica 2:  Crear els altres DAOs de les altres classes

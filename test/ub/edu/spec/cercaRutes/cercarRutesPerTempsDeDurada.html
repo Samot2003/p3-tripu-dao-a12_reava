@@ -1,0 +1,79 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US4.1: Cercar rutes per Temps de Durada</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US4: Cercar rutes per temps de durada</h1>
+
+<h2>Criteris d'acceptació 0 i 1</h2>
+<p>
+    <b>0</b>: Si no hi ha cap ruta amb aquest temps de durada, el sistema mostra: "No hi ha rutes amb aquest temps de durada"
+    <b>1</b>: Si el determinat temps de durada té rutes, el sistema llista totes les rutes amb el temps de durada indicat.
+</p>
+
+<p>
+    Les comarques i les seves rutes que hem enregistrat en el sistema són les següents:
+<table>
+    <tr>
+        <th>Rutes</th>
+        <th>Temps de durada</th>
+    </tr>
+    <tr>
+        <td>De la Cerdanya fins al Mar</td>
+        <td>5 dies</td>
+    </tr>
+
+    <tr>
+        <td>Terres de l'Ebre</td>
+        <td>2 dies</td>
+    </tr>
+    <tr>
+        <td>La Costa Brava</td>
+        <td>10 dies</td>
+    </tr>
+    <tr>
+        <td>Ribera del Ter</td>
+        <td>2 dies</td>
+    </tr>
+</table>
+</p>
+
+
+<div concordion:example="zero">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per un temps de durada
+        determinat en <span concordion:set="#temps">3</span> dies
+    <table concordion:verify-rows="#tempsDeDurada : cercaRutesPerTempsDeDurada(#temps)">
+        <tr>
+            <th concordion:assert-equals="#tempsDeDurada">Llistat de rutes de 3 dies de temps de durada:</th>
+        </tr>
+        <tr>
+            <td>No hi ha rutes amb aquest temps de durada</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+<div concordion:example="one">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per un temps de durada
+        determinat en <span concordion:set="#temps">2</span> dies
+    <table concordion:verify-rows="#tempsDeDurada : cercaRutesPerTempsDeDurada(#temps)">
+        <tr>
+            <th concordion:assert-equals="#tempsDeDurada">Llistat de rutes de 2 dies de temps de durada:</th>
+        </tr>
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+        <tr>
+            <td>Terres de l'Ebre</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+</body>
+</html>

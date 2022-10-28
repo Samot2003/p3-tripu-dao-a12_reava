@@ -1,0 +1,91 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US3: Llistar el catàleg de rutes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US3: Llistar el catàleg de rutes</h1>
+<p>
+    Les rutes ordenades alfabèticament són les següents:
+<table>
+    <tr>
+        <th>Ruta</th>
+        <th>Data de Creació</th>
+        <th>Durada</th>
+    </tr>
+    <tr>
+        <td>De la Cerdanya fins al Mar</td>
+        <td>29/09/2021</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>Terres de l'Ebre</td>
+        <td>04/10/2021</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>La Costa Brava</td>
+        <td>10/10/2021</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>Ribera del Ter</td>
+        <td>11/10/2021</td>
+        <td>4</td>
+    </tr>
+</table>
+</p>
+<h2>Criteri d'acceptació UC 3.1</h2>
+<p>
+    El sistema llista totes les rutes del catàleg quan prem a veure rutes, endrecades per nom.
+</p>
+<div concordion:example="one">
+    <table concordion:verify-rows="#ruta : listCatalegRutesPerNom()">
+        <tr>
+            <th concordion:assert-equals="#ruta">Llistat de rutes del catàleg per nom:</th>
+        </tr>
+        <tr>
+            <td>De la Cerdanya fins al Mar</td>
+        </tr>
+        <tr>
+            <td>La Costa Brava</td>
+        </tr>
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+        <tr>
+            <td>Terres de l'Ebre</td>
+        </tr>
+    </table>
+</div>
+
+
+<h2>Criteri d'acceptació UC 3.2</h2>
+<p>
+    El sistema llista totes les rutes del catàleg quan prem a veure rutes, endreçades per durada.
+</p>
+<div concordion:example="two">
+    <table concordion:verify-rows="#ruta : listCatalegRutesPerDurada()">
+        <tr>
+            <th concordion:assert-equals="#ruta">Llistat de rutes del catàleg per durada:</th>
+        </tr>
+
+        <tr>
+            <td>Terres de l'Ebre</td>
+        </tr>
+
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+        <tr>
+            <td>De la Cerdanya fins al Mar</td>
+        </tr>
+        <tr>
+            <td>La Costa Brava</td>
+        </tr>
+
+
+    </table>
+</div>
+</body>
+</html>
