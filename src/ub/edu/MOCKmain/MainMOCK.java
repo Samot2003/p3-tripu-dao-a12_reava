@@ -9,6 +9,7 @@ public class MainMOCK {
         Controller c = new Controller();
         c.afegirLocalitat("Barcelonès");
         System.out.println(c.cercaRutesPerLocalitat("Ripoll"));
+        System.out.println(c.cercaRutesPerLocalitat("Barcelona"));
         System.out.println(c.cercaRutesPerComarca("Cerdanya"));
 
     }

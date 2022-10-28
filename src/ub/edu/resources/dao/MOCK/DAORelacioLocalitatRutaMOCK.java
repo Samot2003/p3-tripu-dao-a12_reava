@@ -20,7 +20,6 @@ public class DAORelacioLocalitatRutaMOCK implements DAORelacioLocalitatRuta {
         afegirLocalitatInicialRuta("Ripoll","Ribera del Ter");
 
         afegirLocalitatInicialRuta("Cadaqués","La Costa Brava");
-        afegirLocalitatInicialRuta("Ampuriabrava","La Costa Brava");
         afegirLocalitatInicialRuta("Palamós","La Costa Brava");
 
 

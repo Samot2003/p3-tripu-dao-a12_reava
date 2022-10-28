@@ -268,13 +268,13 @@ public class Controller {
         SortedSet<String> localitats = new TreeSet<>();
 
         if (localitatMap.size() == 0){
-            localitats.add("No hi han localitats enregistrades");
+            localitats.add("No hi ha localitats enregistrades");
             return localitats;
         }
 
         Localitat localitat = localitatMap.get(nomLocalitat);
         if (localitat == null)
-            localitats.add("Comarca no trobada en el sistema");
+            localitats.add("Localitat no trobada en el sistema");
 
         else {
             int ncount = 0;
@@ -284,7 +284,7 @@ public class Controller {
                     ncount++;
                 }
             }
-            if (ncount == 0) localitats.add("No hi han rutes en aquesta comarca");
+            if (ncount == 0) localitats.add("No hi ha rutes en aquesta localitat");
         }
 
         return localitats;
