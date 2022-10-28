@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+skinparam packageStyle rect 
+skinparam actorStyle Hollow
+
+title Un diagrama de casos d'ús per a TripUB
+
+actor Usuari as usuari
+actor Persona as persona
+
+rectangle TripUB {
+
+usecase (UC1. Sign UP)  as UC1 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC2. Sign IN) as UC2  #aliceblue;line:blue;line.bold;text:blue
+usecase (UC3. Visualitzar Llista Rutes) as UC3  #aliceblue;line:blue;line.bold;text:blue
+usecase (UC4. Cercar Rutes ) as UC4
+usecase (UC4.3 Cercar Rutes Per Transport Recomanat) as UC43
+usecase (UC4.2 Cercar Rutes Per Localitat) as UC42 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC4.1 Cercar Rutes Per Comarca ) as UC41 #aliceblue;line:blue;line.bold;text:blue
+usecase (UC4.4 Cercar Rutes Per Temps de Durada) as UC44
+usecase (UC5. Visualitzar Perfil) as UC5
+usecase (UC6. Visualitzar Ruta) as UC6
+usecase (UC6.1 Visualitzar DetallsRuta) as UC61
+
+
+
+
+persona - UC2
+usuari - UC1
+
+UC1 .> UC2 : <<include>>
+
+
+UC4 <|-- UC41
+UC4 <|-- UC42
+UC4 <|-- UC43
+UC4 <|-- UC44
+
+persona -- UC4
+persona -- UC3
+persona -- UC5
+
+UC3 ..> UC6 : <<include>>
+UC6 <.. UC61: <<extends>>
+
+
+}
+
+
+
+@enduml
+
+

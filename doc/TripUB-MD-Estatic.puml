@@ -1,0 +1,155 @@
+
+@startuml
+skinparam classAttributeIconSize 0
+title Diagrama de Model de Domini
+
+
+
+TripUB "1" o--- "*" Persona: estanEnregistrades
+TripUB "1"*--- "1..*" Ruta : proposa
+
+Ruta "*" *-- "1" Localitat : parteix
+Ruta "*" *-- "1" Localitat : finalitza
+
+
+Ruta "1" *-- "1..*" Tram : composadaPer
+Tram "*" -left- "1" Transport: <<recomana
+Tram "*" -left- "1..*" Transport: <<possibleFerEn
+
+Ruta "*" --"*" Ruta: estàPropDe
+
+Transport <|-- Cotxe
+Transport <|-- Bicicleta
+Transport <|-- APeu
+
+Tram <|-- TramEtapa
+Tram <|-right- TramTrack
+
+TramEtapa "*" -- "1" Etapa: comença
+TramEtapa "*" -- "1" Etapa: acaba
+
+
+Grup "*" --- "*" Persona: estàFormatPer
+
+Localitat "1..*" --"1" Comarca: pertany
+
+Localitat <|-- Etapa
+Localitat <|-right-- PuntDePas
+
+Etapa "1" -- "1..*" Allotjament: ofereix
+Allotjament <|-- Camping
+Allotjament <|-- Refugi
+Allotjament <|-- CasaRural
+Allotjament <|-- Hotel
+
+
+TramTrack "*" -- "1" PuntDePas: comença
+TramTrack "*" -- "1" PuntDePas: acaba
+
+Persona "*" -- "1..*" Ruta : planifica
+Persona "1" -- "1" Direccio : resideix
+
+class TripUB
+
+class Persona #aliceblue;line:blue;line.bold;text:blue {
+ correu: String
+ nom : String
+ cognom: String
+ data_neix: Date
+ dni: String
+}
+
+class Direccio{
+ carrer: String
+ numero: int
+ poblacio: String
+ codi_postal: String
+}
+
+
+class Ruta #aliceblue;line:blue;line.bold;text:blue {
+ id_Ruta: int
+ dies: int
+ nom: String
+ descripció: String
+ \cost: Quantitat
+ \distancia: Quantitat
+ dificultat: String
+ tipusRuta: String
+}
+
+class TramEtapa {
+kms: float
+\ tempsEstimat: Time
+\cost: Quantitat
+}
+
+
+class TramTrack {
+duracióEstimada: Time
+distància: int
+desnivellPositiu: int
+desnivellNegatiu: int
+}
+
+
+
+class Localitat  #aliceblue;line:blue;line.bold;text:blue {
+ idLloc: int
+ nom: String
+ altitud: float
+ latitud: float
+ longitud: float
+}
+class Comarca #aliceblue;line:blue;line.bold;text:blue {
+ nom: String
+ id_comarca: int
+}
+
+class PuntDePas{
+ highlight: String
+}
+
+class Etapa{
+}
+
+class Allotjament {
+nom: string
+preuPerNit: Quantitat
+}
+
+class Hotel {
+preuEsmorzar: Quantitat
+preuMP: Quantitat
+preuPC: Quantitat
+}
+
+class CasaRural {
+preuEsmorzar: Quantitat
+preuMP: Quantitat
+}
+
+class Camping
+
+class Refugi {
+preuMP: Quantitat
+}
+
+
+class Transport {
+velocitatEstimada: float
+}
+
+class Cotxe {
+model: string
+tipusCombustible: booleà
+}
+
+class Bicicleta {
+model: string
+
+}
+
+class APeu {
+}
+@enduml
