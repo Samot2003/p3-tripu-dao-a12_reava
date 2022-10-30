@@ -1,6 +1,7 @@
 package ub.edu.resources.service;
 
 import ub.edu.model.*;
+import ub.edu.model.Transport.Transport;
 import ub.edu.resources.dao.*;
 
 import java.util.List;
@@ -11,20 +12,22 @@ public class DataService {
     private DAOPersona daoPersona;
     private DAOComarca daoComarca;
     private DAORelacioComarcaRuta daoRelacioRutaComarca;
-
     private DAOLocalitat daoLocalitat;
-
     private DAORelacioLocalitatRuta daoRelacioLocalitatRuta;
+    private DAOTransport daoTransport;
 
+    private DAORelacioTransportRuta daoRelacioTransportRuta;
 
     public DataService(AbstractFactoryData factory) {
 
         this.daoPersona = factory.createDAOPersona();
         this.daoRuta = factory.createDAORuta();
         this.daoComarca = factory.createDAOComarca();
-        this.daoLocalitat = factory.createDAOLocalitat();
         this.daoRelacioRutaComarca = factory.createDAORelacioRutaComarca();
+        this.daoLocalitat = factory.createDAOLocalitat();
         this.daoRelacioLocalitatRuta = factory.createDAORelacioRutaLocalitat();
+        this.daoTransport = factory.createDAOTransport();
+        this.daoRelacioTransportRuta = factory.createDAORelacioTransportRuta();
         // TO DO: Crear els altres DAO de les altres estructures
     }
 
@@ -54,6 +57,10 @@ public class DataService {
         return daoLocalitat.getAll();
     }
 
+    public List<Transport> getAllTransports() throws Exception{
+        return daoTransport.getAll();
+    }
+
     public Optional<Parell<String, String>> getComarquesRuta(String nom) throws Exception {
         return daoRelacioRutaComarca.getById(nom);
     }
@@ -61,8 +68,13 @@ public class DataService {
         return daoRelacioRutaComarca.getAll();
     }
 
+
     public List<Parell<String, String>> getAllRelacionsRutesLocalitats() throws Exception{
         return daoRelacioLocalitatRuta.getAll();
     }
+    public List<Parell<String, String>> getAllRelacionsRutesTransports() throws Exception{
+        return daoRelacioTransportRuta.getAll();
+    }
+
 
 }

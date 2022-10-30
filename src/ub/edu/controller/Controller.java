@@ -2,6 +2,7 @@ package ub.edu.controller;
 
 import ub.edu.model.*;
 
+import ub.edu.model.Transport.Transport;
 import ub.edu.resources.dao.Parell;
 import ub.edu.resources.service.AbstractFactoryData;
 import ub.edu.resources.service.DataService;
@@ -18,12 +19,11 @@ public class Controller {
     private AbstractFactoryData factory;      // Origen de les dades
     private DataService dataService;         // Connexio amb les dades
 
-
     private XarxaPersones xarxaPersones;   // Model
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
-
     private Map<String, Localitat> localitatMap;
+    private Map<String, Transport> transportMap;
 
     public Controller() {
         factory = new FactoryMOCK();
@@ -34,13 +34,14 @@ public class Controller {
             initRutesMap();
             initComarquesMap();
             initLocalitatMap();
+            initTransportMap();
             relacionarRutesComarques();
             relacionarRutesLocalitats();
+            relacionarRutesTransports();
         } catch (Exception e) {
         }
 
     }
-
 
     public boolean initXarxaPersones() throws Exception {
         List<Persona> l = dataService.getAllPersones();
@@ -73,6 +74,14 @@ public class Controller {
             return true;
         else return false;
     }
+    private boolean initTransportMap() throws Exception {
+        transportMap = (dataService.getAllTransports().stream()
+                .collect(Collectors.toMap(Transport::toString, Function.identity())));
+        if (localitatMap != null)
+            return true;
+        else return false;
+    }
+
 
     private void relacionarRutesComarques() throws Exception {
         List<Parell<String, String>> relacionsRC = dataService.getAllRelacionsRutesComarques();
@@ -92,8 +101,15 @@ public class Controller {
             r.addLocalitat(l);
         }
     }
-
-
+    private void relacionarRutesTransports() throws Exception {
+        List<Parell<String, String>> relacionsRT = dataService.getAllRelacionsRutesTransports();
+        System.out.println(relacionsRT.toString());
+        for (Parell p : relacionsRT) {
+            Ruta r = rutaMap.get(p.getElement2());
+            Transport t = transportMap.get(p.getElement1());
+            r.addTransport(t);
+        }
+    }
 
     // Validem la Persona a la capa de persistencia i no a memoria, per seguretat en les possibles sincronitzacions
     public String validateRegisterPersona (String username, String password) {
@@ -288,5 +304,41 @@ public class Controller {
         }
 
         return localitats;
+    }
+
+    public Transport afegirTransport(String id, float velocitat) {
+        Transport t;
+        if(transportMap.containsKey(id)){
+            t = transportMap.get(id);
+        }else{
+            t = new Transport(id, velocitat);
+            transportMap.put(id, t);
+        }
+        return t;
+    }
+
+    public Iterable<String>  cercaRutesPerTransport(String id) {
+        SortedSet<String> transports = new TreeSet<>();
+
+        if (transportMap.size() == 0){
+            transports.add("No hi ha transports enregistrats");
+            return transports;
+        }
+
+        Transport transport = transportMap.get(id);
+        if (transport == null)
+            transports.add("Transport no trobat en el sistema");
+
+        else {
+            int ncount = 0;
+            for (Ruta ruta : rutaMap.values()){
+                if (ruta.containsTransport(transport)) {
+                    transports.add(ruta.getNom());
+                    ncount++;
+                }
+            }
+            if (ncount == 0) transports.add("No hi ha rutes en aquesta transport");
+        }
+        return transports;
     }
 }
