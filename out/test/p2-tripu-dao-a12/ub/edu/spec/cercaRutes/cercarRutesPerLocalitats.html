@@ -1,0 +1,121 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US4.2: Cercar rutes per  localitats</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>4.2: Cercar rutes per localitats</h1>
+
+<h2>Criteri d'acceptacio 0</h2>
+<p>
+<div concordion:example="zero" concordion:status="Unimplemented">
+    En aquest cas, no enregistrem cap localitat en el sistema.  Cas que ja no cal comprovar.
+</div>
+</p>
+
+<h2>Criteris d'acceptació 1, 2 i 3</h2>
+<p>
+    <b>1</b>: Si la localitat no existeix, es mostra "Localitat no trobada"
+    <b>2</b>: Si la localitat no té rutes, es mostra "No hi han rutes en aquesta localitat"
+    <b>3</b>: Si la localitat té rutes, el sistema llista totes les localitat ordenades alfabeticament i amb el número de rutes al costat.
+</p>
+
+<p>
+    Les localitats i les seves rutes que hem enregistrat en el sistema són les següents:
+<table>
+    <tr>
+        <th>Localitats</th>
+        <th>Rutes</th>
+    </tr>
+    <tr>
+        <td>Puigcerdà</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+
+    <tr>
+        <td>Llivia</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+    <tr>
+        <td>Ripoll</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+    <tr>
+        <td>Girona</td>
+        <td>Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>Ripoll</td>
+        <td>Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>Cadaqués</td>
+        <td>La Costa Brava</td>
+    </tr>
+    <tr>
+        <td>Palamós</td>
+        <td>La Costa Brava</td>
+    </tr>
+    <tr>
+        <td>Ampuriabrava</td>
+        <td> no assignat</td>
+    </tr>
+
+</table>
+</p>
+
+<div concordion:example="one">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per localitats, un cop
+        hem <span concordion:execute="afegirLocalitats()">afegit</span> les localitats de la taula anterior. Cerquem les
+        rutes que passen per la localitat <span concordion:set="#nom">Sitges</span>
+    <table concordion:verify-rows="#localitat : cercaRutesPerLocalitats(#nom)">
+        <tr>
+            <th concordion:assert-equals="#localitat">Llistat de rutes de "Sitges":</th>
+        </tr>
+        <tr>
+            <td>Localitat no trobada en el sistema</td>
+        </tr>
+    </table>
+    </p>
+</div>
+
+<div concordion:example="two">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per localitats, un cop
+        hem <span concordion:execute="afegirLocalitats()">afegit</span> les localitats de la taula anterior. Cerquem les
+        rutes que passen per la localitat <span concordion:set="#nom">Ampuriabrava</span>
+    <table concordion:verify-rows="#localitat : cercaRutesPerLocalitats(#nom)">
+        <tr>
+            <th concordion:assert-equals="#localitat">Llistat de localitats de "Ampuriabrava":</th>
+        </tr>
+        <tr>
+            <td>No hi ha rutes en aquesta localitat</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+<div concordion:example="three">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per localitats, un cop
+        hem <span concordion:execute="afegirLocalitats()">afegit</span> les localitats de la taula anterior. Cerquem les
+        rutes que passen per la localitat <span concordion:set="#nom">Ripoll</span>
+    <table concordion:verify-rows="#localitat : cercaRutesPerLocalitats(#nom)">
+        <tr>
+            <th concordion:assert-equals="#localitat">Llistat de localitats de "Ripoll":</th>
+        </tr>
+        <tr>
+            <td>De la Cerdanya fins al Mar</td>
+        </tr>
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+</body>
+</html>
