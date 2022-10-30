@@ -1,5 +1,7 @@
 package ub.edu.model;
 
+import ub.edu.model.Transport.Transport;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -11,12 +13,15 @@ public class Ruta {
     private Set<Comarca> comarques;
     private Set<Localitat> localitats;
 
+    private Set<Transport> transports;
+
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
         setDurada(numDies);
         setDataCreacio(dataText);
         comarques = new HashSet<>();
         localitats = new HashSet<>();
+        transports = new HashSet<>();
 
 
     }
@@ -69,6 +74,14 @@ public class Ruta {
 
     public boolean containsLocalitat(Localitat localitat){
         return localitats.contains(localitat);
+    }
+
+    public void addTransport(Transport transport){
+        transports.add(transport);
+    }
+
+    public boolean containsTransport(Transport transport){
+        return transports.contains(transport);
     }
 
 

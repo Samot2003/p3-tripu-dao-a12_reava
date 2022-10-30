@@ -10,4 +10,8 @@ public interface AbstractFactoryData {
      DAOLocalitat createDAOLocalitat();
 
      DAORelacioLocalitatRuta createDAORelacioRutaLocalitat();
+
+     DAOTransport createDAOTransport();
+
+     DAORelacioTransportRuta createDAORelacioTransportRuta();
 }

@@ -35,5 +35,12 @@ public class FactoryMOCK implements AbstractFactoryData {
         return new DAORelacioLocalitatRutaMOCK();
     }
 
+    public DAOTransport createDAOTransport() {
+        return new DAOTransportMOCK();
+    }
+
+    @Override
+    public DAORelacioTransportRuta createDAORelacioTransportRuta() {return new DAORelacioTransportRutaMOCK();}
+
     // TO DO Pràctica 2:  Crear els altres DAOs de les altres classes
 }
