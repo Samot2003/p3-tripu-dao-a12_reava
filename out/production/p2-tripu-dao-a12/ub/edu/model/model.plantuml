@@ -13,6 +13,16 @@ title __MODEL's Class Diagram__\n
   
 
   namespace ub.edu.model {
+    class ub.edu.model.Localitat {
+        ~ nom : String
+        + Localitat()
+        + getNom()
+        + setNom()
+    }
+  }
+  
+
+  namespace ub.edu.model {
     class ub.edu.model.Persona {
         - nom : String
         - pwd : String
@@ -30,14 +40,22 @@ title __MODEL's Class Diagram__\n
         - comarques : Set<Comarca>
         - dataCreacio : LocalDate
         - durada : int
+        - localitats : Set<Localitat>
         - nom : String
+        - transports : Set<Transport>
         + Ruta()
         + Ruta()
         + addComarca()
+        + addLocalitat()
+        + addTransport()
+        + cambiarEstatRuta()
         + containsComarca()
+        + containsLocalitat()
+        + containsTransport()
         + getComarques()
         + getDataCreacio()
         + getDurada()
+        + getEstatRuta()
         + getNom()
         + setDataCreacio()
         + setDurada()
@@ -55,8 +73,9 @@ title __MODEL's Class Diagram__\n
   }
   
 
-ub.edu.model.XarxaPersones "1" --> "*" ub.edu.model.Persona : conté
-ub.edu.model.Ruta "1" --> "1..*" ub.edu.model.Comarca : passaPer
+  ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
+
+
 right footer
 
 

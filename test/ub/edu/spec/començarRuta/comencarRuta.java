@@ -1,4 +1,4 @@
-package ub.edu.spec.cercaRutes;
+package ub.edu.spec.començarRuta;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
-public class cercaRutesPerTransport {
+public class comencarRuta {
+
     private Controller controlador;
 
     @BeforeExample
@@ -14,16 +15,11 @@ public class cercaRutesPerTransport {
         controlador = new Controller();
     }
 
-    public Iterable<String> cercaRutesPerTransports(String id) {
-        return controlador.cercaRutesPerTransport(id);
+    public String comencarRuta(String nomRuta){
+        return controlador.cambiarEstatRuta(nomRuta, "EnProces");
     }
 
-    public void afegirTransports() {
-        controlador.afegirTransport("Bici","b4", 9);
-
+    public void initRuta(){
+        controlador.cambiarEstatRuta("Terres de l'Ebre", "EnProces");
     }
-
-
-
 }
-

@@ -1,1 +1,131 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US4.2: Cercar rutes per transports recomanats</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>4.2: Cercar rutes per transports recomanats</h1>
 
+<h2>Criteri d'acceptacio 0</h2>
+<p>
+<div concordion:example="zero" concordion:status="Unimplemented">
+    En aquest cas, no enregistrem cap transport en el sistema.  Cas que ja no cal comprovar.
+</div>
+</p>
+
+<h2>Criteris d'acceptació 1, 2 i 3</h2>
+<p>
+    <b>1</b>: Si el transport no existeix, es mostra "Transport no trobat en el sistema"
+    <b>2</b>: Si el transport no té rutes, es mostra "No hi ha rutes amb aquest transport recomanat"
+    <b>3</b>: Si el transport té rutes, el sistema llista totes les rutes amb aquell transport recomanat.
+</p>
+
+<p>
+    Els transports recomanats i les seves rutes que hem enregistrat en el sistema són els següents (b[BICI]  c[COTXE]   p[PEU]):
+<table>
+    <tr>
+        <th>Transports</th>
+        <th>Rutes</th>
+    </tr>
+    <tr>
+        <td>b1</td>
+        <td>La Costa Brava</td>
+    </tr>
+
+    <tr>
+        <td>b1</td>
+        <td>Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>b2</td>
+        <td>Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>c1</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+    <tr>
+        <td>c2</td>
+        <td>Terres de l'Ebre</td>
+    </tr>
+    <tr>
+        <td>c2</td>
+        <td>De la Cerdanya fins al Mar</td>
+    </tr>
+    <tr>
+        <td>p</td>
+        <td>La Costa Brava</td>
+    </tr>
+    <tr>
+        <td>p</td>
+        <td>Ribera del Ter</td>
+    </tr>
+    <tr>
+        <td>p</td>
+        <td> Terres de l'Ebre</td>
+    </tr>
+    <tr>
+        <td>b4</td>
+        <td> no assignat</td>
+    </tr>
+</table>
+</p>
+
+<div concordion:example="one">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per transports recomanats, un cop
+        hem <span concordion:execute="afegirTransports()">afegit</span> els transports de la taula anterior. Cerquem les
+        rutes que passen pel transport <span concordion:set="#id">c7</span>
+    <table concordion:verify-rows="#transport : cercaRutesPerTransports(#id)">
+        <tr>
+            <th concordion:assert-equals="#transport">Llistat de rutes on "c7" es un transport recomanat:</th>
+        </tr>
+        <tr>
+            <td>Transport no trobat en el sistema</td>
+        </tr>
+    </table>
+    </p>
+</div>
+
+<div concordion:example="two">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per transports recomanats, un cop
+        hem <span concordion:execute="afegirTransports()">afegit</span> els transports de la taula anterior. Cerquem les
+        rutes que passen pel transport <span concordion:set="#id">b4</span>
+    <table concordion:verify-rows="#transport : cercaRutesPerTransports(#id)">
+        <tr>
+            <th concordion:assert-equals="#transport">Llistat de rutes on "b4" es un transport recomanat:</th>
+        </tr>
+        <tr>
+            <td>No hi ha rutes amb aquest transport recomanat</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+<div concordion:example="three">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar les rutes per transports recomanats, un cop
+        hem <span concordion:execute="afegirTransports()">afegit</span> els transports de la taula anterior. Cerquem les
+        rutes que passen pel transport <span concordion:set="#id">p</span>
+    <table concordion:verify-rows="#transport : cercaRutesPerTransports(#id)">
+        <tr>
+            <th concordion:assert-equals="#transport">Llistat de rutes on "p" es un transport recomanat:</th>
+        </tr>
+        <tr>
+            <td>La Costa Brava</td>
+        </tr>
+        <tr>
+            <td>Ribera del Ter</td>
+        </tr>
+        <tr>
+            <td>Terres de l'Ebre</td>
+        </tr>
+    </table>
+    </p>
+
+</div>
+
+</body>
+</html>

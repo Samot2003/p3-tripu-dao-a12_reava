@@ -20,6 +20,22 @@ title __MOCK's Class Diagram__\n
 
   namespace ub.edu.resources.dao {
     namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOLocalitatMOCK {
+          - llistaLocalitats : Map<String, Localitat>
+          + DAOLocalitatMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+          - addLocalitat()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
       class ub.edu.resources.dao.MOCK.DAOPersonaMOCK {
           - xarxaPersones : Map<String, Persona>
           + DAOPersonaMOCK()
@@ -54,6 +70,42 @@ title __MOCK's Class Diagram__\n
 
   namespace ub.edu.resources.dao {
     namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORelacioLocalitatRutaMOCK {
+          ~ relacions : List<Parell<String, String>>
+          + DAORelacioLocalitatRutaMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getLocalitatsByRuta()
+          + getRutesByLocalitat()
+          + update()
+          - afegirLocalitatInicialRuta()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORelacioTransportRutaMOCK {
+          ~ relacions : List<Parell<String, String>>
+          + DAORelacioTransportRutaMOCK()
+          + add()
+          + delete()
+          + getAll()
+          + getById()
+          + getRutesByTransport()
+          + getTransportsByRuta()
+          + update()
+          - afegirTransportRuta()
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
       class ub.edu.resources.dao.MOCK.DAORutaMOCK {
           - idRuta : Map<String, Ruta>
           + DAORutaMOCK()
@@ -68,10 +120,30 @@ title __MOCK's Class Diagram__\n
   }
   
 
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOTransportMOCK {
+          - llistaTransports : Map<String, Transport>
+          + DAOTransportMOCK()
+          + add()
+          + addTransport()
+          + delete()
+          + getAll()
+          + getById()
+          + update()
+      }
+    }
+  }
+  
+
   ub.edu.resources.dao.MOCK.DAOComarcaMOCK .up.|> ub.edu.resources.dao.DAOComarca
+  ub.edu.resources.dao.MOCK.DAOLocalitatMOCK .up.|> ub.edu.resources.dao.DAOLocalitat
   ub.edu.resources.dao.MOCK.DAOPersonaMOCK .up.|> ub.edu.resources.dao.DAOPersona
   ub.edu.resources.dao.MOCK.DAORelacioComarcaRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioComarcaRuta
+  ub.edu.resources.dao.MOCK.DAORelacioLocalitatRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioLocalitatRuta
+  ub.edu.resources.dao.MOCK.DAORelacioTransportRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioTransportRuta
   ub.edu.resources.dao.MOCK.DAORutaMOCK .up.|> ub.edu.resources.dao.DAORuta
+  ub.edu.resources.dao.MOCK.DAOTransportMOCK .up.|> ub.edu.resources.dao.DAOTransport
 
 
 right footer

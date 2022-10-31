@@ -1,5 +1,9 @@
 package ub.edu.model;
 
+import ub.edu.model.Estat.Acabat;
+import ub.edu.model.Estat.EnProces;
+import ub.edu.model.Estat.Estat;
+import ub.edu.model.Estat.NoComençat;
 import ub.edu.model.Transport.Transport;
 
 import java.time.LocalDate;
@@ -12,8 +16,9 @@ public class Ruta {
     private LocalDate dataCreacio;
     private Set<Comarca> comarques;
     private Set<Localitat> localitats;
-
     private Set<Transport> transports;
+
+    private Estat estat;
 
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
@@ -22,8 +27,7 @@ public class Ruta {
         comarques = new HashSet<>();
         localitats = new HashSet<>();
         transports = new HashSet<>();
-
-
+        estat = new NoComençat();
     }
 
     public Ruta(String titol, int numDies, String dataText, List<Comarca> comarcaList) {
@@ -82,6 +86,26 @@ public class Ruta {
 
     public boolean containsTransport(Transport transport){
         return transports.contains(transport);
+    }
+
+    public String getEstatRuta(){
+        return estat.getEstat();
+    }
+
+    public String cambiarEstatRuta(String nomEstat){
+        if (nomEstat.equals(estat.getEstat())){
+            return "ERROR: El estat al que vols canviar es el actual [" + estat.getEstat() + "]";
+        }else if(nomEstat.equals("EnProces")){
+            estat = new EnProces();
+            return "Estat canviat a: " + estat.getEstat();
+        }else if(nomEstat.equals("Acabat")){
+            estat = new Acabat();
+            return "Estat canviat a: " + estat.getEstat();
+        }else if(nomEstat.equals("NoComençat")){
+            estat = new NoComençat();
+            return "Estat canviat a: " + estat.getEstat();
+        }
+        return "Estat no existent";
     }
 
 

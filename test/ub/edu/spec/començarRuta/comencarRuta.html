@@ -1,0 +1,34 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US5: Començar Ruta</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US5: Començar Ruta</h1>
+
+<h2>Criteris d'acceptació 0, 1 </h2>
+<p>
+    <b>0</b>: Si la ruta ja està començada, es mostrarà el missatge: "ERROR: El estat al que vols canviar es el actual [EnProces]"
+    <b>1</b>: Si l'estat de la ruta canvia, es mostrara el missatge: "Estat canviat a: EnProces"
+</p>
+
+
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 5.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema canviar
+    l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> si ja
+    està EnProcés <span concordion:execute="initRuta()">afegit</span>
+    <span concordion:assertEquals="comencarRuta(#nomRuta)">ERROR: El estat al que vols canviar es el actual [EnProces]</span>.
+</div>
+
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 5.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema canviar
+    l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> no està en procés
+    <span concordion:assertEquals="comencarRuta(#nomRuta)">Estat canviat a: EnProces</span>
+</div>
+
+</body>
+</html>
+
+

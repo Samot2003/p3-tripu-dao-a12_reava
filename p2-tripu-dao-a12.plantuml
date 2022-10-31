@@ -1,0 +1,291 @@
+@startuml
+
+title __P2-TRIPU-DAO-A12's Class Diagram__\n
+
+  namespace ub.edu.MOCKmain {
+    class ub.edu.MOCKmain.MainMOCK {
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.Controller {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Comarca {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Estat {
+      class ub.edu.model.Estat.Acabat {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Estat {
+      class ub.edu.model.Estat.EnProces {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Estat {
+      class ub.edu.model.Estat.Estat {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Estat {
+      class ub.edu.model.Estat.NoComencat {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Localitat {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Persona {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Ruta {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Transport {
+      class ub.edu.model.Transport.APeu {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Transport {
+      class ub.edu.model.Transport.Bici {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Transport {
+      class ub.edu.model.Transport.Cotxe {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Transport {
+      class ub.edu.model.Transport.Transport {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.XarxaPersones {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAO {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOComarca {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOLocalitat {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOPersona {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORelacioComarcaRuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORelacioLocalitatRuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORelacioTransportRuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOTransport {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOComarcaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOLocalitatMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOPersonaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORelacioComarcaRutaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORelacioLocalitatRutaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORelacioTransportRutaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAORutaMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    namespace MOCK {
+      class ub.edu.resources.dao.MOCK.DAOTransportMOCK {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    class ub.edu.resources.dao.Parell {
+    }
+  }
+  
+
+  namespace ub.edu.resources.service {
+    interface ub.edu.resources.service.AbstractFactoryData {
+    }
+  }
+  
+
+  namespace ub.edu.resources.service {
+    class ub.edu.resources.service.DataService {
+    }
+  }
+  
+
+  namespace ub.edu.resources.service {
+    class ub.edu.resources.service.FactoryMOCK {
+    }
+  }
+  
+
+  ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
+  ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
+  ub.edu.controller.Controller o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.model.Estat.Acabat -up-|> ub.edu.model.Estat.Estat
+  ub.edu.model.Estat.EnProces -up-|> ub.edu.model.Estat.Estat
+  ub.edu.model.Estat.NoComencat -up-|> ub.edu.model.Estat.Estat
+  ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
+  ub.edu.model.Transport.APeu -up-|> ub.edu.model.Transport.Transport
+  ub.edu.model.Transport.Bici -up-|> ub.edu.model.Transport.Transport
+  ub.edu.model.Transport.Cotxe -up-|> ub.edu.model.Transport.Transport
+  ub.edu.resources.dao.MOCK.DAOComarcaMOCK .up.|> ub.edu.resources.dao.DAOComarca
+  ub.edu.resources.dao.MOCK.DAOLocalitatMOCK .up.|> ub.edu.resources.dao.DAOLocalitat
+  ub.edu.resources.dao.MOCK.DAOPersonaMOCK .up.|> ub.edu.resources.dao.DAOPersona
+  ub.edu.resources.dao.MOCK.DAORelacioComarcaRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioComarcaRuta
+  ub.edu.resources.dao.MOCK.DAORelacioLocalitatRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioLocalitatRuta
+  ub.edu.resources.dao.MOCK.DAORelacioTransportRutaMOCK .up.|> ub.edu.resources.dao.DAORelacioTransportRuta
+  ub.edu.resources.dao.MOCK.DAORutaMOCK .up.|> ub.edu.resources.dao.DAORuta
+  ub.edu.resources.dao.MOCK.DAOTransportMOCK .up.|> ub.edu.resources.dao.DAOTransport
+  ub.edu.resources.dao.Parell o-- T : element1
+  ub.edu.resources.dao.Parell o-- V : element2
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOComarca : daoComarca
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOLocalitat : daoLocalitat
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOPersona : daoPersona
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioLocalitatRuta : daoRelacioLocalitatRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioComarcaRuta : daoRelacioRutaComarca
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioTransportRuta : daoRelacioTransportRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORuta : daoRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOTransport : daoTransport
+  ub.edu.resources.service.FactoryMOCK .up.|> ub.edu.resources.service.AbstractFactoryData
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

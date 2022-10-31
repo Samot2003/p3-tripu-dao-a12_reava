@@ -20,6 +20,12 @@ title __DAO's Class Diagram__\n
   
 
   namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOLocalitat {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
     interface ub.edu.resources.dao.DAOPersona {
         {abstract} + findPersonaByUserNameAndPassword()
     }
@@ -35,7 +41,25 @@ title __DAO's Class Diagram__\n
   
 
   namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORelacioLocalitatRuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAORelacioTransportRuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
     interface ub.edu.resources.dao.DAORuta {
+    }
+  }
+  
+
+  namespace ub.edu.resources.dao {
+    interface ub.edu.resources.dao.DAOTransport {
     }
   }
   
@@ -50,11 +74,10 @@ title __DAO's Class Diagram__\n
     }
   }
   
-ub.edu.resources.dao.DAO <|-- ub.edu.resources.dao.DAORuta
-ub.edu.resources.dao.DAO <|-- ub.edu.resources.dao.DAOComarca
-ub.edu.resources.dao.DAO <|-- ub.edu.resources.dao.DAORelacioComarcaRuta
-ub.edu.resources.dao.DAO <|-- ub.edu.resources.dao.DAOPersona
-ub.edu.resources.dao.DAORelacioComarcaRuta --> ub.edu.resources.dao.Parell: usa
+
+  ub.edu.resources.dao.Parell o-- T : element1
+  ub.edu.resources.dao.Parell o-- V : element2
+
 
 right footer
 

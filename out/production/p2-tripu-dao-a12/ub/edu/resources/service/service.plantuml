@@ -5,9 +5,13 @@ title __SERVICE's Class Diagram__\n
   namespace ub.edu.resources.service {
     interface ub.edu.resources.service.AbstractFactoryData {
         {abstract} + createDAOComarca()
+        {abstract} + createDAOLocalitat()
         {abstract} + createDAOPersona()
         {abstract} + createDAORelacioRutaComarca()
+        {abstract} + createDAORelacioRutaLocalitat()
+        {abstract} + createDAORelacioTransportRuta()
         {abstract} + createDAORuta()
+        {abstract} + createDAOTransport()
     }
   }
   
@@ -16,9 +20,13 @@ title __SERVICE's Class Diagram__\n
     class ub.edu.resources.service.DataService {
         + DataService()
         + getAllComarques()
+        + getAllLocalitats()
         + getAllPersones()
         + getAllRelacionsRutesComarques()
+        + getAllRelacionsRutesLocalitats()
+        + getAllRelacionsRutesTransports()
         + getAllRutes()
+        + getAllTransports()
         + getComarquesRuta()
         + getPersonaByUsername()
     }
@@ -28,18 +36,26 @@ title __SERVICE's Class Diagram__\n
   namespace ub.edu.resources.service {
     class ub.edu.resources.service.FactoryMOCK {
         + createDAOComarca()
+        + createDAOLocalitat()
         + createDAOPersona()
         + createDAORelacioRutaComarca()
+        + createDAORelacioRutaLocalitat()
+        + createDAORelacioTransportRuta()
         + createDAORuta()
+        + createDAOTransport()
     }
   }
   
 
   ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOComarca : daoComarca
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOLocalitat : daoLocalitat
   ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOPersona : daoPersona
-   ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORuta : daoRuta
- ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioComarcaRuta : daoRelacioRutaComarca
-   ub.edu.resources.service.FactoryMOCK .up.|> ub.edu.resources.service.AbstractFactoryData
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioLocalitatRuta : daoRelacioLocalitatRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioComarcaRuta : daoRelacioRutaComarca
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORelacioTransportRuta : daoRelacioTransportRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORuta : daoRuta
+  ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOTransport : daoTransport
+  ub.edu.resources.service.FactoryMOCK .up.|> ub.edu.resources.service.AbstractFactoryData
 
 
 right footer

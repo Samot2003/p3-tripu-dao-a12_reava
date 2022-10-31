@@ -66,7 +66,7 @@ LlistaRutesSeleccionadesGrup <|-right- LlistaRutes
 class TripUB #aliceblue;line.bold;text:blue{
 }
 
-class Persona #aliceblue;line:blue;line.bold;text:blue {
+class Persona  {
  correu: String
  nom : String
  cognom: String
@@ -74,19 +74,23 @@ class Persona #aliceblue;line:blue;line.bold;text:blue {
  dni: String
 }
 
-class Direccio #aliceblue;line:blue;line.bold;text:blue{
+class XarxaPersones {
+ llistaPersones: Persones
+}
+
+class Direccio {
  carrer: String
  numero: int
  poblacio: String
  codi_postal: String
 }
 
-class Tram  #aliceblue;line:blue;line.bold;text:blue{
+class Tram  {
 ID: String
 }
 
 
-class Ruta #aliceblue;line:blue;line.bold;text:blue {
+class Ruta  {
  id_Ruta: int
  dies: int
  nom: String
@@ -97,14 +101,14 @@ class Ruta #aliceblue;line:blue;line.bold;text:blue {
  tipusRuta: String
 }
 
-class TramEtapa  #aliceblue;line:blue;line.bold;text:blue {
+class TramEtapa   {
 kms: float
 \ tempsEstimat: Time
 \cost: Quantitat
 }
 
 
-class TramTrack  #aliceblue;line:blue;line.bold;text:blue{
+class TramTrack  {
 duracióEstimada: Time
 distància: int
 desnivellPositiu: int
@@ -113,99 +117,99 @@ desnivellNegatiu: int
 
 
 
-class Localitat  #aliceblue;line:blue;line.bold;text:blue {
+class Localitat   {
  idLloc: int
  nom: String
  altitud: float
  latitud: float
  longitud: float
 }
-class Comarca #aliceblue;line:blue;line.bold;text:blue {
+class Comarca  {
  nom: String
  id_comarca: int
 }
 
-class PuntDePas #aliceblue;line:blue;line.bold;text:blue{
+class PuntDePas {
  highlight: String
 }
 
-class Etapa #aliceblue;line:blue;line.bold;text:blue {
+class Etapa  {
 }
 
-class Allotjament #aliceblue;line:blue;line.bold;text:blue{
+class Allotjament {
 nom: string
 preuPerNit: Quantitat
 }
 
-class Hotel #aliceblue;line:blue;line.bold;text:blue{
+class Hotel {
 preuEsmorzar: Quantitat
 preuMP: Quantitat
 preuPC: Quantitat
 }
 
-class CasaRural #aliceblue;line:blue;line.bold;text:blue{
+class CasaRural {
 preuEsmorzar: Quantitat
 preuMP: Quantitat
 }
 
-class Camping #aliceblue;line:blue;line.bold;text:blue{
+class Camping {
 }
 
-class Refugi #aliceblue;line:blue;line.bold;text:blue{
+class Refugi {
 preuMP: Quantitat
 }
 
 
-class Transport  #aliceblue;line:blue;line.bold;text:blue{
+class Transport  {
 velocitat: float
 }
 
-class Cotxe  #aliceblue;line:blue;line.bold;text:blue{
+class Cotxe  {
 model: string
 tipusCombustible: booleà
 }
 
-class Bicicleta  #aliceblue;line:blue;line.bold;text:blue{
+class Bicicleta  {
 model: string
 
 }
 
-class APeu  #aliceblue;line:blue;line.bold;text:blue{
+class APeu   {
 }
 
-class RankingGrup #aliceblue;line:red;line.bold;text:blue {
+class RankingGrup  {
 }
 
-class EstadistiquesIndividuals #aliceblue;line:red;line.bold;text:blue{
+class EstadistiquesIndividuals {
 estadistiques: String
 }
 
-class Estat #aliceblue;line:red;line.bold;text:blue{
+class Estat {
 }
 
-class Iniciat #aliceblue;line:red;line.bold;text:blue{
+class Iniciat {
 }
 
-class EnProces #aliceblue;line:red;line.bold;text:blue{
+class EnProces {
 puntsDeControl: posició
 }
 
-class Acabat #aliceblue;line:red;line.bold;text:blue{
+class Acabat {
 }
 
-class LlistaRutes #aliceblue;line:red;line.bold;text:blue{
+class LlistaRutes {
 }
 
-class LlistaRutesProgramades #aliceblue;line:red;line.bold;text:blue{
+class LlistaRutesProgramades {
 }
 
-class LlistaRutesSeleccionadesGrup #aliceblue;line:red;line.bold;text:blue{
+class LlistaRutesSeleccionadesGrup {
 }
 
-class LlistaRutesPreferides #aliceblue;line:red;line.bold;text:blue{
+class LlistaRutesPreferides {
 }
 
-class Grup #aliceblue;line:blue;line.bold;text:blue{
+class Grup {
 }
 
 

@@ -2,11 +2,9 @@ package ub.edu.controller;
 
 import ub.edu.model.*;
 
-import ub.edu.model.Transport.Transport;
+import ub.edu.model.Transport.*;
 import ub.edu.resources.dao.Parell;
-import ub.edu.resources.service.AbstractFactoryData;
-import ub.edu.resources.service.DataService;
-import ub.edu.resources.service.FactoryMOCK;
+import ub.edu.resources.service.*;
 
 import java.util.*;
 import java.util.function.Function;
@@ -76,7 +74,7 @@ public class Controller {
     }
     private boolean initTransportMap() throws Exception {
         transportMap = (dataService.getAllTransports().stream()
-                .collect(Collectors.toMap(Transport::toString, Function.identity())));
+                .collect(Collectors.toMap(Transport::getId, Function.identity())));
         if (localitatMap != null)
             return true;
         else return false;
@@ -94,7 +92,6 @@ public class Controller {
 
     private void relacionarRutesLocalitats() throws Exception {
         List<Parell<String, String>> relacionsRL = dataService.getAllRelacionsRutesLocalitats();
-        System.out.println(relacionsRL.toString());
         for (Parell p : relacionsRL) {
             Ruta r = rutaMap.get(p.getElement2());
             Localitat l = localitatMap.get(p.getElement1());
@@ -103,7 +100,6 @@ public class Controller {
     }
     private void relacionarRutesTransports() throws Exception {
         List<Parell<String, String>> relacionsRT = dataService.getAllRelacionsRutesTransports();
-        System.out.println(relacionsRT.toString());
         for (Parell p : relacionsRT) {
             Ruta r = rutaMap.get(p.getElement2());
             Transport t = transportMap.get(p.getElement1());
@@ -306,15 +302,23 @@ public class Controller {
         return localitats;
     }
 
-    public Transport afegirTransport(String id, float velocitat) {
+    public boolean afegirTransport(String nom, String id, float velocitat) {
         Transport t;
         if(transportMap.containsKey(id)){
             t = transportMap.get(id);
-        }else{
-            t = new Transport(id, velocitat);
+        }else if (nom == "Bici"){
+            t = new Bici(id, velocitat);
             transportMap.put(id, t);
+        }else if (nom == "Cotxe") {
+            t = new Cotxe(id, velocitat);
+            transportMap.put(id, t);
+        }else if (nom == "APeu") {
+            t = new APeu(id, velocitat);
+            transportMap.put(id, t);
+        }else{
+            return false;
         }
-        return t;
+        return true;
     }
 
     public Iterable<String>  cercaRutesPerTransport(String id) {
@@ -337,8 +341,26 @@ public class Controller {
                     ncount++;
                 }
             }
-            if (ncount == 0) transports.add("No hi ha rutes en aquesta transport");
+            if (ncount == 0) transports.add("No hi ha rutes amb aquest transport recomanat");
         }
         return transports;
+    }
+
+    public String cambiarEstatRuta(String nomRuta, String nomEstat){
+        for (Ruta ruta: rutaMap.values()){
+            if (ruta.getNom().equals(nomRuta)){
+                return ruta.cambiarEstatRuta(nomEstat);
+            }
+        }
+        return "Ruta no trobada en el sistema";
+    }
+
+    public String getEstatRuta(String nomRuta){
+        for (Ruta ruta: rutaMap.values()) {
+            if (ruta.getNom().equals(nomRuta)) {
+                return ruta.getEstatRuta();
+            }
+        }
+        return "Ruta no trobada en el sistema";
     }
 }

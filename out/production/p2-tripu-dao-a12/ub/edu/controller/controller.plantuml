@@ -5,11 +5,20 @@ title __CONTROLLER's Class Diagram__\n
   namespace ub.edu.controller {
     class ub.edu.controller.Controller {
         - comarcaMap : Map<String, Comarca>
+        - localitatMap : Map<String, Localitat>
         - rutaMap : Map<String, Ruta>
+        - transportMap : Map<String, Transport>
         + Controller()
         + afegirComarca()
+        + afegirLocalitat()
+        + afegirTransport()
+        + cambiarEstatRuta()
         + cercaRutesPerComarca()
+        + cercaRutesPerLocalitat()
+        + cercaRutesPerTransport()
+        + cercarRutesPerTempsDeDurada()
         + findPersona()
+        + getEstatRuta()
         + initRutesMap()
         + initXarxaPersones()
         + isMail()
@@ -24,7 +33,11 @@ title __CONTROLLER's Class Diagram__\n
         + validateUsername()
         - getRutaList()
         - initComarquesMap()
+        - initLocalitatMap()
+        - initTransportMap()
         - relacionarRutesComarques()
+        - relacionarRutesLocalitats()
+        - relacionarRutesTransports()
     }
   }
   
@@ -32,8 +45,7 @@ title __CONTROLLER's Class Diagram__\n
   ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
   ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
   ub.edu.controller.Controller o-- ub.edu.model.XarxaPersones : xarxaPersones
-ub.edu.controller.Controller -- ub.edu.model.Ruta : rutaMap
-ub.edu.controller.Controller -- ub.edu.model.Comarca : comarcaMap
+
 
 right footer
 
