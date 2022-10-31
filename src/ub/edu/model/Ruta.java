@@ -92,8 +92,18 @@ public class Ruta {
         return estat.getEstat();
     }
 
-    public String cambiarEstatRuta(String nomEstat){
-        if (nomEstat.equals(estat.getEstat())){
+    public Estat cambiarEstatRuta(String nomEstat){
+        estat = estat.cambiarEstat(nomEstat);
+        return estat;
+    }
+
+
+
+
+
+}
+
+/*if (nomEstat.equals(estat.getEstat())){
             return "ERROR: El estat al que vols canviar es el actual [" + estat.getEstat() + "]";
         }else if(nomEstat.equals("EnProces")){
             estat = new EnProces();
@@ -106,10 +116,4 @@ public class Ruta {
             return "Estat canviat a: " + estat.getEstat();
         }
         return "Estat no existent";
-    }
-
-
-
-
-
-}
+        */

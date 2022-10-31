@@ -2,6 +2,7 @@ package ub.edu.controller;
 
 import ub.edu.model.*;
 
+import ub.edu.model.Estat.Estat;
 import ub.edu.model.Transport.*;
 import ub.edu.resources.dao.Parell;
 import ub.edu.resources.service.*;
@@ -17,6 +18,7 @@ public class Controller {
     private AbstractFactoryData factory;      // Origen de les dades
     private DataService dataService;         // Connexio amb les dades
 
+    private List <TramTrack> listTramTrack;
     private XarxaPersones xarxaPersones;   // Model
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
@@ -26,7 +28,7 @@ public class Controller {
     public Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
-
+        listTramTrack = new ArrayList<>();
         try {
             initXarxaPersones();
             initRutesMap();
@@ -349,7 +351,7 @@ public class Controller {
     public String cambiarEstatRuta(String nomRuta, String nomEstat){
         for (Ruta ruta: rutaMap.values()){
             if (ruta.getNom().equals(nomRuta)){
-                return ruta.cambiarEstatRuta(nomEstat);
+                return ruta.cambiarEstatRuta(nomEstat).getEstat();
             }
         }
         return "Ruta no trobada en el sistema";
@@ -362,5 +364,18 @@ public class Controller {
             }
         }
         return "Ruta no trobada en el sistema";
+    }
+
+    public void addTramTrack(TramTrack tram){
+        listTramTrack.add(tram);
+    }
+
+    public String cambiarEstatTramTrack(String tramID, String nomEstat){
+        for (TramTrack t: listTramTrack){
+            if (t.getTramID().equals(tramID)){
+                return t.setEstatTramTrack(nomEstat).getEstat();
+            }
+        }
+        return "TramTrack no trobat al sistema";
     }
 }

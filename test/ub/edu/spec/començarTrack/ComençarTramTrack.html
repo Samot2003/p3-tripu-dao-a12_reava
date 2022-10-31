@@ -1,0 +1,32 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>UC8. Començar Track</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>UC8. Començar Track</h1>
+
+<h2>Criteris d'acceptació 0, 1 </h2>
+<p>
+    <b>0</b>: Si el track ja està començat, es mostrarà el missatge: "ERROR: El estat al que vols canviar es el actual [EnProces]"
+    <b>1</b>: Si l'estat del track canvia correctament, es mostrara el missatge: "Estat canviat a: EnProces"
+</p>
+
+
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 8.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema canviar
+    l'estat del track <span concordion:set="#tramID">TT1</span> si ja
+    està EnProcés <span concordion:execute="initTram()">afegit</span>
+    <span concordion:assertEquals="comencarTramTrack(#tramID)">ERROR: El estat al que vols canviar es el actual [EnProces]</span>.
+</div>
+
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 8.1</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema canviar
+    l'estat del track <span concordion:set="#tramID">TT1</span> no està en procés
+    <span concordion:assertEquals="comencarTramTrack(#tramID)">Estat canviat a: EnProces</span>
+</div>
+
+</body>
+</html>
