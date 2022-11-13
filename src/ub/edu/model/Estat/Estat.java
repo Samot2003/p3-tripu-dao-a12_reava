@@ -17,8 +17,8 @@ public class Estat {
         }else if(nomEstat.equals("Acabat")){
             estat = new Acabat();
             return estat;
-        }else if(nomEstat.equals("NoComençat")) {
-            estat = new NoComençat();
+        }else if(nomEstat.equals("NoComencat")) {
+            estat = new NoComencat();
             return estat;
         }
         return null;

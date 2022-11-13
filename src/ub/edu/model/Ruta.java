@@ -1,9 +1,7 @@
 package ub.edu.model;
 
-import ub.edu.model.Estat.Acabat;
-import ub.edu.model.Estat.EnProces;
 import ub.edu.model.Estat.Estat;
-import ub.edu.model.Estat.NoComençat;
+import ub.edu.model.Estat.NoComencat;
 import ub.edu.model.Transport.Transport;
 
 import java.time.LocalDate;
@@ -27,7 +25,7 @@ public class Ruta {
         comarques = new HashSet<>();
         localitats = new HashSet<>();
         transports = new HashSet<>();
-        estat = new NoComençat();
+        estat = new NoComencat();
     }
 
     public Ruta(String titol, int numDies, String dataText, List<Comarca> comarcaList) {

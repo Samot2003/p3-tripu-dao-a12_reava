@@ -1,7 +1,7 @@
 package ub.edu.model;
 
 import ub.edu.model.Estat.Estat;
-import ub.edu.model.Estat.NoComençat;
+import ub.edu.model.Estat.NoComencat;
 
 public class TramTrack {
 
@@ -17,7 +17,7 @@ public class TramTrack {
         this.distancia = distancia;
         this.desnivellPositiu = desnivellPositiu;
         this.desnivellNegatiu = desnivellNegatiu;
-        estat = new NoComençat();
+        estat = new NoComencat();
     }
     public Estat setEstatTramTrack(String nomEstat){
         estat = estat.cambiarEstat(nomEstat);
