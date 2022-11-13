@@ -15,10 +15,11 @@ public class Ruta {
     private Set<Comarca> comarques;
     private Set<Localitat> localitats;
     private Set<Transport> transports;
-    private Set<Tram> trams;
+
+    private Set<TramTrack> tramTracks;
     private Estat estat;
 
-    private Tram tramActual;
+    private TramTrack tramActual;
 
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
@@ -28,7 +29,7 @@ public class Ruta {
         localitats = new HashSet<>();
         transports = new HashSet<>();
         estat = new NoComencat();
-        trams = new HashSet<>();
+        tramTracks = new HashSet<>();
         tramActual = null;
     }
 
@@ -38,6 +39,10 @@ public class Ruta {
         setDataCreacio(dataText);
         comarques = new HashSet<>(comarcaList);
         localitats = new HashSet<>();
+        transports = new HashSet<>();
+        estat = new NoComencat();
+        tramTracks = new HashSet<>();
+        tramActual = null;
     }
 
     public String getNom() {
@@ -102,17 +107,17 @@ public class Ruta {
         return "Estat canviat a: " + estat.getEstat();
     }
 
-    public boolean addTram(Tram t) {
-        return trams.add(t);
+    public boolean addTram(TramTrack t) {
+        return tramTracks.add(t);
     }
 
-    public List<Tram> getTrams() { return new ArrayList<Tram>(trams);}
+    public List<TramTrack> getTramTracks() { return new ArrayList<TramTrack>(tramTracks);}
 
-    public void setTramActual (Tram t){
+    public void setTramActual (TramTrack t){
         tramActual = t;
     }
 
-    public Tram getTramActual(){
+    public TramTrack getTramActual(){
         return tramActual;
     }
 
@@ -121,6 +126,13 @@ public class Ruta {
             return "";
         }else{
             return tramActual.getEstat();
+        }
+    }
+    public String cambiarEstatTramActual (String nomEstat){
+        if (nomEstat.equals(tramActual.getEstat())){
+            return ("L'estat al que vols canviar ja es l'actual");
+        }else{
+            return tramActual.cambiarEstat(nomEstat);
         }
     }
 

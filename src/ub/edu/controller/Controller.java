@@ -378,7 +378,7 @@ public class Controller {
         return "ERROR: La ruta no està en procés";
     }
 
-    public String addTrackRutaActual(Tram tram){
+    public String addTrackRutaActual(TramTrack tram){
         if (rutaActual == null){
             return "No hi ha cap ruta iniciada per afegir un tram Track";
         }else{
@@ -386,7 +386,7 @@ public class Controller {
             return "Tram afegit correctament";
         }
     }
-    public String addTrackRuta(String nomRuta,Tram tram){
+    public String addTrackRuta(String nomRuta,TramTrack tram){
         for (Ruta r: rutaMap.values()){
             if (nomRuta.equals(r.getNom())){
                 r.addTram(tram);
@@ -404,9 +404,8 @@ public class Controller {
             if (rutaActual.getEstatTramActual().equals("EnProces")){
                 return "Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.";
             }
-            for (Tram t: rutaActual.getTrams()){
+            for (TramTrack t: rutaActual.getTramTracks()){
                 if(t.getID().equals(tramID)){
-                    String estatTram = t.getEstat();
                     rutaActual.setTramActual(t);
                     return "Tram: " + t.cambiarEstat("EnProces");
                 }
@@ -419,12 +418,33 @@ public class Controller {
             return "No hi ha cap ruta iniciada per acabar un tram Track";
         }else{
             if (rutaActual.getEstatTramActual().equals("EnProces")){
-                rutaActual.getTramActual().cambiarEstat("NoComencat");
+                rutaActual.cambiarEstatTramActual("NoComencat");
+                rutaActual.setTramActual(null);;
                 return "Tram Track finalitzat";
             }else{
                 return "No hi ha cap Tram Track en procés";
             }
         }
 
+    }
+
+    public String afegirPuntDeControlInicialToTrackActual(PuntDeControl puntDeControl){
+        if (rutaActual == null){
+            return "No hi ha cap ruta iniciada";
+        }else if (rutaActual.getTramActual() == null){
+            return "No hi ha cap tram iniciat";
+        }else{
+            return rutaActual.getTramActual().setPuntDeControlInicial(puntDeControl);
+        }
+    }
+
+    public String afegirPuntDeControlFinalToTrackActual(PuntDeControl puntDeControl){
+        if (rutaActual == null){
+            return "No hi ha cap ruta iniciada";
+        }else if (rutaActual.getTramActual() == null){
+            return "No hi ha cap tram iniciat";
+        }else{
+            return rutaActual.getTramActual().setPuntDeControlFinal(puntDeControl);
+        }
     }
 }

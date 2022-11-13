@@ -16,17 +16,16 @@ public class ComençarTramTrack {
         controlador = new Controller();
     }
 
-    public String comencarTramTrack(String TramID){
-        return "";
+    public String comencarTramTrack(String tramID){
+        return controlador.iniciarTrackRutaActual("tramID");
     }
 
-    public void initTram(){
+    public void initTramTracks(){
         controlador.iniciarRuta("La Costa Brava");
         controlador.addTrackRutaActual(new TramTrack("TT1"));
         controlador.addTrackRutaActual(new TramTrack("TT2"));
         controlador.addTrackRutaActual(new TramTrack("TT3"));
         controlador.addTrackRutaActual(new TramTrack("TT4"));
-
     }
 
 }

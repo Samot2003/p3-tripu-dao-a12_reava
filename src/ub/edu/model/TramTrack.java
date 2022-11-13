@@ -8,7 +8,8 @@ public class TramTrack extends Tram{
     private int distancia,desnivellPositiu, desnivellNegatiu;
     private float duracioEstimada;
 
-    private Estat estat;
+    private PuntDeControl puntDeControlInicial, puntDeControlFinal;
+
     public TramTrack(String ID/*float duracioEstimada, int distancia, int desnivellPositiu, int desnivellNegatiu*/) {
         super(ID);
         /*this.duracioEstimada = duracioEstimada;
@@ -39,8 +40,16 @@ public class TramTrack extends Tram{
 
     public float getDuracioEstimada() {return duracioEstimada;}
 
-    public String getEstat(){return estat.getEstat();}
 
+    public String setPuntDeControlInicial(PuntDeControl puntDeControl){
+        puntDeControlInicial = puntDeControl;
+        return "Punt de control establert correctament";
+    }
+
+    public String setPuntDeControlFinal(PuntDeControl puntDeControl){
+        puntDeControlFinal = puntDeControl;
+        return "Punt de Control establert correctament";
+    }
 }
 
 

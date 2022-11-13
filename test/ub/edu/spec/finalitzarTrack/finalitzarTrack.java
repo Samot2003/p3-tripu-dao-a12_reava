@@ -8,7 +8,7 @@ import ub.edu.model.TramTrack;
 
 @RunWith(ConcordionRunner.class)
 public class finalitzarTrack {
-
+/*
     private Controller controlador;
 
     @BeforeExample
@@ -27,6 +27,6 @@ public class finalitzarTrack {
         controlador.addTramTrack(new TramTrack("TT3"));
         controlador.addTramTrack(new TramTrack("TT4"));
 
-    }
+    }*/
 
 }

@@ -7,6 +7,7 @@ public class Tram {
 
     String ID;
     Estat estat;
+
     public Tram(String ID){
         this.ID = ID;
         estat = new NoComencat();
@@ -27,4 +28,5 @@ public class Tram {
         estat = estat.cambiarEstat(nomEstat);
         return "Estat canviat a: " + estat.getEstat();
     }
+
 }
