@@ -10,6 +10,7 @@
 <p>
     <b>0</b>: Si la ruta ja està començada, es mostrarà el missatge: "ERROR: El estat al que vols canviar es el actual [EnProces]"
     <b>1</b>: Si l'estat de la ruta canvia, es mostrarà el missatge: "Estat canviat a: EnProces"
+    <b>2</b>: Si l'estat de la ruta canvia, es mostrarà el missatge: "Estat canviat a: EnProces"
 </p>
 
 
@@ -22,7 +23,7 @@ està EnProcés <span concordion:execute="initRuta()">.</span>
 </div>
 
 <div concordion:example="one">
-    <h5>Example del test d'acceptació 5.0</h5>
+    <h5>Example del test d'acceptació 5.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema canviar
     l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> no està en procés
     <span concordion:assertEquals="comencarRuta(#nomRuta)">Estat canviat a: EnProces</span>

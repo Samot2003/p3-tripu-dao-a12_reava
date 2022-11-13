@@ -15,7 +15,6 @@ public class Ruta {
     private Set<Comarca> comarques;
     private Set<Localitat> localitats;
     private Set<Transport> transports;
-
     private Estat estat;
 
     public Ruta(String titol, String dataText, int numDies) {

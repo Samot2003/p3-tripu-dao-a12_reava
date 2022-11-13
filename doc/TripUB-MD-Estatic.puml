@@ -191,7 +191,6 @@ class Iniciat {
 }
 
 class EnProces {
-puntsDeControl: posició
 }
 
 class Acabat {

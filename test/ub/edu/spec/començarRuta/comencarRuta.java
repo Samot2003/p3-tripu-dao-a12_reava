@@ -16,10 +16,10 @@ public class comencarRuta {
     }
 
     public String comencarRuta(String nomRuta){
-        return controlador.cambiarEstatRuta(nomRuta, "EnProces");
+        return controlador.iniciarRuta(nomRuta);
     }
 
     public void initRuta(){
-        controlador.cambiarEstatRuta("Terres de l'Ebre", "EnProces");
+        controlador.iniciarRuta("Terres de l'Ebre");
     }
 }

@@ -22,10 +22,10 @@ public class finalitzarTrack {
 
     public void initTram(){
 
-        controlador.addTramTrack(new TramTrack("TT1",3.45f,10,5,2));
-        controlador.addTramTrack(new TramTrack("TT2",5.24f,7,0,3));
-        controlador.addTramTrack(new TramTrack("TT3",9.53f,30,2,4));
-        controlador.addTramTrack(new TramTrack("TT4",1.09f,2,1,1));
+        controlador.addTramTrack(new TramTrack("TT1"));
+        controlador.addTramTrack(new TramTrack("TT2"));
+        controlador.addTramTrack(new TramTrack("TT3"));
+        controlador.addTramTrack(new TramTrack("TT4"));
 
     }
 

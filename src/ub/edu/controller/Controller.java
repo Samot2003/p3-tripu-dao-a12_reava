@@ -19,16 +19,21 @@ public class Controller {
     private DataService dataService;         // Connexio amb les dades
 
     private List <TramTrack> listTramTrack;
+
+    private TramTrack tramActual;
     private XarxaPersones xarxaPersones;   // Model
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
     private Map<String, Localitat> localitatMap;
     private Map<String, Transport> transportMap;
 
+    private Ruta rutaActual;
+
     public Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
         listTramTrack = new ArrayList<>();
+        rutaActual = null;
         try {
             initXarxaPersones();
             initRutesMap();
@@ -38,6 +43,7 @@ public class Controller {
             relacionarRutesComarques();
             relacionarRutesLocalitats();
             relacionarRutesTransports();
+
         } catch (Exception e) {
         }
 
@@ -348,10 +354,29 @@ public class Controller {
         return transports;
     }
 
-    public String cambiarEstatRuta(String nomRuta, String nomEstat){
+    public String iniciarRuta(String nomRuta){
+        if (rutaActual != null){
+            if (rutaActual.getNom().equals(nomRuta)){
+                return "La ruta ja està començada";
+            }
+            else if (rutaActual.getEstatRuta().equals("EnProces")) {
+                return "Has de acabar la ruta actual per tal de començar-ne una nova";
+            }
+        }else {
+            for (Ruta ruta: rutaMap.values()) {
+                if (ruta.getNom().equals(nomRuta)) {
+                    rutaActual = ruta;
+                    return "Estat canviat a: " + ruta.cambiarEstatRuta("EnProces");
+                }
+            }
+        }
+
+        return "Ruta no trobada en el sistema";
+    }
+    public String acabarRuta(String nomRuta){
         for (Ruta ruta: rutaMap.values()){
             if (ruta.getNom().equals(nomRuta)){
-                return "Estat canviat a: " + ruta.cambiarEstatRuta(nomEstat);
+                return "Estat canviat a: " + ruta.cambiarEstatRuta("NoComencat");
             }
         }
         return "Ruta no trobada en el sistema";
@@ -372,8 +397,8 @@ public class Controller {
 
     public String cambiarEstatTramTrack(String tramID, String nomEstat){
         for (TramTrack t: listTramTrack){
-            if (t.getTramID().equals(tramID)){
-                return t.setEstatTramTrack(nomEstat).getEstat();
+            if (t.getID().equals(tramID)){
+                return "Estat canviat a: " + t.setEstatTramTrack(nomEstat);
             }
         }
         return "TramTrack no trobat al sistema";
