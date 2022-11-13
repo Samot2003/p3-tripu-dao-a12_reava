@@ -36,7 +36,13 @@ persona -- UC2
 
 
 UC1 -> UC2 : <<include>>
-
+UC7 -> UC5 : <<extends>>
+UC5 -> UC6 : <<include>>
+UC7 -> UC9 : <<include>>
+UC8 --> UC7 : <<extends>>
+UC10 -> UC9 : <<extends>>
+UC13 -> UC12 : <<extends>>
+UC13 -> UC11 : <<extends>>
 
 UC4 <|-- UC41
 UC4 <|-- UC42
@@ -45,17 +51,11 @@ UC4 <|-- UC44
 
 persona -- UC4
 persona -- UC3
-persona -- UC11
-persona -- UC12
 persona -- UC5
-persona -- UC6
-persona -- UC7
-persona -- UC8
-persona -- UC9
+
 persona -- UC10
 persona -- UC11
 persona -- UC12
-persona -- UC13
 persona -- UC14
 
 
