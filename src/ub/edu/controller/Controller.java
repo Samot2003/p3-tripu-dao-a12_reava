@@ -351,7 +351,7 @@ public class Controller {
     public String cambiarEstatRuta(String nomRuta, String nomEstat){
         for (Ruta ruta: rutaMap.values()){
             if (ruta.getNom().equals(nomRuta)){
-                return ruta.cambiarEstatRuta(nomEstat).getEstat();
+                return "Estat canviat a: " + ruta.cambiarEstatRuta(nomEstat);
             }
         }
         return "Ruta no trobada en el sistema";

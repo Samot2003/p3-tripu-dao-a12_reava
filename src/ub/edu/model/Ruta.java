@@ -92,9 +92,12 @@ public class Ruta {
         return estat.getEstat();
     }
 
-    public Estat cambiarEstatRuta(String nomEstat){
+    public String cambiarEstatRuta(String nomEstat){
+        if (nomEstat.equals(estat.getEstat())){
+            return ("L'estat al que vols canviar ja es l'actual");
+        }
         estat = estat.cambiarEstat(nomEstat);
-        return estat;
+        return estat.getEstat();
     }
 
 

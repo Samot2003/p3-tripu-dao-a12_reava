@@ -14,7 +14,6 @@ public class MainMOCK {
         System.out.println(c.cambiarEstatRuta("De la Cerdanya fins al Mar","EnProces"));
         System.out.println(c.cambiarEstatRuta("De la Cerdanya fins al Mar","EnProces"));
         System.out.println(c.cambiarEstatRuta("De la Cerdanya fins al Mar","Acabat"));
-        System.out.println(c.cambiarEstatRuta("De la Cerdanya fins al Mar","adsdawd"));
         System.out.println(c.cambiarEstatRuta("De la Cerdanyadawdns aal Mar","EnProces"));
         System.out.println(c.cambiarEstatRuta("Terres de l'Ebre", "EnProces"));
         System.out.println(c.cambiarEstatRuta("Terres de l'Ebre", "NoComençat"));
