@@ -13,13 +13,13 @@ public class RankingGrup {
 
     public void actualitzarRankingGrup( List<Persona> llista){
         ranking = "";
-        for (int i=0; i<llista.size(); i++){
-            ranking += (llista.get(i).getName()+" --> PUNTS: " +llista.get(i).getEstadistiques())+ "\n";
+        for (Persona persona : llista) {
+            ranking += (persona.getName() + " --> PUNTS: " + persona.getEstadistiques()) + "\n";
 
         }
     }
 
-    public String a() {
+    public String mostrarRanking() {
         return ranking;
     }
 }

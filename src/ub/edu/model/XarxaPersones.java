@@ -17,5 +17,6 @@ public class XarxaPersones {
         return null;
 
     }
+    public List<Persona> getLlista(){return llista;}
 
 }

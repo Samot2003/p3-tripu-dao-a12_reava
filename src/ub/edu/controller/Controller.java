@@ -23,12 +23,14 @@ public class Controller {
     private Map<String, Localitat> localitatMap;
     private Map<String, Transport> transportMap;
 
+    private List <Grup> llistaGrup;
     private Ruta rutaActual;
 
     public Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
         rutaActual = null;
+        llistaGrup = new ArrayList<>();
         try {
             initXarxaPersones();
             initRutesMap();
@@ -426,5 +428,79 @@ public class Controller {
             }
         }
 
+    }
+    public String crearGrup (String nomGrup){
+        for (int i = 0; i < llistaGrup.size(); i++) {
+            if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
+                return "Ja existeix un grup amb aquest nom canvia'l siusplau";
+            }
+        }
+        Grup g = new Grup(nomGrup);
+        llistaGrup.add(g);
+        return "S' ha creat el grup correctament";
+    }
+
+    public String addMembreGrup (String nomGrup, String nomPersona) {
+        Persona persona = null;
+        for(Persona p : xarxaPersones.getLlista()){
+            if (p.getName().equals(nomPersona)){
+                persona=p;
+            }
+        }
+        if(persona == null){
+
+            return "L' usuari no ha sigut trobat a la base de dades";
+        }
+        else if (llistaGrup.size() != 0) {
+            for (int i = 0; i < llistaGrup.size(); i++) {
+                if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
+                    llistaGrup.get(i).addGrup(persona);
+                    return "S'ha agregat el membre satisfactoriament";
+                } else {
+                    return "No s'ha trobat cap grup amb aquest nom";
+                }
+            }
+        }
+        else{
+            return "No hi ha cap grup a la llista afegeix algun primer";
+        }
+        return null;
+    }
+
+    public String marxarGrup (String nomGrup, Persona p){
+        if (llistaGrup.size() != 0) {
+            for (int i = 0; i < llistaGrup.size(); i++) {
+                if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
+                    if (llistaGrup.get(i).find(p.getName()) != null){
+                        llistaGrup.get(i).marxarGrup(p);
+                        return "S'ha eliminat al membre satisfactoriament";
+                    }else{
+                        return "S'ha trobat el grup pero no l'usuari a eliminar";
+                    }
+                } else {
+                    return "No s'ha trobat cap grup amb aquest nom";
+                }
+            }
+        }
+        else{
+            return " No hi ha cap grup a la llista afegeix algun primer";
+        }
+        return null;
+    }
+
+    public String mostrarRankingGrup( String nomGrup){
+        if (llistaGrup.size() != 0) {
+            for (int i = 0; i < llistaGrup.size(); i++) {
+                if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
+                    return  llistaGrup.get(i).getRanking();
+                } else {
+                    return "No s'ha trobat cap grup amb aquest nom";
+                }
+            }
+        }
+        else{
+            return " No hi ha cap grup a la llista afegeix algun primer";
+        }
+        return null;
     }
 }

@@ -43,6 +43,7 @@ UC8 --> UC7 : <<extends>>
 UC10 -> UC9 : <<extends>>
 UC13 -> UC12 : <<extends>>
 UC13 -> UC11 : <<extends>>
+UC12 -> UC11 : <<extends>>
 
 UC4 <|-- UC41
 UC4 <|-- UC42
@@ -55,7 +56,6 @@ persona -- UC5
 
 persona -- UC10
 persona -- UC11
-persona -- UC12
 persona -- UC14
 
 
