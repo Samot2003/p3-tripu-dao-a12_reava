@@ -181,7 +181,7 @@ class RankingGrup  {
 }
 
 class EstadistiquesIndividuals {
-estadistiques: String
+Punts: Quantitat
 }
 
 class Estat {
