@@ -53,7 +53,7 @@ Persona "1" -- "1" Direccio : resideix
 
 Ruta "1" -right- "1" Estat: es troba en
 TramTrack"1" -right- "1" Estat: es troba en
-Estat <|-down- Iniciat
+Estat <|-down- NoComencat
 Estat <|-down- EnProces
 Estat <|-down- Acabat
 
@@ -187,7 +187,7 @@ Punts: Quantitat
 class Estat {
 }
 
-class Iniciat {
+class NoComencat {
 }
 
 class EnProces {

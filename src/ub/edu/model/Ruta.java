@@ -15,7 +15,10 @@ public class Ruta {
     private Set<Comarca> comarques;
     private Set<Localitat> localitats;
     private Set<Transport> transports;
+    private Set<Tram> trams;
     private Estat estat;
+
+    private Tram tramActual;
 
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
@@ -25,6 +28,8 @@ public class Ruta {
         localitats = new HashSet<>();
         transports = new HashSet<>();
         estat = new NoComencat();
+        trams = new HashSet<>();
+        tramActual = null;
     }
 
     public Ruta(String titol, int numDies, String dataText, List<Comarca> comarcaList) {
@@ -94,8 +99,32 @@ public class Ruta {
             return ("L'estat al que vols canviar ja es l'actual");
         }
         estat = estat.cambiarEstat(nomEstat);
-        return estat.getEstat();
+        return "Estat canviat a: " + estat.getEstat();
     }
+
+    public boolean addTram(Tram t) {
+        return trams.add(t);
+    }
+
+    public List<Tram> getTrams() { return new ArrayList<Tram>(trams);}
+
+    public void setTramActual (Tram t){
+        tramActual = t;
+    }
+
+    public Tram getTramActual(){
+        return tramActual;
+    }
+
+    public String getEstatTramActual (){
+        if (tramActual == null){
+            return "";
+        }else{
+            return tramActual.getEstat();
+        }
+    }
+
+
 
 
 

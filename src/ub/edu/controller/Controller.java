@@ -17,10 +17,6 @@ public class Controller {
 
     private AbstractFactoryData factory;      // Origen de les dades
     private DataService dataService;         // Connexio amb les dades
-
-    private List <TramTrack> listTramTrack;
-
-    private TramTrack tramActual;
     private XarxaPersones xarxaPersones;   // Model
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
@@ -32,7 +28,6 @@ public class Controller {
     public Controller() {
         factory = new FactoryMOCK();
         dataService = new DataService(factory);
-        listTramTrack = new ArrayList<>();
         rutaActual = null;
         try {
             initXarxaPersones();
@@ -357,7 +352,7 @@ public class Controller {
     public String iniciarRuta(String nomRuta){
         if (rutaActual != null){
             if (rutaActual.getNom().equals(nomRuta)){
-                return "La ruta ja està començada";
+                return "ERROR: La ruta ja està començada";
             }
             else if (rutaActual.getEstatRuta().equals("EnProces")) {
                 return "Has de acabar la ruta actual per tal de començar-ne una nova";
@@ -366,7 +361,7 @@ public class Controller {
             for (Ruta ruta: rutaMap.values()) {
                 if (ruta.getNom().equals(nomRuta)) {
                     rutaActual = ruta;
-                    return "Estat canviat a: " + ruta.cambiarEstatRuta("EnProces");
+                    return "Ruta: " + ruta.cambiarEstatRuta("EnProces");
                 }
             }
         }
@@ -374,33 +369,62 @@ public class Controller {
         return "Ruta no trobada en el sistema";
     }
     public String acabarRuta(String nomRuta){
-        for (Ruta ruta: rutaMap.values()){
-            if (ruta.getNom().equals(nomRuta)){
-                return "Estat canviat a: " + ruta.cambiarEstatRuta("NoComencat");
+        if (rutaActual != null){
+            if (rutaActual.getNom().equals(nomRuta)) {
+                rutaActual = null;
+                return "Ruta: " + rutaActual.cambiarEstatRuta("NoComencat");
             }
         }
-        return "Ruta no trobada en el sistema";
+        return "ERROR: La ruta no està en procés";
     }
 
-    public String getEstatRuta(String nomRuta){
-        for (Ruta ruta: rutaMap.values()) {
-            if (ruta.getNom().equals(nomRuta)) {
-                return ruta.getEstatRuta();
+    public String addTrackRutaActual(Tram tram){
+        if (rutaActual == null){
+            return "No hi ha cap ruta iniciada per afegir un tram Track";
+        }else{
+            rutaActual.addTram(tram);
+            return "Tram afegit correctament";
+        }
+    }
+    public String addTrackRuta(String nomRuta,Tram tram){
+        for (Ruta r: rutaMap.values()){
+            if (nomRuta.equals(r.getNom())){
+                r.addTram(tram);
+                return "Tram afegit a la ruta correctament";
             }
         }
-        return "Ruta no trobada en el sistema";
+        return "Ruta no trobada al sistema";
     }
 
-    public void addTramTrack(TramTrack tram){
-        listTramTrack.add(tram);
-    }
 
-    public String cambiarEstatTramTrack(String tramID, String nomEstat){
-        for (TramTrack t: listTramTrack){
-            if (t.getID().equals(tramID)){
-                return "Estat canviat a: " + t.setEstatTramTrack(nomEstat);
+    public String iniciarTrackRutaActual(String tramID){
+        if (rutaActual == null){
+            return "No hi ha cap ruta iniciada per iniciar un tram Track";
+        }else{
+            if (rutaActual.getEstatTramActual().equals("EnProces")){
+                return "Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.";
+            }
+            for (Tram t: rutaActual.getTrams()){
+                if(t.getID().equals(tramID)){
+                    String estatTram = t.getEstat();
+                    rutaActual.setTramActual(t);
+                    return "Tram: " + t.cambiarEstat("EnProces");
+                }
+            }
+            return "Tram no trobat a la ruta actual";
+        }
+    }
+    public String acabarTrackRutaActual(){
+        if (rutaActual == null){
+            return "No hi ha cap ruta iniciada per acabar un tram Track";
+        }else{
+            if (rutaActual.getEstatTramActual().equals("EnProces")){
+                rutaActual.getTramActual().cambiarEstat("NoComencat");
+                return "Tram Track finalitzat";
+            }else{
+                return "No hi ha cap Tram Track en procés";
             }
         }
-        return "TramTrack no trobat al sistema";
+
     }
 }

@@ -17,15 +17,15 @@ public class ComençarTramTrack {
     }
 
     public String comencarTramTrack(String TramID){
-        return controlador.cambiarEstatTramTrack(TramID,"EnProces");
+        return "";
     }
 
     public void initTram(){
-
-        controlador.addTramTrack(new TramTrack("TT1"));
-        controlador.addTramTrack(new TramTrack("TT2"));
-        controlador.addTramTrack(new TramTrack("TT3"));
-        controlador.addTramTrack(new TramTrack("TT4"));
+        controlador.iniciarRuta("La Costa Brava");
+        controlador.addTrackRutaActual(new TramTrack("TT1"));
+        controlador.addTrackRutaActual(new TramTrack("TT2"));
+        controlador.addTrackRutaActual(new TramTrack("TT3"));
+        controlador.addTrackRutaActual(new TramTrack("TT4"));
 
     }
 

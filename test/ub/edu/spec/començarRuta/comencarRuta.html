@@ -6,11 +6,11 @@
 <body>
 <h1>US5: Començar Ruta</h1>
 
-<h2>Criteris d'acceptació 0, 1 </h2>
+<h2>Criteris d'acceptació 0, 1, 2</h2>
 <p>
-    <b>0</b>: Si la ruta ja està començada, es mostrarà el missatge: "ERROR: El estat al que vols canviar es el actual [EnProces]"
+    <b>0</b>: Si la ruta ja està començada, es mostrarà el missatge: "ERROR: La ruta ja està començada"
     <b>1</b>: Si l'estat de la ruta canvia, es mostrarà el missatge: "Estat canviat a: EnProces"
-    <b>2</b>: Si l'estat de la ruta canvia, es mostrarà el missatge: "Estat canviat a: EnProces"
+    <b>2</b>: Si la ja hi ha un altre ruta iniciada, es mostrarà el missatge: "Has de acabar la ruta actual per tal de començar-ne una nova"
 </p>
 
 
@@ -19,15 +19,24 @@
 La següent linia mostra els resultats que esperem si demanem al sistema canviar
 l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> si ja
 està EnProcés <span concordion:execute="initRuta()">.</span>
-<span concordion:assertEquals="comencarRuta(#nomRuta)">Estat canviat a: L'estat al que vols canviar ja es l'actual</span>.
+<span concordion:assertEquals="comencarRuta(#nomRuta)">ERROR: La ruta ja està començada</span>.
 </div>
 
 <div concordion:example="one">
     <h5>Example del test d'acceptació 5.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema canviar
     l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> no està en procés
-    <span concordion:assertEquals="comencarRuta(#nomRuta)">Estat canviat a: EnProces</span>
+    <span concordion:assertEquals="comencarRuta(#nomRuta)">Ruta: Estat canviat a: EnProces</span>
 </div>
+
+<div concordion:example="two">
+    <h5>Example del test d'acceptació 5.2</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema iniciar
+    la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> quan la ruta
+    <span concordion:set="#ruta2">La Costa Brava</span> ja esta en procés <span concordion:execute="comencarRuta(#ruta2)">.</span>
+    <span concordion:assertEquals="comencarRuta(#nomRuta)">Has de acabar la ruta actual per tal de començar-ne una nova</span>
+</div>
+
 
 </body>
 </html>
