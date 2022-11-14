@@ -38,7 +38,7 @@ public class Grup {
         actualitzarRanking();
     }
 
-    public Persona find (String username) {
+    public Persona getPersona (String username) {
 
         for (Persona c: llistaGrup) {
             if (c.getName().equals(username)) return c;

@@ -503,7 +503,7 @@ public class Controller {
         else if (llistaGrup.size() != 0) {
             for (Grup grup : llistaGrup) {
                 if (grup.getNomGrup().equals(nomGrup)) {
-                    if (grup.find(persona.getName()) != null) {
+                    if (grup.getPersona(persona.getName()) != null) {
                         grup.marxarGrup(persona);
                         return "S'ha eliminat al membre satisfactoriament";
                     } else {
