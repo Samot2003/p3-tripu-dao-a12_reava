@@ -371,10 +371,12 @@ public class Controller {
         return "Ruta no trobada en el sistema";
     }
     public String acabarRuta(String nomRuta){
+        Ruta rAux;
         if (rutaActual != null){
             if (rutaActual.getNom().equals(nomRuta)) {
+                rAux = rutaActual;
                 rutaActual = null;
-                return "Ruta: " + rutaActual.cambiarEstatRuta("NoComencat");
+                return "Ruta: " + rAux.cambiarEstatRuta("NoComencat");
             }
         }
         return "ERROR: La ruta no està en procés";

@@ -7,7 +7,7 @@ import ub.edu.controller.Controller;
 import ub.edu.model.TramTrack;
 
 @RunWith(ConcordionRunner.class)
-public class ComençarTramTrack {
+public class ComencarTramTrack {
 
     private Controller controlador;
 

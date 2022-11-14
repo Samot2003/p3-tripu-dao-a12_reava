@@ -14,7 +14,7 @@ public class MainMOCK {
     public static void main(String[] args) {
         Controller c = new Controller();
 
-        System.out.println(c.addTrackRuta("La Costa Brava", new TramTrack("tCB1")));
+        /*System.out.println(c.addTrackRuta("La Costa Brava", new TramTrack("tCB1")));
         System.out.println(c.addTrackRuta("La Costa Brava", new TramTrack("tCB2")));
         System.out.println(c.addTrackRuta("La Costa Brava", new TramTrack("tCB3")));
         System.out.println(c.addTrackRuta("Ribera del Ter", new TramTrack("tRT1")));
@@ -24,7 +24,10 @@ public class MainMOCK {
         System.out.println(c.afegirPuntDeControlInicialToTrackActual(new PuntDeControl("Puigcerdà","p1")));
         System.out.println(c.iniciarTrackRutaActual("tCB1"));
         System.out.println(c.afegirPuntDeControlInicialToTrackActual(new PuntDeControl("Puigcerdà","p1")));
-        System.out.println(c.acabarTrackRutaActual());
+        System.out.println(c.acabarTrackRutaActual());*/
+        System.out.println(c.addMembreGrup("Grup1","ajaleo@gmail.com"));
+        System.out.println(c.acabarRuta("La Costa Brava"));
+        System.out.println(c.acabarRuta("La Costa Brava"));
 
     }
 }
