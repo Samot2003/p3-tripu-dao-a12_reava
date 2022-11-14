@@ -18,14 +18,14 @@
     <h5>Example del test d'acceptació 12.0</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema afegir
     un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si no hi han grups creats <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No hi ha cap grup a la llista afegeix algun primer</span>.
+    si no hi han el Grup1 creat <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No hi ha cap grup a la llista afegeix algun primer</span>.
 </div>
 
 <div concordion:example="one">
     <h5>Example del test d'acceptació 12.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema afegir
     un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup5</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si hi han grups creats <span concordion:execute="initGrup()"> pero el nom del grup no coincideix amb cap grup creat
+    si hi ha el Grup1 creat <span concordion:execute="initGrup()"> pero el nom del grup no coincideix amb cap grup creat
     </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No s'ha trobat cap grup amb aquest nom</span>
 </div>
 
@@ -33,14 +33,15 @@
     <h5>Example del test d'acceptació 12.2</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema afegir
     un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">peepo@gmail.com</span>
-    si hi han grups creats <span concordion:execute="initGrup()"> pero el nom del usuari no coincideix amb cap usuari registrat
+    si hi ha el Grup1 creat <span concordion:execute="initGrup()"> pero el nom del usuari no coincideix amb cap usuari registrat
     </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">L' usuari no ha sigut trobat a la base de dades</span>.
 </div>
 
 <div concordion:example="three">
+    <h5>Example del test d'acceptació 12.3</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema afegir
     un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si hi han grups creats <span concordion:execute="initGrup()"> </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">S'ha agregat el membre satisfactoriament</span>.
+    si hi ha el Grup1 creat <span concordion:execute="initGrup()"> </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">S'ha agregat el membre satisfactoriament</span>.
 </div>
 
 </body>

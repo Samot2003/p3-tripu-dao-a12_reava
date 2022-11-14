@@ -21,7 +21,6 @@ public class marxarGrup {
         controlador.crearGrup("Grup1");
     }
     public void initGrupAmbMembre(){
-
         controlador.crearGrup("Grup1");
         controlador.addMembreGrup("Grup1","ajaleo@gmail.com");
     }
