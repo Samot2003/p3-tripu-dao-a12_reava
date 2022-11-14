@@ -13,6 +13,32 @@ title __MODEL's Class Diagram__\n
   
 
   namespace ub.edu.model {
+    class ub.edu.model.EstadistiquesIndividuals {
+        - punts : int
+        + EstadistiquesIndividuals()
+        + addPunts()
+        + getEstadistiques()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Grup {
+        - llistaGrup : List<Persona>
+        - nomGrup : String
+        + Grup()
+        + actualitzarRanking()
+        + addGrup()
+        + find()
+        + getNomGrup()
+        + getRanking()
+        + marxarGrup()
+        + setNomGrup()
+    }
+  }
+  
+
+  namespace ub.edu.model {
     class ub.edu.model.Localitat {
         ~ nom : String
         + Localitat()
@@ -27,10 +53,32 @@ title __MODEL's Class Diagram__\n
         - nom : String
         - pwd : String
         + Persona()
+        + addPunts()
+        + getEstadistiques()
         + getName()
         + getPwd()
         + setName()
         + setPwd()
+        + toStringEstats()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.PuntDeControl {
+        - highlight : String
+        + PuntDeControl()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.RankingGrup {
+        - ranking : String
+        + RankingGrup()
+        + actualitzarRankingGrup()
+        + mostrarRanking()
+        + prova()
     }
   }
   
@@ -42,13 +90,16 @@ title __MODEL's Class Diagram__\n
         - durada : int
         - localitats : Set<Localitat>
         - nom : String
+        - tramTracks : Set<TramTrack>
         - transports : Set<Transport>
         + Ruta()
         + Ruta()
         + addComarca()
         + addLocalitat()
+        + addTram()
         + addTransport()
         + cambiarEstatRuta()
+        + cambiarEstatTramActual()
         + containsComarca()
         + containsLocalitat()
         + containsTransport()
@@ -56,10 +107,47 @@ title __MODEL's Class Diagram__\n
         + getDataCreacio()
         + getDurada()
         + getEstatRuta()
+        + getEstatTramActual()
         + getNom()
+        + getTramActual()
+        + getTramTracks()
         + setDataCreacio()
         + setDurada()
         + setNom()
+        + setTramActual()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Tram {
+        ~ ID : String
+        + Tram()
+        + cambiarEstat()
+        + getEstat()
+        + getID()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.TramTrack {
+        - desnivellNegatiu : int
+        - desnivellPositiu : int
+        - distancia : int
+        - duracioEstimada : float
+        + TramTrack()
+        + getDesnivellNegatiu()
+        + getDesnivellPositiu()
+        + getDistancia()
+        + getDuracioEstimada()
+        + setDesnivellNegatiu()
+        + setDesnivellPositiu()
+        + setDistancia()
+        + setDuracioEstimada()
+        + setEstatTramTrack()
+        + setPuntDeControlFinal()
+        + setPuntDeControlInicial()
     }
   }
   
@@ -69,11 +157,20 @@ title __MODEL's Class Diagram__\n
         - llista : List<Persona>
         + XarxaPersones()
         + find()
+        + getLlista()
     }
   }
   
 
+  ub.edu.model.Grup o-- ub.edu.model.RankingGrup : rankingGrup
+  ub.edu.model.Persona o-- ub.edu.model.EstadistiquesIndividuals : estadistiques
+  ub.edu.model.PuntDeControl -up-|> ub.edu.model.Localitat
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
+  ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
+  ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
+  ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
+  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlFinal
+  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlInicial
 
 
 right footer

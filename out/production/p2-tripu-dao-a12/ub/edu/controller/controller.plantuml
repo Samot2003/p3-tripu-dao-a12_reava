@@ -5,20 +5,33 @@ title __CONTROLLER's Class Diagram__\n
   namespace ub.edu.controller {
     class ub.edu.controller.Controller {
         - comarcaMap : Map<String, Comarca>
+        - llistaGrup : List<Grup>
         - localitatMap : Map<String, Localitat>
         - rutaMap : Map<String, Ruta>
         - transportMap : Map<String, Transport>
         + Controller()
+        + acabarRuta()
+        + acabarTrackRutaActual()
+        + actualitzarRankingGrup()
+        + actualitzarRankings()
+        + addMembreGrup()
+        + addPuntsToPersona()
+        + addTrackRuta()
+        + addTrackRutaActual()
         + afegirComarca()
         + afegirLocalitat()
+        + afegirPuntDeControlFinalToTrackActual()
+        + afegirPuntDeControlInicialToTrackActual()
         + afegirTransport()
-        + cambiarEstatRuta()
         + cercaRutesPerComarca()
         + cercaRutesPerLocalitat()
         + cercaRutesPerTransport()
         + cercarRutesPerTempsDeDurada()
+        + crearGrup()
         + findPersona()
-        + getEstatRuta()
+        + getRankingGrup()
+        + iniciarRuta()
+        + iniciarTrackRutaActual()
         + initRutesMap()
         + initXarxaPersones()
         + isMail()
@@ -26,6 +39,7 @@ title __CONTROLLER's Class Diagram__\n
         + llistarCatalegRutesPerDurada()
         + llistarCatalegRutesPerNom()
         + loguejarPersona()
+        + marxarGrup()
         + recuperarContrassenya()
         + validatePassword()
         + validateRegisterPersona()
@@ -44,6 +58,7 @@ title __CONTROLLER's Class Diagram__\n
 
   ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
   ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
+  ub.edu.controller.Controller o-- ub.edu.model.Ruta : rutaActual
   ub.edu.controller.Controller o-- ub.edu.model.XarxaPersones : xarxaPersones
 
 
