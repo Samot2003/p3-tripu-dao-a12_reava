@@ -8,25 +8,26 @@ import ub.edu.model.TramTrack;
 
 @RunWith(ConcordionRunner.class)
 public class finalitzarTrack {
-/*
+
     private Controller controlador;
 
     @BeforeExample
     private void init() {
         controlador = new Controller();
+        initRuta();
     }
 
-    public String finalitzarTramTrack(String TramID){
-        return controlador.cambiarEstatTramTrack(TramID,"NoComençat");
+    public String finalitzarTramTrack(){
+        return controlador.acabarTrackRutaActual();
     }
 
-    public void initTram(){
+    public void initRuta(){
+        controlador.iniciarRuta("La Costa Brava");
+    }
 
-        controlador.addTramTrack(new TramTrack("TT1"));
-        controlador.addTramTrack(new TramTrack("TT2"));
-        controlador.addTramTrack(new TramTrack("TT3"));
-        controlador.addTramTrack(new TramTrack("TT4"));
-
-    }*/
+    public void initTrack(){
+        controlador.addTrackRutaActual(new TramTrack("TT1"));
+        controlador.iniciarTrackRutaActual("TT1");
+    }
 
 }

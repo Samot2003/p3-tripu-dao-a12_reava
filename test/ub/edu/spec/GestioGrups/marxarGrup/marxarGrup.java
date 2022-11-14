@@ -1,4 +1,4 @@
-package ub.edu.spec.marxarGrup;
+package ub.edu.spec.GestioGrups.marxarGrup;
 
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;

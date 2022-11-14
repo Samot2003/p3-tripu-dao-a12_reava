@@ -1,14 +1,13 @@
-package ub.edu.spec.afegirGrup;
+package ub.edu.spec.GestioGrups.crearGrup;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
 import ub.edu.model.Grup;
-import ub.edu.model.Persona;
 
 @RunWith(ConcordionRunner.class)
-public class afegirGrup {
+public class crearGrup {
     private Controller controlador;
 
     @BeforeExample
@@ -16,11 +15,10 @@ public class afegirGrup {
         controlador = new Controller();
     }
 
-    public void afegirGrup (String nomGrup, String nomPersona){
-        controlador.addMembreGrup(nomGrup,nomPersona);
+    public String crearGrup (String nomGrup){
+        return controlador.crearGrup(nomGrup);
     }
     public void initGrup(){
-        Grup g = new Grup("Grup1");
+        controlador.crearGrup("Grup1");
     }
-
 }

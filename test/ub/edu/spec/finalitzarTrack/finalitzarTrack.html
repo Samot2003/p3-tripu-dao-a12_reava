@@ -1,32 +1,33 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <head>
-  <title>UC10. Finalitzar Track</title>
+  <title>UC9. Finalitzar Track</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>UC10. Finalitzar Track</h1>
+<h1>UC9. Finalitzar Track</h1>
 
 <h2>Criteris d'acceptació 0, 1 </h2>
+(És contempla que només es podrà iniciar o acabar un track si hi ha una ruta en procés.)
 <p>
-  <b>0</b>: Si el track està finalitzat, es mostrarà el missatge: "ERROR: El estat al que vols canviar es el actual [NoComençat]"
-  <b>1</b>: Si l'estat del track canvia, es mostrara el missatge: "Estat canviat a: NoComençat"
+  <b>0</b>: Si no hi ha cap tram track en procés a la ruta actual, es mostrarà el missatge: "ERROR: No hi ha cap Tram Track en procés"
+  <b>1</b>: Si hi ha un tram track en procés, es mostrara el missatge: "Tram Track finalitzat amb éxit"
 </p>
 
 
 <div concordion:example="zero">
-  <h5>Example del test d'acceptació 10.0</h5>
+  <h5>Example del test d'acceptació 9.0</h5>
   La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
-  el track <span concordion:set="#tramID">TT1</span> si el Track esta finalitzat.
+  el track actual si no hi ha cap track en procés.
   <p></p>
-  <span concordion:assertEquals="finalitzarTramTrack(#tramID)">ERROR: El estat al que vols canviar es el actual [NoComençat]</span>.
+  <span concordion:assertEquals="finalitzarTramTrack()">ERROR: No hi ha cap Tram Track en procés</span>.
 </div>
 
 <div concordion:example="one">
-  <h5>Example del test d'acceptació 10.1</h5>
-  La següent linia mostra els resultats que esperem si demanem al sistema canviar
-  l'estat del track <span concordion:set="#tramID">TT1</span> està en procés <span concordion:execute="initTram()">afegit</span>
+  <h5>Example del test d'acceptació 9.1</h5>
+  La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
+  el track actual.<span concordion:execute="initTrack()"></span>
   <p></p>
-  <span concordion:assertEquals="finalitzarTramTrack(#tramID)">Estat canviat a: NoComençat</span>
+  <span concordion:assertEquals="finalitzarTramTrack()">Tram Track finalitzat amb éxit</span>
 </div>
 
 </body>

@@ -24,6 +24,7 @@ title __ESTAT's Class Diagram__\n
     namespace Estat {
       class ub.edu.model.Estat.Estat {
           + Estat()
+          + cambiarEstat()
           + getEstat()
       }
     }
@@ -32,8 +33,8 @@ title __ESTAT's Class Diagram__\n
 
   namespace ub.edu.model {
     namespace Estat {
-      class ub.edu.model.Estat.NoComençat {
-          + NoComençat()
+      class ub.edu.model.Estat.NoComencat {
+          + NoComencat()
       }
     }
   }
@@ -41,7 +42,7 @@ title __ESTAT's Class Diagram__\n
 
   ub.edu.model.Estat.Acabat -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.EnProces -up-|> ub.edu.model.Estat.Estat
-  ub.edu.model.Estat.NoComençat -up-|> ub.edu.model.Estat.Estat
+  ub.edu.model.Estat.NoComencat -up-|> ub.edu.model.Estat.Estat
 
 
 right footer

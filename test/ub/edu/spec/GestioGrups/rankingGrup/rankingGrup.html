@@ -1,0 +1,84 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US4.2: Cercar rutes per  localitats</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>UC14: Calcular Ranking Grup Track</h1>
+
+<h2>Criteris d'acceptació 0, 1</h2>
+<p>
+    <b>1</b>: Si no hi ha membres en el grup del que es vol veure el ranking, es mostrarà el missatge: "No hi ha membres en aquest grup, afegeix algun per veure el ranking"
+    <b>2</b>: Si hi ha membres en el grup del que es vol veure el ranking, es mostrarà una taula amb els mebres ordenats per el que té mes punts al que en té menys
+</p>
+
+<p>
+    Els Grups i Persones hem enregistrat en el sistema són les següents en el mateix ordre:
+<table>
+    <tr>
+        <th>Grups</th>
+        <th>Persones</th>
+        <th>Punts</th>
+    </tr>
+    <tr>
+        <td>G1</td>
+        <td>ajaleo@gmail.com</td>
+        <td>6</td>
+    </tr>
+
+    <tr>
+        <td>G1</td>
+        <td>heisenberg@gmail.com</td>
+        <td>43</td>
+    </tr>
+    <tr>
+        <td>G1</td>
+        <td>dtomacal@yahoo.cat</td>
+        <td>22</td>
+    </tr>
+    <tr>
+        <td>G2</td>
+        <td>SENSE MEMBRES</td>
+    </tr>
+
+</table>
+</p>
+
+<div concordion:example="zero">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema que ens mostri el ranking
+        del grup amb el nom: <span concordion:set="#nom">G2</span>
+    <table concordion:verify-rows="#ranking : getRankingGrup(#nom)">
+        <tr>
+            <th concordion:assert-equals="#ranking">Ranking de G2:</th>
+        </tr>
+        <tr>
+            <td>No hi ha membres en aquest grup, afegeix algun per veure el ranking</td>
+        </tr>
+    </table>
+    </p>
+</div>
+
+<div concordion:example="one">
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema que ens mostri el ranking
+        del grup amb el nom: <span concordion:set="#nom">G1</span> ordenada per mes punts a menys punts
+    <table concordion:verify-rows="#ranking : getRankingGrup(#nom)">
+        <tr>
+            <th concordion:assert-equals="#ranking">Ranking de G1:</th>
+        </tr>
+        <tr>
+            <td>NOM: heisenberg@gmail.com PUNTS: 43</td>
+        </tr>
+        <tr>
+            <td>NOM: dtomacal@yahoo.cat PUNTS: 22</td>
+        </tr>
+        <tr>
+            <td>NOM: ajaleo@gmail.com PUNTS: 6</td>
+        </tr>
+    </table>
+    </p>
+</div>
+
+</body>
+</html>

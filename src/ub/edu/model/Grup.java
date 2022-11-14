@@ -30,7 +30,7 @@ public class Grup {
         rankingGrup.actualitzarRankingGrup(llistaGrup);
     }
 
-    public String getRanking(){ return rankingGrup.mostrarRanking();}
+    public Iterable<String> getRanking(){ return rankingGrup.prova(llistaGrup);}
 
     public void marxarGrup(Persona p){
 

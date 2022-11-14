@@ -371,10 +371,12 @@ public class Controller {
         return "Ruta no trobada en el sistema";
     }
     public String acabarRuta(String nomRuta){
+        Ruta rAux;
         if (rutaActual != null){
             if (rutaActual.getNom().equals(nomRuta)) {
+                rAux = rutaActual;
                 rutaActual = null;
-                return "Ruta: " + rutaActual.cambiarEstatRuta("NoComencat");
+                return "Ruta: " + rAux.cambiarEstatRuta("NoComencat");
             }
         }
         return "ERROR: La ruta no està en procés";
@@ -422,9 +424,9 @@ public class Controller {
             if (rutaActual.getEstatTramActual().equals("EnProces")){
                 rutaActual.cambiarEstatTramActual("NoComencat");
                 rutaActual.setTramActual(null);;
-                return "Tram Track finalitzat";
+                return "Tram Track finalitzat amb éxit";
             }else{
-                return "No hi ha cap Tram Track en procés";
+                return "ERROR: No hi ha cap Tram Track en procés";
             }
         }
 
@@ -434,7 +436,7 @@ public class Controller {
         if (rutaActual == null){
             return "No hi ha cap ruta iniciada";
         }else if (rutaActual.getTramActual() == null){
-            return "No hi ha cap tram iniciat";
+            return "No hi ha cap track iniciat";
         }else{
             return rutaActual.getTramActual().setPuntDeControlInicial(puntDeControl);
         }
@@ -450,8 +452,8 @@ public class Controller {
         }
     }
     public String crearGrup (String nomGrup){
-        for (int i = 0; i < llistaGrup.size(); i++) {
-            if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
+        for (Grup g: llistaGrup) {
+            if (g.getNomGrup().equals(nomGrup)) {
                 return "Ja existeix un grup amb aquest nom canvia'l siusplau";
             }
         }
@@ -518,19 +520,58 @@ public class Controller {
         return null;
     }
 
-    public String mostrarRankingGrup( String nomGrup){
+    public Iterable<String> getRankingGrup( String nomGrup){
+        List<String> ret = new ArrayList<>();
         if (llistaGrup.size() != 0) {
-            for (int i = 0; i < llistaGrup.size(); i++) {
-                if (llistaGrup.get(i).getNomGrup().equals(nomGrup)) {
-                    return  llistaGrup.get(i).getRanking();
-                } else {
-                    return "No s'ha trobat cap grup amb aquest nom";
+            for (Grup g: llistaGrup) {
+                if (g.getNomGrup().equals(nomGrup)) {
+                    ret = (List) g.getRanking();
+                    if (ret.size() == 0) {
+                        ret.add("No hi ha membres en aquest grup, afegeix algun per veure el ranking");
+                        return ret;
+                    } else {
+                        return ret;
+                    }
                 }
             }
         }
         else{
-            return " No hi ha cap grup a la llista afegeix algun primer";
+            ret.add("No hi ha cap grup amb aquest nom al sistema");
+            return ret;
         }
         return null;
+    }
+
+    public String addPuntsToPersona(String nom, int punts){
+        boolean sumats = false;
+        for (Persona pers: xarxaPersones.getLlista()){
+            if (pers.getName().equals(nom)){
+                sumats = pers.addPunts(punts);
+                if (sumats){
+                    actualitzarRankings();
+                    return "Punts sumats correctament";
+                }else{
+                    return "Els punts no s'han sumat";
+                }
+            }
+
+        }
+        return "Usuari no trobat";
+    }
+
+    public String actualitzarRankingGrup(String nomGrup){
+        for( Grup g: llistaGrup){
+            if (g.getNomGrup().equals(nomGrup)){
+                g.actualitzarRanking();
+                return "Ranking Actualitzat";
+            }
+        }
+        return "No s'ha trobat el grup";
+    }
+
+    public void actualitzarRankings(){
+        for( Grup g: llistaGrup){
+            g.actualitzarRanking();
+        }
     }
 }

@@ -18,10 +18,11 @@
     La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
     la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> si
     està EnProcés <span concordion:execute="initRuta()">.</span>
-    <span concordion:assertEquals="acabarRuta(#nomRuta)">Estat canviat a: NoComencat</span>.
+    <span concordion:assertEquals="acabarRuta(#nomRuta)">Ruta: Estat canviat a: NoComencat</span>.
 </div>
 
 <div concordion:example="one">
+    <h5>Example del test d'acceptació 5.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
     la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> quan no està en procés.
     <span concordion:assertEquals="acabarRuta(#nomRuta)">ERROR: La ruta no està en procés</span>
