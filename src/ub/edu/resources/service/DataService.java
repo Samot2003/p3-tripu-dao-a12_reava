@@ -75,6 +75,4 @@ public class DataService {
     public List<Parell<String, String>> getAllRelacionsRutesTransports() throws Exception{
         return daoRelacioTransportRuta.getAll();
     }
-
-
 }
