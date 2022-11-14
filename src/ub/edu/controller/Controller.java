@@ -507,7 +507,7 @@ public class Controller {
                         grup.marxarGrup(persona);
                         return "S'ha eliminat al membre satisfactoriament";
                     } else {
-                        return "S'ha trobat el grup pero no l'usuari a eliminar";
+                        return "S'ha trobat el grup pero l'usuari no pertany al grup";
                     }
                 } else {
                     return "No s'ha trobat cap grup amb aquest nom";
