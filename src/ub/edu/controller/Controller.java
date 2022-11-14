@@ -487,12 +487,22 @@ public class Controller {
         return null;
     }
 
-    public String marxarGrup (String nomGrup, Persona p){
-        if (llistaGrup.size() != 0) {
+    public String marxarGrup (String nomGrup, String nomPersona){
+        Persona persona = null;
+        for(Persona p : xarxaPersones.getLlista()){
+            if (p.getName().equals(nomPersona)){
+                persona=p;
+            }
+        }
+        if(persona == null){
+
+            return "L' usuari no ha sigut trobat a la base de dades";
+        }
+        else if (llistaGrup.size() != 0) {
             for (Grup grup : llistaGrup) {
                 if (grup.getNomGrup().equals(nomGrup)) {
-                    if (grup.find(p.getName()) != null) {
-                        grup.marxarGrup(p);
+                    if (grup.find(persona.getName()) != null) {
+                        grup.marxarGrup(persona);
                         return "S'ha eliminat al membre satisfactoriament";
                     } else {
                         return "S'ha trobat el grup pero no l'usuari a eliminar";
