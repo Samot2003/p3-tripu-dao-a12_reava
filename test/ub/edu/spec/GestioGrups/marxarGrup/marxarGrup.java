@@ -1,9 +1,9 @@
-package ub.edu.spec.crearGrup;
+package ub.edu.spec.GestioGrups.marxarGrup;
 
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;
 
 @RunWith(ConcordionRunner.class)
-public class crearGrup {
+public class marxarGrup {
 
 }

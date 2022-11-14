@@ -9,11 +9,11 @@ public class EstadistiquesIndividuals {
     }
 
     public int getEstadistiques(){
-
         return punts;
     }
 
-    public void setPunts(int punts) {
-        this.punts = punts;
+    public boolean addPunts(int punts) {
+        this.punts += punts;
+        return true;
     }
 }

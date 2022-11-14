@@ -30,7 +30,7 @@ public class Persona {
         this.nom = nom;
     }
 
-    public void setEstadistiques (int punts) {estadistiques.setPunts(punts);}
+    public boolean addPunts (int punts) { return estadistiques.addPunts(punts);}
 
     public int getEstadistiques(){
         return estadistiques.getEstadistiques();

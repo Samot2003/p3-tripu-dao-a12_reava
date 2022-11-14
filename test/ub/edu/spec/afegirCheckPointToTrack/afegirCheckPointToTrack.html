@@ -1,0 +1,45 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US8: Afegir punt de control a track</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US8: Afegir punt de control a track</h1>
+
+<h2>Criteris d'acceptació 0, 1, 2</h2>
+<p>
+    <b>0</b>: Si no hi ha track en procés, es mostrarà el missatge: "No hi ha cap track iniciat"
+    <b>1</b>: Si ha un track en procés i es crea un checkpoint inicial, es mostrarà el missatge: "Punt de Control Inicial establert correctament"
+    <b>2</b>: Si ha un track en procés i es crea un checkpoint inicial quan ja hi ha un altre es mostra el missatge: "Punt de Control Inicial modificat"
+
+</p>
+
+
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 8.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
+    highlight: <span concordion:set="#highlight">p1</span>; al track actual si no hi ha cap track
+    en procés.
+    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">No hi ha cap track iniciat</span>.
+</div>
+
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 8.1</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
+    highlight: <span concordion:set="#highlight">p1</span>; al track actual si hi ha un track
+    en procés <span concordion:execute="initTrack()">.</span>
+    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">Punt de Control Inicial establert correctament</span>.
+</div>
+
+<div concordion:example="two">
+    <h5>Example del test d'acceptació 8.2</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
+    highlight: <span concordion:set="#highlight">p1</span>; al track actual si hi ha un track
+    en procés <span concordion:execute="initTrack()"></span> i ja hi ha un checkpoint inicial
+    establert amb highlight: <span concordion:set="#highlight2">f2</span>.<span concordion:execute="afegirCheckPointInicial(#highlight2)"></span>
+    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">Punt de Control Inicial modificat</span>.
+</div>
+
+
+</body>
+</html>

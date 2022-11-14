@@ -1,4 +1,4 @@
-package ub.edu.spec.afegirGrup;
+package ub.edu.spec.GestioGrups.afegirGrup;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;

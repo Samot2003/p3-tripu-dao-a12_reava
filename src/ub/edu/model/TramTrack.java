@@ -17,6 +17,8 @@ public class TramTrack extends Tram{
         this.desnivellPositiu = desnivellPositiu;
        this.desnivellNegatiu = desnivellNegatiu; */
         estat = new NoComencat();
+        puntDeControlFinal = null;
+        puntDeControlInicial = null;
     }
     public String setEstatTramTrack(String nomEstat){
         estat = estat.cambiarEstat(nomEstat);
@@ -42,13 +44,26 @@ public class TramTrack extends Tram{
 
 
     public String setPuntDeControlInicial(PuntDeControl puntDeControl){
-        puntDeControlInicial = puntDeControl;
-        return "Punt de control establert correctament";
+
+        if(puntDeControlInicial == null){
+            puntDeControlInicial = puntDeControl;
+            return "Punt de Control Inicial establert correctament";
+        }else{
+            puntDeControlInicial = puntDeControl;
+            return "Punt de Control Inicial modificat";
+        }
     }
 
     public String setPuntDeControlFinal(PuntDeControl puntDeControl){
-        puntDeControlFinal = puntDeControl;
-        return "Punt de Control establert correctament";
+        if(puntDeControlFinal == null){
+            puntDeControlFinal = puntDeControl;
+            return "Punt de Control Final establert correctament";
+        }else{
+            puntDeControlFinal = puntDeControl;
+            return "Punt de Control Final modificat";
+        }
+
+
     }
 }
 
