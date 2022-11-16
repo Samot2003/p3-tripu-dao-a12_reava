@@ -2,7 +2,6 @@ package ub.edu.controller;
 
 import ub.edu.model.*;
 
-import ub.edu.model.Estat.Estat;
 import ub.edu.model.Transport.*;
 import ub.edu.resources.dao.Parell;
 import ub.edu.resources.service.*;
@@ -15,114 +14,23 @@ import java.util.stream.Collectors;
 
 public class Controller {
 
-    private AbstractFactoryData factory;      // Origen de les dades
-    private DataService dataService;         // Connexio amb les dades
-    private XarxaPersones xarxaPersones;   // Model
-    private Map<String, Ruta> rutaMap;
-    private Map<String, Comarca> comarcaMap;
-    private Map<String, Localitat> localitatMap;
-    private Map<String, Transport> transportMap;
-
-    private List <Grup> llistaGrup;
-    private Ruta rutaActual;
+    //ControllerData es una classe que inicialitza i emagatzema les dades
+    private ControllerData data;
 
     public Controller() {
-        factory = new FactoryMOCK();
-        dataService = new DataService(factory);
-        rutaActual = null;
-        llistaGrup = new ArrayList<>();
-        try {
-            initXarxaPersones();
-            initRutesMap();
-            initComarquesMap();
-            initLocalitatMap();
-            initTransportMap();
-            relacionarRutesComarques();
-            relacionarRutesLocalitats();
-            relacionarRutesTransports();
-
-        } catch (Exception e) {
-        }
-
+        data = new ControllerData();
     }
 
-    public boolean initXarxaPersones() throws Exception {
-        List<Persona> l = dataService.getAllPersones();
-        if (l != null) {
-            xarxaPersones = new XarxaPersones(l);
-            return true;
-        } else return false;
+    private List<Ruta> getRutaList(){
+        return new ArrayList<>(data.getRutaMap().values());
     }
 
-    public boolean initRutesMap() throws Exception {
-        rutaMap =  (dataService.getAllRutes().stream()
-                .collect(Collectors.toMap(Ruta::getNom, Function.identity())));
-        if (rutaMap != null)
-            return true;
-        else return false;
-    }
-
-    private boolean initComarquesMap() throws Exception {
-        comarcaMap =  (dataService.getAllComarques().stream()
-                .collect(Collectors.toMap(Comarca::getNom, Function.identity())));
-        if (comarcaMap != null)
-            return true;
-        else return false;
-    }
-
-    private boolean initLocalitatMap() throws Exception {
-        localitatMap = (dataService.getAllLocalitats().stream()
-                .collect(Collectors.toMap(Localitat::getNom, Function.identity())));
-        if (localitatMap != null)
-            return true;
-        else return false;
-    }
-    private boolean initTransportMap() throws Exception {
-        transportMap = (dataService.getAllTransports().stream()
-                .collect(Collectors.toMap(Transport::getId, Function.identity())));
-        if (localitatMap != null)
-            return true;
-        else return false;
-    }
-
-
-    private void relacionarRutesComarques() throws Exception {
-        List<Parell<String, String>> relacionsRC = dataService.getAllRelacionsRutesComarques();
-        for (Parell p : relacionsRC) {
-            Ruta r = rutaMap.get(p.getElement2());
-            Comarca c = comarcaMap.get(p.getElement1());
-            r.addComarca(c);
-        }
-    }
-
-    private void relacionarRutesLocalitats() throws Exception {
-        List<Parell<String, String>> relacionsRL = dataService.getAllRelacionsRutesLocalitats();
-        for (Parell p : relacionsRL) {
-            Ruta r = rutaMap.get(p.getElement2());
-            Localitat l = localitatMap.get(p.getElement1());
-            r.addLocalitat(l);
-        }
-    }
-    private void relacionarRutesTransports() throws Exception {
-        List<Parell<String, String>> relacionsRT = dataService.getAllRelacionsRutesTransports();
-        for (Parell p : relacionsRT) {
-            Ruta r = rutaMap.get(p.getElement2());
-            Transport t = transportMap.get(p.getElement1());
-            r.addTransport(t);
-        }
-    }
-
-    // Validem la Persona a la capa de persistencia i no a memoria, per seguretat en les possibles sincronitzacions
     public String validateRegisterPersona (String username, String password) {
-        if  (dataService.getPersonaByUsername(username).isPresent() )
+        if  (data.getDataService().getPersonaByUsername(username).isPresent() )
             return "Soci Duplicat";
         else if (isMail(username) && isPasswordSegur(password))
             return "Soci Validat";
         else return "Format incorrecte";
-    }
-
-    private List<Ruta> getRutaList(){
-        return new ArrayList<>(rutaMap.values());
     }
 
     public boolean isPasswordSegur(String password) {
@@ -166,7 +74,7 @@ public class Controller {
     }
 
     public String findPersona(String username) {
-        Persona persona = xarxaPersones.find(username);
+        Persona persona = data.getXarxaPersones().find(username);
         if (persona!=null) return "Persona ja existent en el Sistema";
         else return "Persona desconeguda";
     }
@@ -189,7 +97,7 @@ public class Controller {
 
     public String validateRegistrePersona(String username, String password) {
         if (isMail(username) && isPasswordSegur(password)) {
-            Persona persona = xarxaPersones.find(username);
+            Persona persona = data.getXarxaPersones().find(username);
             if (persona != null) {
                 return "Persona duplicada";
             } else return "Registre vàlid";
@@ -197,7 +105,7 @@ public class Controller {
     }
 
     public String loguejarPersona(String username, String password){
-        Persona persona = xarxaPersones.find(username);
+        Persona persona = data.getXarxaPersones().find(username);
         if(persona == null){
             return "Correu inexistent";
         }
@@ -209,7 +117,7 @@ public class Controller {
     }
 
     public String recuperarContrassenya(String username){
-        Persona persona = xarxaPersones.find(username);
+        Persona persona = data.getXarxaPersones().find(username);
         if(persona == null){
             return "Correu inexistent";
         }
@@ -219,18 +127,18 @@ public class Controller {
     public Iterable<String> cercaRutesPerComarca(String nomComarca){
         SortedSet<String> comarques = new TreeSet<>();
 
-        if (comarcaMap.size() == 0){
+        if (data.getComarcaMap().size() == 0){
             comarques.add("No hi han comarques enregistrades");
             return comarques;
         }
 
-        Comarca comarca = comarcaMap.get(nomComarca);
+        Comarca comarca = data.getComarcaMap().get(nomComarca);
         if (comarca == null)
             comarques.add("Comarca no trobada en el sistema");
 
         else {
             int ncount = 0;
-            for (Ruta ruta : rutaMap.values()){
+            for (Ruta ruta : data.getRutaMap().values()){
                 if (ruta.containsComarca(comarca)) {
                     comarques.add(ruta.getNom());
                     ncount++;
@@ -245,18 +153,18 @@ public class Controller {
 
     public Comarca afegirComarca(String nomComarca){
         Comarca comarca;
-        if(comarcaMap.containsKey(nomComarca)){
-            comarca = comarcaMap.get(nomComarca);
+        if(data.getComarcaMap().containsKey(nomComarca)){
+            comarca = data.getComarcaMap().get(nomComarca);
         }else{
             comarca = new Comarca(nomComarca);
-            comarcaMap.put(nomComarca, comarca);
+            data.getComarcaMap().put(nomComarca, comarca);
         }
         return comarca;
     }
 
     public Iterable<String> cercarRutesPerTempsDeDurada(int numDies){
         SortedSet<String> llista = new TreeSet<>();
-        for(Ruta ruta: rutaMap.values()){
+        for(Ruta ruta: data.getRutaMap().values()){
             if (ruta.getDurada() == numDies){
                 llista.add(ruta.getNom());
             }
@@ -270,32 +178,29 @@ public class Controller {
 
     }
 
+    public Ruta afegirRuta(String nomRuta,String dataText, int numDies){
+        return data.afegirRuta(nomRuta, dataText, numDies);
+    }
+
     public Localitat afegirLocalitat(String nomLocalitat) {
-        Localitat l;
-        if(localitatMap.containsKey(nomLocalitat)){
-            l = localitatMap.get(nomLocalitat);
-        }else{
-            l = new Localitat(nomLocalitat);
-            localitatMap.put(nomLocalitat, l);
-        }
-        return l;
+        return data.afegirLocalitat(nomLocalitat);
     }
 
     public Iterable<String>  cercaRutesPerLocalitat(String nomLocalitat) {
         SortedSet<String> localitats = new TreeSet<>();
 
-        if (localitatMap.size() == 0){
+        if (data.getLocalitatMap().size() == 0){
             localitats.add("No hi ha localitats enregistrades");
             return localitats;
         }
 
-        Localitat localitat = localitatMap.get(nomLocalitat);
+        Localitat localitat = data.getLocalitatMap().get(nomLocalitat);
         if (localitat == null)
             localitats.add("Localitat no trobada en el sistema");
 
         else {
             int ncount = 0;
-            for (Ruta ruta : rutaMap.values()){
+            for (Ruta ruta : data.getRutaMap().values()){
                 if (ruta.containsLocalitat(localitat)) {
                     localitats.add(ruta.getNom());
                     ncount++;
@@ -308,39 +213,24 @@ public class Controller {
     }
 
     public boolean afegirTransport(String nom, String id, float velocitat) {
-        Transport t;
-        if(transportMap.containsKey(id)){
-            t = transportMap.get(id);
-        }else if (nom == "Bici"){
-            t = new Bici(id, velocitat);
-            transportMap.put(id, t);
-        }else if (nom == "Cotxe") {
-            t = new Cotxe(id, velocitat);
-            transportMap.put(id, t);
-        }else if (nom == "APeu") {
-            t = new APeu(id, velocitat);
-            transportMap.put(id, t);
-        }else{
-            return false;
-        }
-        return true;
+        return data.afegirTransport(nom,id,velocitat);
     }
 
     public Iterable<String>  cercaRutesPerTransport(String id) {
         SortedSet<String> transports = new TreeSet<>();
 
-        if (transportMap.size() == 0){
+        if (data.getTransportMap().size() == 0){
             transports.add("No hi ha transports enregistrats");
             return transports;
         }
 
-        Transport transport = transportMap.get(id);
+        Transport transport = data.getTransportMap().get(id);
         if (transport == null)
             transports.add("Transport no trobat en el sistema");
 
         else {
             int ncount = 0;
-            for (Ruta ruta : rutaMap.values()){
+            for (Ruta ruta : data.getRutaMap().values()){
                 if (ruta.containsTransport(transport)) {
                     transports.add(ruta.getNom());
                     ncount++;
@@ -352,17 +242,17 @@ public class Controller {
     }
 
     public String iniciarRuta(String nomRuta){
-        if (rutaActual != null){
-            if (rutaActual.getNom().equals(nomRuta)){
+        if (data.getRutaActual() != null){
+            if (data.getRutaActual() .getNom().equals(nomRuta)){
                 return "ERROR: La ruta ja està començada";
             }
-            else if (rutaActual.getEstatRuta().equals("EnProces")) {
+            else if (data.getRutaActual() .getEstatRuta().equals("EnProces")) {
                 return "Has de acabar la ruta actual per tal de començar-ne una nova";
             }
         }else {
-            for (Ruta ruta: rutaMap.values()) {
+            for (Ruta ruta: data.getRutaMap().values()) {
                 if (ruta.getNom().equals(nomRuta)) {
-                    rutaActual = ruta;
+                    data.setRutaActual(ruta);
                     return "Ruta: " + ruta.cambiarEstatRuta("EnProces");
                 }
             }
@@ -372,10 +262,10 @@ public class Controller {
     }
     public String acabarRuta(String nomRuta){
         Ruta rAux;
-        if (rutaActual != null){
-            if (rutaActual.getNom().equals(nomRuta)) {
-                rAux = rutaActual;
-                rutaActual = null;
+        if (data.getRutaActual()  != null){
+            if (data.getRutaActual() .getNom().equals(nomRuta)) {
+                rAux = data.getRutaActual() ;
+                data.setRutaActual(null);
                 return "Ruta: " + rAux.cambiarEstatRuta("NoComencat");
             }
         }
@@ -383,15 +273,15 @@ public class Controller {
     }
 
     public String addTrackRutaActual(TramTrack tram){
-        if (rutaActual == null){
+        if (data.getRutaActual()  == null){
             return "No hi ha cap ruta iniciada per afegir un tram Track";
         }else{
-            rutaActual.addTram(tram);
+            data.getRutaActual().addTram(tram);
             return "Tram afegit correctament";
         }
     }
     public String addTrackRuta(String nomRuta,TramTrack tram){
-        for (Ruta r: rutaMap.values()){
+        for (Ruta r: data.getRutaMap().values()){
             if (nomRuta.equals(r.getNom())){
                 r.addTram(tram);
                 return "Tram afegit a la ruta correctament";
@@ -402,15 +292,15 @@ public class Controller {
 
 
     public String iniciarTrackRutaActual(String tramID){
-        if (rutaActual == null){
+        if (data.getRutaActual()  == null){
             return "No hi ha cap ruta iniciada per iniciar un tram Track";
         }else{
-            if (rutaActual.getEstatTramActual().equals("EnProces")){
+            if (data.getRutaActual() .getEstatTramActual().equals("EnProces")){
                 return "Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.";
             }
-            for (TramTrack t: rutaActual.getTramTracks()){
+            for (TramTrack t: data.getRutaActual() .getTramTracks()){
                 if(t.getID().equals(tramID)){
-                    rutaActual.setTramActual(t);
+                    data.getRutaActual() .setTramActual(t);
                     return "Tram: " + t.cambiarEstat("EnProces");
                 }
             }
@@ -418,12 +308,12 @@ public class Controller {
         }
     }
     public String acabarTrackRutaActual(){
-        if (rutaActual == null){
+        if (data.getRutaActual()  == null){
             return "No hi ha cap ruta iniciada per acabar un tram Track";
         }else{
-            if (rutaActual.getEstatTramActual().equals("EnProces")){
-                rutaActual.cambiarEstatTramActual("NoComencat");
-                rutaActual.setTramActual(null);;
+            if (data.getRutaActual() .getEstatTramActual().equals("EnProces")){
+                data.getRutaActual() .cambiarEstatTramActual("NoComencat");
+                data.getRutaActual() .setTramActual(null);;
                 return "Tram Track finalitzat amb éxit";
             }else{
                 return "ERROR: No hi ha cap Tram Track en procés";
@@ -433,38 +323,38 @@ public class Controller {
     }
 
     public String afegirPuntDeControlInicialToTrackActual(PuntDeControl puntDeControl){
-        if (rutaActual == null){
+        if (data.getRutaActual()  == null){
             return "No hi ha cap ruta iniciada";
-        }else if (rutaActual.getTramActual() == null){
+        }else if (data.getRutaActual() .getTramActual() == null){
             return "No hi ha cap track iniciat";
         }else{
-            return rutaActual.getTramActual().setPuntDeControlInicial(puntDeControl);
+            return data.getRutaActual() .getTramActual().setPuntDeControlInicial(puntDeControl);
         }
     }
 
     public String afegirPuntDeControlFinalToTrackActual(PuntDeControl puntDeControl){
-        if (rutaActual == null){
+        if (data.getRutaActual()  == null){
             return "No hi ha cap ruta iniciada";
-        }else if (rutaActual.getTramActual() == null){
+        }else if (data.getRutaActual() .getTramActual() == null){
             return "No hi ha cap tram iniciat";
         }else{
-            return rutaActual.getTramActual().setPuntDeControlFinal(puntDeControl);
+            return data.getRutaActual() .getTramActual().setPuntDeControlFinal(puntDeControl);
         }
     }
     public String crearGrup (String nomGrup){
-        for (Grup g: llistaGrup) {
+        for (Grup g: data.getLlistaGrups()) {
             if (g.getNomGrup().equals(nomGrup)) {
                 return "Ja existeix un grup amb aquest nom canvia'l siusplau";
             }
         }
         Grup g = new Grup(nomGrup);
-        llistaGrup.add(g);
+        data.addGrupLlista(g);
         return "S' ha creat el grup correctament";
     }
 
     public String addMembreGrup (String nomGrup, String nomPersona) {
         Persona persona = null;
-        for(Persona p : xarxaPersones.getLlista()){
+        for(Persona p : data.getXarxaPersones().getLlista()){
             if (p.getName().equals(nomPersona)){
                 persona=p;
             }
@@ -473,8 +363,8 @@ public class Controller {
 
             return "L' usuari no ha sigut trobat a la base de dades";
         }
-        else if (llistaGrup.size() != 0) {
-            for (Grup grup : llistaGrup) {
+        else if (data.getLlistaGrups().size() != 0) {
+            for (Grup grup : data.getLlistaGrups()) {
                 if (grup.getNomGrup().equals(nomGrup)) {
                     grup.addGrup(persona);
                     return "S'ha agregat el membre satisfactoriament";
@@ -491,7 +381,7 @@ public class Controller {
 
     public String marxarGrup (String nomGrup, String nomPersona){
         Persona persona = null;
-        for(Persona p : xarxaPersones.getLlista()){
+        for(Persona p : data.getXarxaPersones().getLlista()){
             if (p.getName().equals(nomPersona)){
                 persona=p;
             }
@@ -500,8 +390,8 @@ public class Controller {
 
             return "L' usuari no ha sigut trobat a la base de dades";
         }
-        else if (llistaGrup.size() != 0) {
-            for (Grup grup : llistaGrup) {
+        else if (data.getLlistaGrups().size() != 0) {
+            for (Grup grup : data.getLlistaGrups()) {
                 if (grup.getNomGrup().equals(nomGrup)) {
                     if (grup.getPersona(persona.getName()) != null) {
                         grup.marxarGrup(persona);
@@ -522,8 +412,8 @@ public class Controller {
 
     public Iterable<String> getRankingGrup( String nomGrup){
         List<String> ret = new ArrayList<>();
-        if (llistaGrup.size() != 0) {
-            for (Grup g: llistaGrup) {
+        if (data.getLlistaGrups().size() != 0) {
+            for (Grup g: data.getLlistaGrups()) {
                 if (g.getNomGrup().equals(nomGrup)) {
                     ret = (List) g.getRanking();
                     if (ret.size() == 0) {
@@ -544,7 +434,7 @@ public class Controller {
 
     public String addPuntsToPersona(String nom, int punts){
         boolean sumats = false;
-        for (Persona pers: xarxaPersones.getLlista()){
+        for (Persona pers: data.getXarxaPersones().getLlista()){
             if (pers.getName().equals(nom)){
                 sumats = pers.addPunts(punts);
                 if (sumats){
@@ -560,7 +450,7 @@ public class Controller {
     }
 
     public String actualitzarRankingGrup(String nomGrup){
-        for( Grup g: llistaGrup){
+        for( Grup g: data.getLlistaGrups()){
             if (g.getNomGrup().equals(nomGrup)){
                 g.actualitzarRanking();
                 return "Ranking Actualitzat";
@@ -570,7 +460,7 @@ public class Controller {
     }
 
     public void actualitzarRankings(){
-        for( Grup g: llistaGrup){
+        for( Grup g: data.getLlistaGrups()){
             g.actualitzarRanking();
         }
     }
