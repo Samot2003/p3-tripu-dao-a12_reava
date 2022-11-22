@@ -17,7 +17,7 @@ public class ComencarTramTrack {
     }
 
     public String comencarTramTrack(String tramID){
-        return controlador.iniciarTrackRutaActual("tramID");
+        return controlador.iniciarTrackRutaActual(tramID);
     }
 
     public void initTramTracks(){

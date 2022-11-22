@@ -51,7 +51,7 @@
     La següent linia mostra els resultats que esperem si demanem al sistema iniciar
     el tramTrack: <span concordion:set="#idTram">TT2</span> =
 
-    <span concordion:assertEquals="comencarTramTrack(#idTram)">Tram no trobat a la ruta actual</span>.
+    <span concordion:assertEquals="comencarTramTrack(#idTram)">Tram: Estat canviat a: EnProces</span>.
 </div>
 
 <div concordion:example="two">
@@ -61,7 +61,7 @@
     el tramTrack: <span concordion:set="#idTram">TT2</span> quan ja està iniciat
     <span concordion:execute="comencarTramTrack(#idTram)"></span>
 
-    <span concordion:assertEquals="comencarTramTrack(#idTram)">Tram no trobat a la ruta actual</span>.
+    <span concordion:assertEquals="comencarTramTrack(#idTram)">Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.</span>.
 </div>
 
 
