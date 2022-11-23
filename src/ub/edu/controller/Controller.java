@@ -3,39 +3,28 @@ package ub.edu.controller;
 import ub.edu.model.*;
 
 import ub.edu.model.Transport.*;
-import ub.edu.resources.dao.Parell;
-import ub.edu.resources.service.*;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Controller {
 
     //ControllerData es una classe que inicialitza i emagatzema les dades
-    private ControllerData data;
-    
-    private ControllerUser user;
+    private FacanaData data;
+    private FacanaUser user;
 
     public Controller() {
         
-        data = new ControllerData();
-        user = new ControllerUser();
+        data = new FacanaData();
+        user = new FacanaUser();
     }
-    public ControllerUser getUserInfo(){return user;}
-    public List<Ruta> getRutaList(){
-        return new ArrayList<>(data.getRutaMap().values());
-    }
+    public FacanaUser getUserInfo(){return user;}
 
-    
     public Iterable<String> llistarCatalegRutesPerNom() {
         SortedSet<String> excursionsDisponibles = new TreeSet<>();
-        if (getRutaList().isEmpty()) {
+        if (data.getRutaList().isEmpty()) {
             excursionsDisponibles.add("No hi ha excursions disponibles");
         } else {
-            for (Ruta r : getRutaList()) {
+            for (Ruta r : data.getRutaList()) {
                 excursionsDisponibles.add(r.getNom());
             }
         }
@@ -43,7 +32,7 @@ public class Controller {
     }
 
     public Iterable<String> llistarCatalegRutesPerDurada(){
-        List<Ruta> sortedList = getRutaList();
+        List<Ruta> sortedList = data.getRutaList();
         sortedList.sort(new Comparator<Ruta>() {
             public int compare(Ruta a1, Ruta a2) {
                 return (Integer.compare(a1.getDurada(), a2.getDurada()));
@@ -180,30 +169,34 @@ public class Controller {
             if (data.getRutaActual() .getNom().equals(nomRuta)){
                 return "ERROR: La ruta ja està començada";
             }
-            else if (data.getRutaActual() .getEstatRuta().equals("EnProces")) {
+            else if (data.getRutaActual().getEstatRuta().equals("EnProces")) {
                 return "Has de acabar la ruta actual per tal de començar-ne una nova";
             }
         }else {
             for (Ruta ruta: data.getRutaMap().values()) {
                 if (ruta.getNom().equals(nomRuta)) {
                     data.setRutaActual(ruta);
-                    return "Ruta: " + ruta.cambiarEstatRuta("EnProces");
+                    boolean canvi = ruta.iniciarRuta();
+                    if (canvi){
+                        return "Ruta inciada";
+                    }else{
+                        return "ERROR: La ruta ja està iniciada";
+                    }
                 }
             }
         }
 
         return "Ruta no trobada en el sistema";
     }
-    public String acabarRuta(String nomRuta){
+    public String acabarRuta(){
         Ruta rAux;
-        if (data.getRutaActual()  != null){
-            if (data.getRutaActual() .getNom().equals(nomRuta)) {
-                rAux = data.getRutaActual() ;
-                data.setRutaActual(null);
-                return "Ruta: " + rAux.cambiarEstatRuta("NoComencat");
-            }
+        if (data.getRutaActual()  != null) {
+            rAux = data.getRutaActual();
+            boolean canvi = rAux.acabarRuta();
+            data.setRutaActual(null);
+            return "Ruta actual finalitzada";
         }
-        return "ERROR: La ruta no està en procés";
+        return "ERROR: No hi ha cap ruta en procés";
     }
 
     public String addTrackRutaActual(TramTrack tram){
@@ -396,6 +389,18 @@ public class Controller {
     public void actualitzarRankings(){
         for( Grup g: data.getLlistaGrups()){
             g.actualitzarRanking();
+        }
+    }
+
+    public String valorarPuntDePas(int[] estrelles, boolean[] like){
+        List<TramTrack> llistaTracks = data.getRutaActual().getLlistaTramTracks();
+        int i = 0;
+        for (TramTrack t: llistaTracks){
+            PuntDeControl[] pList = t.getPuntsDeControl();
+            Valoracio valoracio = new Valoracio();
+            valoracio.setEstrelles(estrelles[i]);
+            valoracio.setLike(like[i]);
+            i++;
         }
     }
 }

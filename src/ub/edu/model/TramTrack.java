@@ -53,6 +53,12 @@ public class TramTrack extends Tram{
             return "Punt de Control Inicial modificat";
         }
     }
+    public PuntDeControl[] getPuntsDeControl(){
+        PuntDeControl[] pList = new PuntDeControl[2];
+        pList[0] = puntDeControlInicial;
+        pList[1] = puntDeControlFinal;
+        return pList;
+    }
 
     public String setPuntDeControlFinal(PuntDeControl puntDeControl){
         if(puntDeControlFinal == null){

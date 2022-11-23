@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ControllerData {
+public class FacanaData {
 
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
@@ -29,7 +29,7 @@ public class ControllerData {
 
     private List<Grup> llistaGrup;
 
-    public ControllerData() {
+    public FacanaData() {
         factory = new FactoryMOCK();
         data = new DataService(factory);
         rutaMap = new HashMap<>();
@@ -72,6 +72,10 @@ public class ControllerData {
     }
     public Map<String,Ruta> getRutaMap(){
         return rutaMap;
+    }
+
+    public List<Ruta> getRutaList(){
+        return new ArrayList<>(rutaMap.values());
     }
 
     public Ruta afegirRuta(String nomRuta,String dataText, int numDies){

@@ -5,12 +5,12 @@ import ub.edu.model.Persona;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ControllerUser {
+public class FacanaUser {
 
-    private ControllerData data;
+    private FacanaData data;
 
-    public ControllerUser() {
-        data = new ControllerData();
+    public FacanaUser() {
+        data = new FacanaData();
     }
 
     public String validateRegisterPersona (String username, String password) {

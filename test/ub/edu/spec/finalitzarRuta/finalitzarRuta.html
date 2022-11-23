@@ -8,24 +8,23 @@
 
 <h2>Criteris d'acceptació 0, 1 </h2>
 <p>
-    <b>0</b>: Si la ruta esta començada, es mostrarà el missatge: "Estat canviat a: NoComencat"
-    <b>1</b>: Si la ruta no està començada, es mostrarà el missatge: "La ruta no està en procés"
+    <b>0</b>: Si la ruta està començada, es mostrarà el missatge: "Ruta actual finalitzada"
+    <b>1</b>: Si la ruta no està començada, es mostrarà el missatge: "ERROR: No hi ha cap ruta en procés"
 </p>
 
 
 <div concordion:example="zero">
     <h5>Example del test d'acceptació 6.0</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
-    la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> si
-    està EnProcés <span concordion:execute="initRuta()">.</span>
-    <span concordion:assertEquals="acabarRuta(#nomRuta)">Ruta: Estat canviat a: NoComencat</span>.
+    La següent línia mostra els resultats que esperem si demanem al sistema finalitzar
+    la ruta actual si està EnProcés <span concordion:execute="initRuta()">.</span>
+    <span concordion:assertEquals="acabarRuta()">Ruta actual finalitzada</span>.
 </div>
 
 <div concordion:example="one">
     <h5>Example del test d'acceptació 6.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
-    la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> quan no està en procés.
-    <span concordion:assertEquals="acabarRuta(#nomRuta)">ERROR: La ruta no està en procés</span>
+    la ruta actual quan no està en procés.
+    <span concordion:assertEquals="acabarRuta()">ERROR: No hi ha cap ruta en procés</span>
 </div>
 
 </body>

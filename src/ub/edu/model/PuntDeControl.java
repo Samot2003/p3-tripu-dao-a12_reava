@@ -11,18 +11,11 @@ public class PuntDeControl extends Localitat{
         valoracio = new Valoracio();
     }
 
-    public void setEstrelles(int estrelles){
-        valoracio.setEstrelles(estrelles);
+    public void setValoracio(Valoracio valoracio) {
+        this.valoracio = valoracio;
     }
 
-    public void setLike(boolean like){
-        valoracio.setLike(like);
-    }
-    public int getEstrelles(){
-        return valoracio.getEstrelles();
-    }
-
-    public String getLike(){
-        return valoracio.getLike();
+    public Valoracio getValoracio(){
+        return valoracio;
     }
 }

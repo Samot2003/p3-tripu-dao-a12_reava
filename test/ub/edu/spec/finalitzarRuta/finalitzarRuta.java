@@ -15,8 +15,8 @@ public class finalitzarRuta {
         controlador = new Controller();
     }
 
-    public String acabarRuta(String nomRuta){
-        return controlador.acabarRuta(nomRuta);
+    public String acabarRuta(){
+        return controlador.acabarRuta();
     }
 
     public void initRuta(){

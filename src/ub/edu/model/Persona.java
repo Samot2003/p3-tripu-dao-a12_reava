@@ -35,8 +35,4 @@ public class Persona {
     public int getEstadistiques(){
         return estadistiques.getEstadistiques();
     }
-
-    public String toStringEstats() {
-        return "L'usuari "+getName() +" té " + estadistiques.getEstadistiques() + " punts.";
-    }
 }

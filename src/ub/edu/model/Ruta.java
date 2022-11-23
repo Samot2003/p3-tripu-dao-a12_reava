@@ -98,15 +98,25 @@ public class Ruta {
     public String getEstatRuta(){
         return estat.getEstat();
     }
-
-    public String cambiarEstatRuta(String nomEstat){
-        if (nomEstat.equals(estat.getEstat())){
-            return ("L'estat al que vols canviar ja es l'actual");
+    public boolean iniciarRuta(){
+        if ("EnProces".equals(estat.getEstat())){
+            return false;
         }
-        estat = estat.cambiarEstat(nomEstat);
-        return "Estat canviat a: " + estat.getEstat();
+        estat = estat.cambiarEstat("EnProces");
+        return true;
     }
 
+    public boolean acabarRuta(){
+        if ("NoComencat".equals(estat.getEstat())){
+            return false;
+        }
+        estat = estat.cambiarEstat("NoComencat");
+        return true;
+    }
+
+    public List<TramTrack> getLlistaTramTracks(){
+        return (List)tramTracks;
+    }
     public boolean addTram(TramTrack t) {
         return tramTracks.add(t);
     }
