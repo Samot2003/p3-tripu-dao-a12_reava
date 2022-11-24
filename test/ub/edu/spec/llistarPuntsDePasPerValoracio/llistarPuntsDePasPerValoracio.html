@@ -1,16 +1,31 @@
-<html xmlns:c="http://www.concordion.org/2007/concordion">
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <head>
-    <title>llistarPuntsDePasPerValoracio</title>
+    <title>US16: Llistar punts de pas per valoracio</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>llistarPuntsDePasPerValoracio</h1>
-<p>
-    Description
-</p>
-<div c:example="name-of-example">
-    <h3>Examples</h3>
+<h1>US16: Llistar punts de pas per valoracio</h1>
 
+<h2>Criteris d'acceptació 0, 1 </h2>
+<p>
+    <b>0</b>: Si no hi ha cap ruta amb el nom recercat, es mostrarà el missatge: "Ruta no trobada"
+    <b>1</b>: Si la ruta no està començada, es mostrarà el missatge: "Punts de control valorats correctament"
+</p>
+
+
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 16.0</h5>
+    La següent línia mostra els resultats que esperem si demanem al sistema llistar els punts de pas
+    per valoracio si la ruta que entrem no pertany a la base de dades.<span concordion:execute="initRuta()">.</span>
+    <span concordion:set="#nomRuta">Andorra</span>.<span concordion:assertEquals="llistarPuntsDePasValoracio()">
+    Ruta no trobada</span>.
+</div>
+
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 16.1</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
+    la ruta actual. <span concordion:execute="initRuta()">.</span>
+    <span concordion:assertEquals="valorarPuntsDePasRutaActual()">Punts de control valorats correctament</span>
 </div>
 
 </body>
