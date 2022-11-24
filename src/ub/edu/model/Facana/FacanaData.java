@@ -1,4 +1,4 @@
-package ub.edu.controller;
+package ub.edu.model.Facana;
 
 import ub.edu.model.*;
 import ub.edu.model.Transport.*;

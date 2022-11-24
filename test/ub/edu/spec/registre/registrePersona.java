@@ -16,16 +16,16 @@ public class registrePersona {
 
 
     public String getPersona(String a) {
-        return controlador.getUserInfo().findPersona(a);
+        return controlador.findPersona(a);
     }
 
     public String validatePassword(String b) {
-        return controlador.getUserInfo().validatePassword(b);
+        return controlador.validatePassword(b);
     }
 
-    public String validateUsername(String a) {return controlador.getUserInfo().validateUsername(a);}
+    public String validateUsername(String a) {return controlador.validateUsername(a);}
 
     public String isValidRegistre(String personaName, String password) {
-        return controlador.getUserInfo().validateRegistrePersona(personaName, password);
+        return controlador.validateRegistrePersona(personaName, password);
     }
 }

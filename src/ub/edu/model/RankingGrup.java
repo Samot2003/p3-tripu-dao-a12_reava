@@ -23,6 +23,7 @@ public class RankingGrup {
 
     public Iterable<String> prova(List<Persona> llista){
         if (llista.isEmpty()){
+            llista = Collections.emptyList();
             return (Iterable)llista;
         }
         List<Persona> sortedList = llista;

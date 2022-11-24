@@ -14,6 +14,12 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerData {
+    }
+  }
+  
+
   namespace ub.edu.model {
     class ub.edu.model.Comarca {
     }
@@ -286,10 +292,11 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
-  ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
-  ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
-  ub.edu.controller.Controller o-- ub.edu.model.Ruta : rutaActual
-  ub.edu.controller.Controller o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerData : data
+  ub.edu.controller.ControllerData o-- ub.edu.resources.service.DataService : data
+  ub.edu.controller.ControllerData o-- ub.edu.resources.service.AbstractFactoryData : factory
+  ub.edu.controller.ControllerData o-- ub.edu.model.Ruta : rutaActual
+  ub.edu.controller.ControllerData o-- ub.edu.model.XarxaPersones : xarxaPersones
   ub.edu.model.Estat.Acabat -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.EnProces -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.NoComencat -up-|> ub.edu.model.Estat.Estat

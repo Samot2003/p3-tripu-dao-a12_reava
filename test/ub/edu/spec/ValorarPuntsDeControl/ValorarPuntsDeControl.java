@@ -1,4 +1,4 @@
-package ub.edu.spec.login;
+package ub.edu.spec.ValorarPuntsDeControl;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
-public class loginPersona {
+public class ValorarPuntsDeControl {
+
     private Controller controlador;
 
     @BeforeExample
@@ -14,8 +15,12 @@ public class loginPersona {
         controlador = new Controller();
     }
 
-    public String recuperarContrassenya(String user) {return controlador.recuperarContrassenya(user);}
+    public String valorarPuntsDePasRutaActual(){
+        return controlador.valorarPuntsDePasRutaActual(5 , true);
+    }
 
-    public String loginPersona(String user, String pass) {return controlador.loguejarPersona(user, pass);}
+    public void initRuta(){
+        controlador.iniciarRuta("Terres de l'Ebre");
+    }
 
 }

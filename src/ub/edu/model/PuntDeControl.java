@@ -11,8 +11,9 @@ public class PuntDeControl extends Localitat{
         valoracio = new Valoracio();
     }
 
-    public void setValoracio(Valoracio valoracio) {
-        this.valoracio = valoracio;
+    public void setValoracio(int estrelles, boolean like) {
+        valoracio.setEstrelles(estrelles);
+        valoracio.setLike(like);
     }
 
     public Valoracio getValoracio(){

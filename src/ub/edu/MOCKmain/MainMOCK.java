@@ -13,10 +13,8 @@ import ub.edu.model.Transport.Transport;
 public class MainMOCK {
     public static void main(String[] args) {
         Controller c = new Controller();
-        System.out.println(c.getRankingGrup("G1"));
-        System.out.println(c.crearGrup("G1"));
-        System.out.println(c.getRankingGrup("G1"));
-
-
+        System.out.println(c.cercarRutesPerTempsDeDurada(4));
+        System.out.println(c.cercarRutesPerTempsDeDurada(2));
+        System.out.println(c.cercarRutesPerTempsDeDurada(0));
     }
 }

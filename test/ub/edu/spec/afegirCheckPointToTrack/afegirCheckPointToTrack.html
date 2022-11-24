@@ -10,7 +10,6 @@
 <p>
     <b>0</b>: Si no hi ha track en procés, es mostrarà el missatge: "No hi ha cap track iniciat"
     <b>1</b>: Si ha un track en procés i es crea un checkpoint inicial, es mostrarà el missatge: "Punt de Control Inicial establert correctament"
-    <b>2</b>: Si ha un track en procés i es crea un checkpoint inicial quan ja hi ha un altre es mostra el missatge: "Punt de Control Inicial modificat"
 
 </p>
 
@@ -30,16 +29,6 @@
     en procés <span concordion:execute="initTrack()">.</span>
     <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">Punt de Control Inicial establert correctament</span>.
 </div>
-
-<div concordion:example="two">
-    <h5>Example del test d'acceptació 8.2</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
-    highlight: <span concordion:set="#highlight">p1</span>; al track actual si hi ha un track
-    en procés <span concordion:execute="initTrack()"></span> i ja hi ha un checkpoint inicial
-    establert amb highlight: <span concordion:set="#highlight2">f2</span>.<span concordion:execute="afegirCheckPointInicial(#highlight2)"></span>
-    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">Punt de Control Inicial modificat</span>.
-</div>
-
 
 </body>
 </html>

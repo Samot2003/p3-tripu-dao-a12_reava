@@ -43,14 +43,11 @@ public class TramTrack extends Tram{
     public float getDuracioEstimada() {return duracioEstimada;}
 
 
-    public String setPuntDeControlInicial(PuntDeControl puntDeControl){
-
+    public void setPuntDeControlInicial(PuntDeControl puntDeControl){
         if(puntDeControlInicial == null){
             puntDeControlInicial = puntDeControl;
-            return "Punt de Control Inicial establert correctament";
         }else{
             puntDeControlInicial = puntDeControl;
-            return "Punt de Control Inicial modificat";
         }
     }
     public PuntDeControl[] getPuntsDeControl(){
@@ -68,8 +65,14 @@ public class TramTrack extends Tram{
             puntDeControlFinal = puntDeControl;
             return "Punt de Control Final modificat";
         }
+    }
 
+    public PuntDeControl getPuntDeControlInicial(){
+        return puntDeControlInicial;
+    }
 
+    public PuntDeControl getPuntDeControlFinal(){
+        return puntDeControlFinal;
     }
 }
 

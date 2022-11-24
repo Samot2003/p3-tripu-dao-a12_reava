@@ -4,11 +4,6 @@ title __CONTROLLER's Class Diagram__\n
 
   namespace ub.edu.controller {
     class ub.edu.controller.Controller {
-        - comarcaMap : Map<String, Comarca>
-        - llistaGrup : List<Grup>
-        - localitatMap : Map<String, Localitat>
-        - rutaMap : Map<String, Ruta>
-        - transportMap : Map<String, Transport>
         + Controller()
         + acabarRuta()
         + acabarTrackRutaActual()
@@ -22,6 +17,7 @@ title __CONTROLLER's Class Diagram__\n
         + afegirLocalitat()
         + afegirPuntDeControlFinalToTrackActual()
         + afegirPuntDeControlInicialToTrackActual()
+        + afegirRuta()
         + afegirTransport()
         + cercaRutesPerComarca()
         + cercaRutesPerLocalitat()
@@ -32,8 +28,6 @@ title __CONTROLLER's Class Diagram__\n
         + getRankingGrup()
         + iniciarRuta()
         + iniciarTrackRutaActual()
-        + initRutesMap()
-        + initXarxaPersones()
         + isMail()
         + isPasswordSegur()
         + llistarCatalegRutesPerDurada()
@@ -46,7 +40,35 @@ title __CONTROLLER's Class Diagram__\n
         + validateRegistrePersona()
         + validateUsername()
         - getRutaList()
-        - initComarquesMap()
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerData {
+        - comarcaMap : Map<String, Comarca>
+        - llistaGrup : List<Grup>
+        - localitatMap : Map<String, Localitat>
+        - rutaMap : Map<String, Ruta>
+        - transportMap : Map<String, Transport>
+        + ControllerData()
+        + addGrupLlista()
+        + afegirLocalitat()
+        + afegirRuta()
+        + afegirTransport()
+        + getComarcaMap()
+        + getDataService()
+        + getLlistaGrups()
+        + getLocalitatMap()
+        + getRutaActual()
+        + getRutaMap()
+        + getTransportMap()
+        + getXarxaPersones()
+        + initData()
+        + initRutaMap()
+        + initXarxaPersones()
+        + setRutaActual()
+        - initComarcaMap()
         - initLocalitatMap()
         - initTransportMap()
         - relacionarRutesComarques()
@@ -56,10 +78,11 @@ title __CONTROLLER's Class Diagram__\n
   }
   
 
-  ub.edu.controller.Controller o-- ub.edu.resources.service.DataService : dataService
-  ub.edu.controller.Controller o-- ub.edu.resources.service.AbstractFactoryData : factory
-  ub.edu.controller.Controller o-- ub.edu.model.Ruta : rutaActual
-  ub.edu.controller.Controller o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerData : data
+  ub.edu.controller.ControllerData o-- ub.edu.resources.service.DataService : data
+  ub.edu.controller.ControllerData o-- ub.edu.resources.service.AbstractFactoryData : factory
+  ub.edu.controller.ControllerData o-- ub.edu.model.Ruta : rutaActual
+  ub.edu.controller.ControllerData o-- ub.edu.model.XarxaPersones : xarxaPersones
 
 
 right footer
