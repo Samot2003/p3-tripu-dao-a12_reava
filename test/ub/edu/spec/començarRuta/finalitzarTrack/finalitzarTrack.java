@@ -1,4 +1,4 @@
-package ub.edu.spec.finalitzarTrack;
+package ub.edu.spec.començarRuta.finalitzarTrack;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
@@ -18,16 +18,15 @@ public class finalitzarTrack {
     }
 
     public String finalitzarTramTrack(){
-        return controlador.acabarTrackRutaActual();
+        return controlador.acabarTrackRutaActual("ajaleo@gmail.com");
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("La Costa Brava");
+        controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
     }
 
     public void initTrack(){
-        controlador.addTrackRutaActual(new TramTrack("TT1"));
-        controlador.iniciarTrackRutaActual("TT1");
+        controlador.iniciarTrackRutaActual("ajaleo@gmail.com","TT1");
     }
 
 }

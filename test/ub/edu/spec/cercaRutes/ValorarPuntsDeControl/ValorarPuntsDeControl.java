@@ -1,4 +1,4 @@
-package ub.edu.spec.ValorarPuntsDeControl;
+package ub.edu.spec.cercaRutes.ValorarPuntsDeControl;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
@@ -16,11 +16,11 @@ public class ValorarPuntsDeControl {
     }
 
     public String valorarPuntsDePasRutaActual(){
-        return controlador.valorarPuntsDePasRutaActual(5 , true);
+        return controlador.valorarPuntsDePasRutaActual("ajaleo@gmail.com",5 , true);
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("Terres de l'Ebre");
+        controlador.iniciarRuta("ajaleo@gmail.com","Terres de l'Ebre");
     }
 
 }

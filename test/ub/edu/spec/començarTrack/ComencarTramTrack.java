@@ -17,15 +17,11 @@ public class ComencarTramTrack {
     }
 
     public String comencarTramTrack(String tramID){
-        return controlador.iniciarTrackRutaActual(tramID);
+        return controlador.iniciarTrackRutaActual("ajaleo@gmail.com",tramID);
     }
 
     public void initTramTracks(){
-        controlador.iniciarRuta("La Costa Brava");
-        controlador.addTrackRutaActual(new TramTrack("TT1"));
-        controlador.addTrackRutaActual(new TramTrack("TT2"));
-        controlador.addTrackRutaActual(new TramTrack("TT3"));
-        controlador.addTrackRutaActual(new TramTrack("TT4"));
+        controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
     }
 
 }

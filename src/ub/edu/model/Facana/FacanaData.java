@@ -22,11 +22,7 @@ public class FacanaData {
     private Map<String, Transport> transportMap;
     private AbstractFactoryData factory;
     private DataService data;
-
-    private Ruta rutaActual;
-
     private XarxaPersones xarxaPersones;
-
     private List<Grup> llistaGrup;
 
     public FacanaData() {
@@ -37,7 +33,6 @@ public class FacanaData {
         localitatMap = new HashMap<>();
         transportMap = new HashMap<>();
         llistaGrup = new ArrayList<>();
-        rutaActual = null;
         initData();
 
     }
@@ -234,11 +229,8 @@ public class FacanaData {
         }
     }
 
-    public void setRutaActual(Ruta r){
-        rutaActual = r;
-    }
 
-    public Ruta getRutaActual(){
-        return rutaActual;
+    public Ruta getRutaActual(String nomPersona){
+        return xarxaPersones.find(nomPersona).getRutaActual();
     }
 }

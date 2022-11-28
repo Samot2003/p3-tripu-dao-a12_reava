@@ -3,28 +3,32 @@ package ub.edu.model;
 import ub.edu.model.Estat.Estat;
 import ub.edu.model.Estat.NoComencat;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 public class TramTrack extends Tram{
 
     private int distancia,desnivellPositiu, desnivellNegatiu;
     private float duracioEstimada;
 
-    private PuntDeControl puntDeControlInicial, puntDeControlFinal;
+    private ArrayList<PuntDeControl> puntsDeControl;
 
-    public TramTrack(String ID/*float duracioEstimada, int distancia, int desnivellPositiu, int desnivellNegatiu*/) {
+    public TramTrack(String ID) {
         super(ID);
-        /*this.duracioEstimada = duracioEstimada;
-        this.distancia = distancia;
-        this.desnivellPositiu = desnivellPositiu;
-       this.desnivellNegatiu = desnivellNegatiu; */
         estat = new NoComencat();
-        puntDeControlFinal = null;
-        puntDeControlInicial = null;
+        puntsDeControl = new ArrayList<>();
     }
     public String setEstatTramTrack(String nomEstat){
         estat = estat.cambiarEstat(nomEstat);
         return estat.getEstat();
     }
 
+    public void addPuntDeControl(String highLight,Ubicacio ubi){
+        puntsDeControl.add(new PuntDeControl(highLight,ubi));
+    }
+    public ArrayList<PuntDeControl> getPuntsDeControl(){
+        return puntsDeControl;
+    }
 
     public void setDistancia(int distancia){ this.distancia = distancia; }
 
@@ -41,39 +45,6 @@ public class TramTrack extends Tram{
     public int getDesnivellNegatiu() {return desnivellNegatiu;}
 
     public float getDuracioEstimada() {return duracioEstimada;}
-
-
-    public void setPuntDeControlInicial(PuntDeControl puntDeControl){
-        if(puntDeControlInicial == null){
-            puntDeControlInicial = puntDeControl;
-        }else{
-            puntDeControlInicial = puntDeControl;
-        }
-    }
-    public PuntDeControl[] getPuntsDeControl(){
-        PuntDeControl[] pList = new PuntDeControl[2];
-        pList[0] = puntDeControlInicial;
-        pList[1] = puntDeControlFinal;
-        return pList;
-    }
-
-    public String setPuntDeControlFinal(PuntDeControl puntDeControl){
-        if(puntDeControlFinal == null){
-            puntDeControlFinal = puntDeControl;
-            return "Punt de Control Final establert correctament";
-        }else{
-            puntDeControlFinal = puntDeControl;
-            return "Punt de Control Final modificat";
-        }
-    }
-
-    public PuntDeControl getPuntDeControlInicial(){
-        return puntDeControlInicial;
-    }
-
-    public PuntDeControl getPuntDeControlFinal(){
-        return puntDeControlFinal;
-    }
 }
 
 

@@ -2,11 +2,12 @@ package ub.edu.model;
 
 import java.util.List;
 
-public class PuntDeControl extends Localitat{
+public class PuntDeControl{
     private String highlight;
     private Valoracio valoracio;
-    public PuntDeControl(String nomLocalitat,String highlight) {
-        super(nomLocalitat);
+
+    private Ubicacio ubicacio;
+    public PuntDeControl(String highlight, Ubicacio ubicacio) {
         this.highlight = highlight;
         valoracio = new Valoracio();
     }
@@ -18,5 +19,9 @@ public class PuntDeControl extends Localitat{
 
     public Valoracio getValoracio(){
         return valoracio;
+    }
+
+    public Ubicacio getUbicacio() {
+        return ubicacio;
     }
 }

@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
 import ub.edu.model.PuntDeControl;
 import ub.edu.model.TramTrack;
+import ub.edu.model.Ubicacio;
 
 @RunWith(ConcordionRunner.class)
 public class afegirCheckPointToTrack {
@@ -14,17 +15,16 @@ public class afegirCheckPointToTrack {
     @BeforeExample
     private void init() {
         controlador = new Controller();
-        controlador.iniciarRuta("La Costa Brava");
-        controlador.iniciarTrackRutaActual("TT1");
+        controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
+        controlador.iniciarTrackRutaActual("ajaleo@gmail.com","TT1");
     }
 
-    public String afegirCheckPointInicial (String highlight){
-        return controlador.afegirPuntDeControlInicialToTrackActual(new PuntDeControl("Puigcerdà",highlight));
+    public String afegirCheckPoint (String highlight){
+        return controlador.afegirPuntDeControl("ajaleo@gmail.com",highlight,new Ubicacio(3,5,2));
     }
 
     public void initTrack(){
-        controlador.addTrackRuta("La Costa Brava",new TramTrack("TT1"));
-        controlador.iniciarTrackRutaActual("TT1");
+        controlador.iniciarTrackRutaActual("ajaleo@gmail.com","TT1");
     }
 
 }

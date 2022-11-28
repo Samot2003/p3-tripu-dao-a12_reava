@@ -159,18 +159,19 @@ public class TripUB {
         return transports;
     }
 
-    public void iniciarRuta(String nomRuta) throws Exception {
-        if (data.getRutaActual() != null){
-            if (data.getRutaActual() .getNom().equals(nomRuta)){
+    public void iniciarRuta(String nomPersona, String nomRuta) throws Exception {
+        Persona p = data.getXarxaPersones().find(nomPersona);
+        if (p.getRutaActual() != null){
+            if (p.getRutaActual() .getNom().equals(nomRuta)){
                 throw new Exception("ERROR: La ruta ja està començada");
             }
-            else if (data.getRutaActual().getEstatRuta().equals("EnProces")) {
+            else if (p.getRutaActual().getEstatRuta().equals("EnProces")) {
                 throw new Exception("Has de acabar la ruta actual per tal de començar-ne una nova");
             }
         }else {
             for (Ruta ruta: data.getRutaMap().values()) {
                 if (ruta.getNom().equals(nomRuta)) {
-                    data.setRutaActual(ruta);
+                    p.setRutaActual(ruta);
                     boolean canvi = ruta.iniciarRuta();
                     if (!canvi){
                         throw new Exception("ERROR: La ruta ja està iniciada");
@@ -179,59 +180,39 @@ public class TripUB {
             }
         }
     }
-    public void acabarRuta() throws Exception {
-        Ruta rAux;
-        if (data.getRutaActual()  != null) {
-            rAux = data.getRutaActual();
-            boolean canvi = rAux.acabarRuta();
-            data.setRutaActual(null);
+    public void acabarRuta(String nomPersona) throws Exception {
+        Persona p = data.getXarxaPersones().find(nomPersona);
+        Ruta r;
+        if (p.getRutaActual()  != null) {
+            r = p.getRutaActual();
+            boolean canvi = r.acabarRuta();
+            p.setRutaActual(null);
         }else{
             throw new Exception("ERROR: No hi ha cap ruta en procés");
         }
 
     }
 
-    public void addTrackRutaActual(TramTrack tram) throws Exception {
-        if (data.getRutaActual()  == null){
-            throw new Exception("No hi ha cap ruta iniciada per afegir un tram Track") ;
-        }else{
-            data.getRutaActual().addTram(tram);
-        }
-    }
-    public void addTrackRuta(String nomRuta,TramTrack tram) throws Exception {
-        for (Ruta r: data.getRutaMap().values()){
-            if (nomRuta.equals(r.getNom())){
-                r.addTram(tram);
-            }
-        }
-        throw new Exception("Ruta no trobada al sistema") ;
-    }
 
-
-    public String iniciarTrackRutaActual(String tramID) throws Exception {
-        if (data.getRutaActual()  == null){
+    public void iniciarTrackRutaActual(String nomPersona, String tramID) throws Exception {
+        if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada per iniciar un tram Track") ;
         }else{
-            if (data.getRutaActual() .getEstatTramActual().equals("EnProces")){
+            if (data.getRutaActual(nomPersona) .getEstatTramActual().equals("EnProces")){
                 throw new Exception("Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.");
+            }else{
+                data.getRutaActual(nomPersona).setTramActual(new TramTrack(tramID));
             }
-            for (TramTrack t: data.getRutaActual() .getTramTracks()){
-                if(t.getID().equals(tramID)){
-                    data.getRutaActual() .setTramActual(t);
-                    return t.cambiarEstat("EnProces");
-                }
-            }
-            throw new Exception("Tram no trobat a la ruta actual") ;
         }
     }
-    public void acabarTrackRutaActual() throws Exception {
-        if (data.getRutaActual()  == null){
+    public void acabarTrackRutaActual(String nomPersona) throws Exception {
+        if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada per acabar un tram Track") ;
         }else{
-            TramTrack tramActual = data.getRutaActual().getTramActual();
-            if (data.getRutaActual().getEstatTramActual().equals("EnProces")){
-                data.getRutaActual() .cambiarEstatTramActual("NoComencat");
-                data.getRutaActual() .setTramActual(null);
+            TramTrack tramActual = data.getRutaActual(nomPersona).getTramActual();
+            if (data.getRutaActual(nomPersona).getEstatTramActual().equals("EnProces")){
+                data.getRutaActual(nomPersona) .cambiarEstatTramActual("NoComencat");
+                data.getRutaActual(nomPersona) .setTramActual(null);
             }else{
                 throw new Exception("ERROR: No hi ha cap Tram Track en procés") ;
             }
@@ -239,25 +220,16 @@ public class TripUB {
 
     }
 
-    public void afegirPuntDeControlInicialToTrackActual(PuntDeControl puntDeControl) throws Exception {
-        if (data.getRutaActual()  == null){
+    public void afegirPuntDeControl(String nomPersona, String highlight, Ubicacio ubi) throws Exception {
+        if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada");
-        }else if (data.getRutaActual() .getTramActual() == null){
+        }else if (data.getRutaActual(nomPersona) .getTramActual() == null){
             throw new Exception("No hi ha cap track iniciat");
         }else{
-            data.getRutaActual().getTramActual().setPuntDeControlInicial(puntDeControl);
+            data.getRutaActual(nomPersona).getTramActual().addPuntDeControl(highlight, ubi);
         }
     }
 
-    public String afegirPuntDeControlFinalToTrackActual(PuntDeControl puntDeControl) throws Exception {
-        if (data.getRutaActual()  == null){
-            throw new Exception("No hi ha cap ruta iniciada");
-        }else if (data.getRutaActual() .getTramActual() == null){
-            throw new Exception("No hi ha cap tram iniciat") ;
-        }else{
-            return data.getRutaActual().getTramActual().setPuntDeControlFinal(puntDeControl);
-        }
-    }
     public void crearGrup (String nomGrup) throws Exception {
         for (Grup g: data.getLlistaGrups()) {
             if (g.getNomGrup().equals(nomGrup)) {
@@ -374,13 +346,14 @@ public class TripUB {
         }
     }
 
-    public void valorarPuntsDePasRutaActual( int estrelles, boolean like) throws Exception {
-        if (data.getRutaActual() == null){
+    public void valorarPuntsDePasRutaActual(String nomPersona, int estrelles, boolean like) throws Exception {
+        if (data.getRutaActual(nomPersona) == null){
             throw new Exception("No hi ha cap ruta en procés");
         }
-        for (TramTrack t: data.getRutaActual().getTramTracks()) {
-            t.getPuntDeControlInicial().setValoracio(estrelles, like);
-            t.getPuntDeControlFinal().setValoracio(estrelles, like);
+        for (TramTrack t: data.getRutaActual(nomPersona).getTramTracks()) {
+            for(PuntDeControl p: t.getPuntsDeControl()){
+                p.setValoracio(estrelles,like);
+            }
         }
     }
     public Iterable<String> llistarPuntsDePasRuta(String nomRuta) throws Exception {
@@ -394,9 +367,10 @@ public class TripUB {
         }if (ruta == null){
             throw new Exception("Ruta no trobada");
         }
+        /*
         for(TramTrack t: ruta.getTramTracks()) {
-            llistaPunts.add(t.getPuntDeControlInicial().getValoracio());
-        }
+            llistaPunts.add(t.getPunt().getValoracio());
+        }*/
 
         if (llistaPunts.isEmpty()){
             llistaPunts = null;

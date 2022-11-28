@@ -125,6 +125,7 @@ public class Ruta {
 
     public void setTramActual (TramTrack t){
         tramActual = t;
+        addTram(t);
     }
 
     public TramTrack getTramActual(){

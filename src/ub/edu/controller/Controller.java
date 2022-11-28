@@ -157,74 +157,50 @@ public class Controller {
         }
     }
 
-    public String iniciarRuta(String nomRuta){
+    public String iniciarRuta(String nomPersona,String nomRuta){
         try{
-            tripUB.iniciarRuta(nomRuta);
+            tripUB.iniciarRuta(nomPersona,nomRuta);
             return "Ruta inciada";
         }catch (Exception e){
             return e.getMessage();
         }
     }
-    public String acabarRuta(){
+    public String acabarRuta(String nomPersona){
         try{
-            tripUB.acabarRuta();
+            tripUB.acabarRuta(nomPersona);
             return "Ruta actual finalitzada";
         }catch (Exception e){
             return e.getMessage();
         }
     }
 
-    public String addTrackRutaActual(TramTrack tram){
-        try{
-            tripUB.addTrackRutaActual(tram);
-            return "Tram afegit correctament";
-        }catch (Exception e){
-            return e.getMessage();
-        }
-    }
-    public String addTrackRuta(String nomRuta,TramTrack tram){
-        try{
-            tripUB.addTrackRuta(nomRuta, tram);
-            return "Tram afegit a la ruta correctament";
-        }catch (Exception e){
-            return e.getMessage();
-        }
-    }
 
-
-    public String iniciarTrackRutaActual(String tramID){
+    public String iniciarTrackRutaActual(String nomPersona,String tramID){
         try{
-            tripUB.iniciarTrackRutaActual(tramID);
+            tripUB.iniciarTrackRutaActual(nomPersona, tramID);
             return "Estat del tram canviat a EnProces";
         }catch (Exception e){
             return e.getMessage();
         }
     }
-    public String acabarTrackRutaActual(){
+    public String acabarTrackRutaActual(String nomPersona){
         try{
-            tripUB.acabarTrackRutaActual();
+            tripUB.acabarTrackRutaActual(nomPersona);
             return "Tram Track finalitzat amb éxit";
         }catch (Exception e){
             return e.getMessage();
         }
     }
 
-    public String afegirPuntDeControlInicialToTrackActual(PuntDeControl puntDeControl){
+    public String afegirPuntDeControl(String nomPersona, String highlight, Ubicacio ubi){
         try{
-            tripUB.afegirPuntDeControlInicialToTrackActual(puntDeControl);
+            tripUB.afegirPuntDeControl(nomPersona, highlight, ubi);
             return "Punt de Control Inicial establert correctament";
         }catch (Exception e){
             return e.getMessage();
         }
     }
 
-    public String afegirPuntDeControlFinalToTrackActual(PuntDeControl puntDeControl){
-        try {
-            return tripUB.afegirPuntDeControlFinalToTrackActual(puntDeControl);
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-    }
     public String crearGrup (String nomGrup){
         try{
             tripUB.crearGrup(nomGrup);
@@ -284,9 +260,9 @@ public class Controller {
         tripUB.actualitzarRankings();
     }
 
-    public String valorarPuntsDePasRutaActual( int estrelles, boolean like){
+    public String valorarPuntsDePasRutaActual( String nomPersona, int estrelles, boolean like){
         try{
-            tripUB.valorarPuntsDePasRutaActual(estrelles,like);
+            tripUB.valorarPuntsDePasRutaActual(nomPersona, estrelles,like);
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();
