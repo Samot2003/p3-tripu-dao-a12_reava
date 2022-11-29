@@ -1,4 +1,4 @@
-package ub.edu.spec.començarRuta.finalitzarTrack;
+package ub.edu.spec.finalitzarTrack;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;

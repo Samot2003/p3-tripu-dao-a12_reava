@@ -195,24 +195,26 @@ public class TripUB {
 
 
     public void iniciarTrackRutaActual(String nomPersona, String tramID) throws Exception {
-        if (data.getRutaActual(nomPersona)  == null){
+        Ruta r = data.getRutaActual(nomPersona);
+        if (r  == null){
             throw new Exception("No hi ha cap ruta iniciada per iniciar un tram Track") ;
         }else{
-            if (data.getRutaActual(nomPersona) .getEstatTramActual().equals("EnProces")){
+            if (r.getTramActual() != null){
                 throw new Exception("Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.");
             }else{
-                data.getRutaActual(nomPersona).setTramActual(new TramTrack(tramID));
+                r.setTramActual(new TramTrack(tramID));
+                System.out.println(r.getTramActual() == null);
             }
         }
     }
     public void acabarTrackRutaActual(String nomPersona) throws Exception {
+        System.out.printf(data.getRutaActual(nomPersona).getEstatTramActual());
         if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada per acabar un tram Track") ;
         }else{
-            TramTrack tramActual = data.getRutaActual(nomPersona).getTramActual();
-            if (data.getRutaActual(nomPersona).getEstatTramActual().equals("EnProces")){
+            if (data.getRutaActual(nomPersona).getTramActual() != null){
                 data.getRutaActual(nomPersona) .cambiarEstatTramActual("NoComencat");
-                data.getRutaActual(nomPersona) .setTramActual(null);
+                data.getRutaActual(nomPersona).setTramActual(null);
             }else{
                 throw new Exception("ERROR: No hi ha cap Tram Track en procés") ;
             }
@@ -223,7 +225,7 @@ public class TripUB {
     public void afegirPuntDeControl(String nomPersona, String highlight, Ubicacio ubi) throws Exception {
         if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada");
-        }else if (data.getRutaActual(nomPersona) .getTramActual() == null){
+        }else if (data.getRutaActual(nomPersona).getTramActual() == null){
             throw new Exception("No hi ha cap track iniciat");
         }else{
             data.getRutaActual(nomPersona).getTramActual().addPuntDeControl(highlight, ubi);

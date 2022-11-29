@@ -19,7 +19,7 @@
     La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
     highlight: <span concordion:set="#highlight">p1</span>; al track actual si no hi ha cap track
     en procés.
-    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">No hi ha cap track iniciat</span>.
+    <span concordion:assertEquals="afegirCheckPoint(#highlight)">No hi ha cap track iniciat</span>.
 </div>
 
 <div concordion:example="one">
@@ -27,7 +27,7 @@
     La següent linia mostra els resultats que esperem si demanem al sistema crear un checkpoint amb
     highlight: <span concordion:set="#highlight">p1</span>; al track actual si hi ha un track
     en procés <span concordion:execute="initTrack()">.</span>
-    <span concordion:assertEquals="afegirCheckPointInicial(#highlight)">Punt de Control Inicial establert correctament</span>.
+    <span concordion:assertEquals="afegirCheckPoint(#highlight)">Punt de Control Inicial establert correctament</span>.
 </div>
 
 </body>

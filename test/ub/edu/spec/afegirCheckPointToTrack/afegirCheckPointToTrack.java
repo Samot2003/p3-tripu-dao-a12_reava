@@ -16,7 +16,6 @@ public class afegirCheckPointToTrack {
     private void init() {
         controlador = new Controller();
         controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
-        controlador.iniciarTrackRutaActual("ajaleo@gmail.com","TT1");
     }
 
     public String afegirCheckPoint (String highlight){

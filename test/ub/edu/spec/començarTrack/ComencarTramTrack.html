@@ -6,57 +6,23 @@
 <body>
 <h1>US7: Començar Tram Track</h1>
 
-<h2>Criteris d'acceptació 0, 1, 2</h2>
+<h2>Criteris d'acceptació 0, 1</h2>
 (És contempla que només es podrà iniciar o acabar un track si hi ha una ruta en procés.)
 <p>
-    <b>0</b>: Si el tramTrack no existeix en la ruta actual, es mostrarà el missatge: "Tram no trobat a la ruta actual"
-    <b>1</b>: Si l'estat del tramTrack canvia a (EN PROCÉS), es mostrarà el missatge: "Tram: Estat canviat a: EnProces"
-    <b>2</b>: Si la ja hi ha un altre tramTrack iniciat, es mostrarà el missatge: "Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre."
+    <b>0</b>: Si l'estat del tramTrack canvia a (EN PROCÉS), es mostrarà el missatge: "Tram: Estat canviat a: EnProces"
+    <b>1</b>: Si la ja hi ha un altre tramTrack iniciat, es mostrarà el missatge: "Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre."
 </p>
-
-<p>
-   Hem inicialitzat els següents trams a la ruta, ja iniciada, "La Costa Brava"
-<table>
-    <tr>
-        <th>ID trams iniciats</th>
-    </tr>
-    <tr>
-        <td>TT1</td>
-    </tr>
-    <tr>
-        <td>TT2</td>
-    </tr>
-    <tr>
-        <td>TT3</td>
-    </tr>
-    <tr>
-        <td>TT4</td>
-    </tr>
-</table>
-</p>
-
 
 <div concordion:example="zero">
     <h5>Example del test d'acceptació 7.0</h5>
-    <span concordion:execute="initTramTracks()"></span>
-    La següent linia mostra els resultats que esperem si demanem al sistema iniciar
-    el tramTrack: <span concordion:set="#idTram">TT7</span> =
-
-    <span concordion:assertEquals="comencarTramTrack(#idTram)">Tram no trobat a la ruta actual</span>.
-</div>
-
-<div concordion:example="one">
-    <h5>Example del test d'acceptació 7.1</h5>
-    <span concordion:execute="initTramTracks()"></span>
     La següent linia mostra els resultats que esperem si demanem al sistema iniciar
     el tramTrack: <span concordion:set="#idTram">TT2</span> =
 
     <span concordion:assertEquals="comencarTramTrack(#idTram)">Estat del tram canviat a EnProces</span>.
 </div>
 
-<div concordion:example="two">
-    <h5>Example del test d'acceptació 7.2</h5>
-    <span concordion:execute="initTramTracks()"></span>
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 7.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema iniciar
     el tramTrack: <span concordion:set="#idTram">TT2</span> quan ja està iniciat
     <span concordion:execute="comencarTramTrack(#idTram)"></span>

@@ -1,4 +1,4 @@
-package ub.edu.spec.cercaRutes.ValorarPuntsDeControl;
+package ub.edu.spec.ValorarPuntsDeControl;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;

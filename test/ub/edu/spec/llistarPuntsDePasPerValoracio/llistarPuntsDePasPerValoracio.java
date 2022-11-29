@@ -20,7 +20,7 @@ public class llistarPuntsDePasPerValoracio {
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("Terres de l'Ebre");
+        controlador.iniciarRuta("ajaleo@gmail.com","Terres de l'Ebre");
     }
 
 }
