@@ -11,12 +11,9 @@ title __CONTROLLER's Class Diagram__\n
         + actualitzarRankings()
         + addMembreGrup()
         + addPuntsToPersona()
-        + addTrackRuta()
-        + addTrackRutaActual()
         + afegirComarca()
         + afegirLocalitat()
-        + afegirPuntDeControlFinalToTrackActual()
-        + afegirPuntDeControlInicialToTrackActual()
+        + afegirPuntDeControl()
         + afegirRuta()
         + afegirTransport()
         + cercaRutesPerComarca()
@@ -28,10 +25,9 @@ title __CONTROLLER's Class Diagram__\n
         + getRankingGrup()
         + iniciarRuta()
         + iniciarTrackRutaActual()
-        + isMail()
-        + isPasswordSegur()
         + llistarCatalegRutesPerDurada()
         + llistarCatalegRutesPerNom()
+        + llistarPuntsDePasRutaActual()
         + loguejarPersona()
         + marxarGrup()
         + recuperarContrassenya()
@@ -39,50 +35,12 @@ title __CONTROLLER's Class Diagram__\n
         + validateRegisterPersona()
         + validateRegistrePersona()
         + validateUsername()
-        - getRutaList()
+        + valorarPuntDePasTrackActual()
     }
   }
   
 
-  namespace ub.edu.controller {
-    class ub.edu.controller.ControllerData {
-        - comarcaMap : Map<String, Comarca>
-        - llistaGrup : List<Grup>
-        - localitatMap : Map<String, Localitat>
-        - rutaMap : Map<String, Ruta>
-        - transportMap : Map<String, Transport>
-        + ControllerData()
-        + addGrupLlista()
-        + afegirLocalitat()
-        + afegirRuta()
-        + afegirTransport()
-        + getComarcaMap()
-        + getDataService()
-        + getLlistaGrups()
-        + getLocalitatMap()
-        + getRutaActual()
-        + getRutaMap()
-        + getTransportMap()
-        + getXarxaPersones()
-        + initData()
-        + initRutaMap()
-        + initXarxaPersones()
-        + setRutaActual()
-        - initComarcaMap()
-        - initLocalitatMap()
-        - initTransportMap()
-        - relacionarRutesComarques()
-        - relacionarRutesLocalitats()
-        - relacionarRutesTransports()
-    }
-  }
-  
-
-  ub.edu.controller.Controller o-- ub.edu.controller.ControllerData : data
-  ub.edu.controller.ControllerData o-- ub.edu.resources.service.DataService : data
-  ub.edu.controller.ControllerData o-- ub.edu.resources.service.AbstractFactoryData : factory
-  ub.edu.controller.ControllerData o-- ub.edu.model.Ruta : rutaActual
-  ub.edu.controller.ControllerData o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.controller.Controller o-- ub.edu.model.TripUB : tripUB
 
 
 right footer

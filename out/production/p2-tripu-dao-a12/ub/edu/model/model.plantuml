@@ -57,9 +57,10 @@ title __MODEL's Class Diagram__\n
         + getEstadistiques()
         + getName()
         + getPwd()
+        + getRutaActual()
         + setName()
         + setPwd()
-        + toStringEstats()
+        + setRutaActual()
     }
   }
   
@@ -68,6 +69,10 @@ title __MODEL's Class Diagram__\n
     class ub.edu.model.PuntDeControl {
         - highlight : String
         + PuntDeControl()
+        + getHighlight()
+        + getUbicacio()
+        + getValoracio()
+        + setValoracio()
     }
   }
   
@@ -90,16 +95,16 @@ title __MODEL's Class Diagram__\n
         - durada : int
         - localitats : Set<Localitat>
         - nom : String
-        - tramTracks : Set<TramTrack>
+        - tramTracks : ArrayList<TramTrack>
         - transports : Set<Transport>
         + Ruta()
         + Ruta()
+        + acabarRuta()
+        + acabarTramActual()
         + addComarca()
         + addLocalitat()
         + addTram()
         + addTransport()
-        + cambiarEstatRuta()
-        + cambiarEstatTramActual()
         + containsComarca()
         + containsLocalitat()
         + containsTransport()
@@ -108,9 +113,10 @@ title __MODEL's Class Diagram__\n
         + getDurada()
         + getEstatRuta()
         + getEstatTramActual()
+        + getLlistaTramTracks()
         + getNom()
         + getTramActual()
-        + getTramTracks()
+        + iniciarRuta()
         + setDataCreacio()
         + setDurada()
         + setNom()
@@ -137,17 +143,87 @@ title __MODEL's Class Diagram__\n
         - distancia : int
         - duracioEstimada : float
         + TramTrack()
+        + addPuntDeControl()
         + getDesnivellNegatiu()
         + getDesnivellPositiu()
         + getDistancia()
         + getDuracioEstimada()
+        + getPuntDeControl()
         + setDesnivellNegatiu()
         + setDesnivellPositiu()
         + setDistancia()
         + setDuracioEstimada()
         + setEstatTramTrack()
-        + setPuntDeControlFinal()
-        + setPuntDeControlInicial()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.TripUB {
+        + TripUB()
+        + acabarRuta()
+        + acabarTrackRutaActual()
+        + actualitzarRankingGrup()
+        + actualitzarRankings()
+        + addMembreGrup()
+        + addPuntsToPersona()
+        + afegirComarca()
+        + afegirLocalitat()
+        + afegirPuntDeControl()
+        + afegirRuta()
+        + afegirTransport()
+        + cercaRutesPerComarca()
+        + cercaRutesPerLocalitat()
+        + cercaRutesPerTransport()
+        + cercarRutesPerTempsDeDurada()
+        + crearGrup()
+        + findPersona()
+        + getRankingGrup()
+        + getUserInfo()
+        + iniciarRuta()
+        + iniciarTrackRutaActual()
+        + isMail()
+        + isPasswordSegur()
+        + llistarCatalegRutesPerDurada()
+        + llistarCatalegRutesPerNom()
+        + llistarPuntsDePasRutaActual()
+        + loguejarPersona()
+        + marxarGrup()
+        + recuperarContrassenya()
+        + validatePassword()
+        + validateRegisterPersona()
+        + validateRegistrePersona()
+        + validateUsername()
+        + valorarPuntsDePasTrackActual()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Ubicacio {
+        - altura : float
+        - latitud : float
+        - longitud : float
+        + Ubicacio()
+        + compareAltura()
+        + compareDistance()
+        + getAltura()
+        + getLatitud()
+        + getLongitud()
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Valoracio {
+        - estrelles : int
+        - like : String
+        - likeValorat : boolean
+        + Valoracio()
+        + getEstrelles()
+        + getLike()
+        + setEstrelles()
+        + setLike()
     }
   }
   
@@ -164,13 +240,17 @@ title __MODEL's Class Diagram__\n
 
   ub.edu.model.Grup o-- ub.edu.model.RankingGrup : rankingGrup
   ub.edu.model.Persona o-- ub.edu.model.EstadistiquesIndividuals : estadistiques
-  ub.edu.model.PuntDeControl -up-|> ub.edu.model.Localitat
+  ub.edu.model.Persona o-- ub.edu.model.Ruta : rutaActual
+  ub.edu.model.Persona o-- ub.edu.model.Ubicacio : ubicacio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.Ubicacio : ubicacio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.Valoracio : valoracio
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlFinal
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlInicial
+  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControl
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
 
 
 right footer

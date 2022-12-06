@@ -203,18 +203,15 @@ public class TripUB {
                 throw new Exception("Ja hi ha un tram track en procés, acaba'l abans d'iniciar un altre.");
             }else{
                 r.setTramActual(new TramTrack(tramID));
-                System.out.println(r.getTramActual() == null);
             }
         }
     }
     public void acabarTrackRutaActual(String nomPersona) throws Exception {
-        System.out.printf(data.getRutaActual(nomPersona).getEstatTramActual());
         if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada per acabar un tram Track") ;
         }else{
             if (data.getRutaActual(nomPersona).getTramActual() != null){
-                data.getRutaActual(nomPersona) .cambiarEstatTramActual("NoComencat");
-                data.getRutaActual(nomPersona).setTramActual(null);
+                data.getRutaActual(nomPersona).acabarTramActual();
             }else{
                 throw new Exception("ERROR: No hi ha cap Tram Track en procés") ;
             }
@@ -298,7 +295,6 @@ public class TripUB {
 
     public Iterable<String> getRankingGrup( String nomGrup) throws Exception {
         List<String> ret;
-        System.out.println("a");
         if (data.getLlistaGrups().size() != 0) {
             for (Grup g: data.getLlistaGrups()) {
                 if (g.getNomGrup().equals(nomGrup)) {
@@ -348,46 +344,43 @@ public class TripUB {
         }
     }
 
-    public void valorarPuntsDePasRutaActual(String nomPersona, int estrelles, boolean like) throws Exception {
+    public void valorarPuntsDePasTrackActual(String nomPersona, int estrelles, boolean like) throws Exception {
         if (data.getRutaActual(nomPersona) == null){
             throw new Exception("No hi ha cap ruta en procés");
+        }else if (data.getRutaActual(nomPersona).getTramActual() == null){
+            throw new Exception("No hi ha cap track en procés");
         }
-        for (TramTrack t: data.getRutaActual(nomPersona).getTramTracks()) {
-            for(PuntDeControl p: t.getPuntsDeControl()){
-                p.setValoracio(estrelles,like);
-            }
-        }
+        TramTrack t = data.getRutaActual(nomPersona).getTramActual();
+        t.getPuntDeControl().setValoracio(estrelles,like);
     }
-    public Iterable<String> llistarPuntsDePasRuta(String nomRuta) throws Exception {
-        Ruta ruta = null;
+    public Iterable<String> llistarPuntsDePasRutaActual(String nomPersona) throws Exception {
+        Ruta ruta = data.getRutaActual(nomPersona);
         List<String> list = new ArrayList<>();
-        List<Valoracio> llistaPunts = new ArrayList<>();
-        for (Ruta r: data.getRutaMap().values()){
-            if(r.getNom().equals(nomRuta)){
-                ruta = r;
-            }
-        }if (ruta == null){
+        List<PuntDeControl> llistaPunts = new ArrayList<>();
+        if (ruta == null){
             throw new Exception("Ruta no trobada");
         }
-        /*
-        for(TramTrack t: ruta.getTramTracks()) {
-            llistaPunts.add(t.getPunt().getValoracio());
-        }*/
+        System.out.println(ruta.getLlistaTramTracks());
+        for(TramTrack t:ruta.getLlistaTramTracks() ) {
+            if (t.getPuntDeControl().getValoracio() != null){
+                llistaPunts.add(t.getPuntDeControl());
+            }
+        }
 
         if (llistaPunts.isEmpty()){
             llistaPunts = null;
             throw new Exception("La llista de punts de pas se la ruta actual esta buida");
         }
-        List<Valoracio> sortedList = llistaPunts;
-        sortedList.sort(new Comparator<Valoracio>() {
+        List<PuntDeControl> sortedList = llistaPunts;
+        sortedList.sort(new Comparator<PuntDeControl>() {
 
-            public int compare(Valoracio a1, Valoracio a2) {
-                return (Integer.compare(a2.getEstrelles(), a1.getEstrelles()));
+            public int compare(PuntDeControl a1, PuntDeControl a2) {
+                return (Integer.compare(a2.getValoracio().getEstrelles(), a1.getValoracio().getEstrelles()));
             }
         });
-        for (Valoracio v: sortedList){
+        for (PuntDeControl v: sortedList){
             String like = "";
-            list.add("Estrelles: " + v.getEstrelles() + " Like: " + v.getLike());
+            list.add("PUNT DE PAS [" + v.getHighlight() + "] Estrelles: " + v.getValoracio().getEstrelles() + " Like: " + v.getValoracio().getLike());
         }
         return list;
     }

@@ -1,32 +1,74 @@
 <html xmlns:concordion="http://www.concordion.org/2007/concordion">
 <head>
-    <title>US16: Llistar punts de pas per valoracio</title>
+    <title>US 16: llistar punts de pas per valoració</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>US16: Llistar punts de pas per valoracio</h1>
+<h1>16 : llistar punts de pas per valoració</h1>
 
-<h2>Criteris d'acceptació 0, 1 </h2>
+<h2>Criteri d'acceptacio 1</h2>
+
 <p>
-    <b>0</b>: Si no hi ha cap ruta amb el nom recercat, es mostrarà el missatge: "Ruta no trobada"
-    <b>1</b>: Si la ruta no està començada, es mostrarà el missatge: "Punts de control valorats correctament"
+    <b>1</b>: Si la ruta té tracks valorats, mostrarà una llista ordenada de mes a menys estrelles de les valoracions dels tracks
 </p>
 
+<p>
+    Hem afegit els seguents punts de control
+<table>
+    <tr>
+        <th>Punts de Control</th>
+        <th>Estrelles</th>
+        <th>Like</th>
+    </tr>
+    <tr>
+        <th>a1</th>
+        <th>3</th>
+        <th>Like</th>
+    </tr>
 
-<div concordion:example="zero">
-    <h5>Example del test d'acceptació 16.0</h5>
-    La següent línia mostra els resultats que esperem si demanem al sistema llistar els punts de pas
-    per valoracio si la ruta que entrem no pertany a la base de dades.<span concordion:execute="initRuta()">.</span>
-    <span concordion:set="#nomRuta">Andorra</span>.<span concordion:assertEquals="llistarPuntsDePasValoracio()">
-    Ruta no trobada</span>.
-</div>
+    <tr>
+        <th>b2</th>
+        <th>5</th>
+        <th>Dislike</th>
+    </tr>
+    <tr>
+        <th>c3</th>
+        <th>2</th>
+        <th>Disike</th>
+    </tr>
+    <tr>
+        <th>d4</th>
+        <th>4</th>
+        <th>Like</th>
+    </tr>
+
+</table>
+</p>
 
 <div concordion:example="one">
-    <h5>Example del test d'acceptació 16.1</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema finalitzar
-    la ruta actual. <span concordion:execute="initRuta()">.</span>
-    <span concordion:assertEquals="valorarPuntsDePasRutaActual()">Punts de control valorats correctament</span>
+    <p>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar els punts de pas de la
+        ruta actual per la seva valoració, hem <span concordion:execute="initAll()">valorat</span> els punts de pas de la taula anterior.
+    <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracio ()">
+        <tr>
+            <th concordion:assert-equals="#valoracio">Llistat de punts de pas:</th>
+        </tr>
+    <tr>
+        <td>PUNT DE PAS [b2] Estrelles: 5 Like: DISLIKE</td>
+    </tr>
+    <tr>
+        <td>PUNT DE PAS [d4] Estrelles: 4 Like: LIKE</td>
+    </tr>
+    <tr>
+        <td>PUNT DE PAS [a1] Estrelles: 3 Like: LIKE</td>
+    </tr>
+    <tr>
+        <td>PUNT DE PAS [c3] Estrelles: 2 Like: DISLIKE</td>
+    </tr>
+    </table>
+    </p>
 </div>
+
 
 </body>
 </html>

@@ -14,12 +14,6 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
-  namespace ub.edu.controller {
-    class ub.edu.controller.ControllerData {
-    }
-  }
-  
-
   namespace ub.edu.model {
     class ub.edu.model.Comarca {
     }
@@ -59,6 +53,22 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   namespace ub.edu.model {
     namespace Estat {
       class ub.edu.model.Estat.NoComencat {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Facana {
+      class ub.edu.model.Facana.FacanaData {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace Facana {
+      class ub.edu.model.Facana.FacanaUser {
       }
     }
   }
@@ -140,6 +150,24 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
     namespace Transport {
       class ub.edu.model.Transport.Transport {
       }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.TripUB {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Ubicacio {
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    class ub.edu.model.Valoracio {
     }
   }
   
@@ -292,26 +320,30 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
-  ub.edu.controller.Controller o-- ub.edu.controller.ControllerData : data
-  ub.edu.controller.ControllerData o-- ub.edu.resources.service.DataService : data
-  ub.edu.controller.ControllerData o-- ub.edu.resources.service.AbstractFactoryData : factory
-  ub.edu.controller.ControllerData o-- ub.edu.model.Ruta : rutaActual
-  ub.edu.controller.ControllerData o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.controller.Controller o-- ub.edu.model.TripUB : tripUB
   ub.edu.model.Estat.Acabat -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.EnProces -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.NoComencat -up-|> ub.edu.model.Estat.Estat
+  ub.edu.model.Facana.FacanaData o-- ub.edu.resources.service.DataService : data
+  ub.edu.model.Facana.FacanaData o-- ub.edu.resources.service.AbstractFactoryData : factory
+  ub.edu.model.Facana.FacanaData o-- ub.edu.model.XarxaPersones : xarxaPersones
+  ub.edu.model.Facana.FacanaUser o-- ub.edu.model.Facana.FacanaData : data
   ub.edu.model.Grup o-- ub.edu.model.RankingGrup : rankingGrup
   ub.edu.model.Persona o-- ub.edu.model.EstadistiquesIndividuals : estadistiques
-  ub.edu.model.PuntDeControl -up-|> ub.edu.model.Localitat
+  ub.edu.model.Persona o-- ub.edu.model.Ruta : rutaActual
+  ub.edu.model.Persona o-- ub.edu.model.Ubicacio : ubicacio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.Ubicacio : ubicacio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.Valoracio : valoracio
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlFinal
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControlInicial
+  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControl
   ub.edu.model.Transport.APeu -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.Transport.Bici -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.Transport.Cotxe -up-|> ub.edu.model.Transport.Transport
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
   ub.edu.resources.dao.MOCK.DAOComarcaMOCK .up.|> ub.edu.resources.dao.DAOComarca
   ub.edu.resources.dao.MOCK.DAOLocalitatMOCK .up.|> ub.edu.resources.dao.DAOLocalitat
   ub.edu.resources.dao.MOCK.DAOPersonaMOCK .up.|> ub.edu.resources.dao.DAOPersona

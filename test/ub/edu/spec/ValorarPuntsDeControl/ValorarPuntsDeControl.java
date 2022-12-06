@@ -16,7 +16,7 @@ public class ValorarPuntsDeControl {
     }
 
     public String valorarPuntsDePasRutaActual(){
-        return controlador.valorarPuntsDePasRutaActual("ajaleo@gmail.com",5 , true);
+        return controlador.valorarPuntDePasTrackActual("ajaleo@gmail.com",5 , true);
     }
 
     public void initRuta(){

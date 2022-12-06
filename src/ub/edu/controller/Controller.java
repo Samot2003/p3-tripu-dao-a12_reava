@@ -260,18 +260,18 @@ public class Controller {
         tripUB.actualitzarRankings();
     }
 
-    public String valorarPuntsDePasRutaActual( String nomPersona, int estrelles, boolean like){
+    public String valorarPuntDePasTrackActual( String nomPersona, int estrelles, boolean like){
         try{
-            tripUB.valorarPuntsDePasRutaActual(nomPersona, estrelles,like);
+            tripUB.valorarPuntsDePasTrackActual(nomPersona, estrelles,like);
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();
         }
     }
-    public Iterable<String> llistarPuntsDePasRuta(String nomRuta){
+    public Iterable<String> llistarPuntsDePasRutaActual(String usuari){
         List<String> r = new ArrayList<>();
         try{
-            return tripUB.llistarPuntsDePasRuta(nomRuta);
+            return tripUB.llistarPuntsDePasRutaActual(usuari);
         }catch (Exception e){
             r.add(e.getMessage());
             return r;

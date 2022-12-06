@@ -16,7 +16,7 @@ public class Ruta {
     private Set<Localitat> localitats;
     private Set<Transport> transports;
 
-    private Set<TramTrack> tramTracks;
+    private ArrayList<TramTrack> tramTracks;
     private Estat estat;
 
     private TramTrack tramActual;
@@ -29,7 +29,7 @@ public class Ruta {
         localitats = new HashSet<>();
         transports = new HashSet<>();
         estat = new NoComencat();
-        tramTracks = new HashSet<>();
+        tramTracks = new ArrayList<>();
         tramActual = null;
     }
 
@@ -41,7 +41,7 @@ public class Ruta {
         localitats = new HashSet<>();
         transports = new HashSet<>();
         estat = new NoComencat();
-        tramTracks = new HashSet<>();
+        tramTracks = new ArrayList<>();
         tramActual = null;
     }
 
@@ -115,13 +115,12 @@ public class Ruta {
     }
 
     public List<TramTrack> getLlistaTramTracks(){
-        return (List)tramTracks;
+        return tramTracks;
     }
     public boolean addTram(TramTrack t) {
         return tramTracks.add(t);
     }
 
-    public List<TramTrack> getTramTracks() { return new ArrayList<TramTrack>(tramTracks);}
 
     public void setTramActual (TramTrack t){
         tramActual = t;
@@ -139,12 +138,9 @@ public class Ruta {
             return tramActual.getEstat();
         }
     }
-    public String cambiarEstatTramActual (String nomEstat){
-        if (nomEstat.equals(tramActual.getEstat())){
-            return ("L'estat al que vols canviar ja es l'actual");
-        }else{
-            return tramActual.cambiarEstat(nomEstat);
-        }
+    public String acabarTramActual (){
+        tramActual = null;
+        return "Estat canviat";
     }
 
 

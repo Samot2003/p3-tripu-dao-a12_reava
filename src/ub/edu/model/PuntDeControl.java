@@ -17,6 +17,10 @@ public class PuntDeControl{
         valoracio.setLike(like);
     }
 
+    public String getHighlight(){
+        return highlight;
+    }
+
     public Valoracio getValoracio(){
         return valoracio;
     }

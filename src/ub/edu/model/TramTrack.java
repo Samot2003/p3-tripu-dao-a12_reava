@@ -11,12 +11,12 @@ public class TramTrack extends Tram{
     private int distancia,desnivellPositiu, desnivellNegatiu;
     private float duracioEstimada;
 
-    private ArrayList<PuntDeControl> puntsDeControl;
+    private PuntDeControl puntDeControl;
 
     public TramTrack(String ID) {
         super(ID);
         estat = new NoComencat();
-        puntsDeControl = new ArrayList<>();
+        puntDeControl = null;
     }
     public String setEstatTramTrack(String nomEstat){
         estat = estat.cambiarEstat(nomEstat);
@@ -24,10 +24,10 @@ public class TramTrack extends Tram{
     }
 
     public void addPuntDeControl(String highLight,Ubicacio ubi){
-        puntsDeControl.add(new PuntDeControl(highLight,ubi));
+        puntDeControl = new PuntDeControl(highLight,ubi);
     }
-    public ArrayList<PuntDeControl> getPuntsDeControl(){
-        return puntsDeControl;
+    public PuntDeControl getPuntDeControl(){
+        return puntDeControl;
     }
 
     public void setDistancia(int distancia){ this.distancia = distancia; }
