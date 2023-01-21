@@ -1,28 +1,46 @@
 package ub.edu.model;
 
-import java.util.List;
+import ub.edu.model.ValoracioStrategy.ValorarEstrelles;
+import ub.edu.model.ValoracioStrategy.ValorarLikes;
+import ub.edu.model.ValoracioStrategy.ValorarStrategy;
 
 public class PuntDeControl{
     private String highlight;
-    private Valoracio valoracio;
-
     private Ubicacio ubicacio;
+    private int likes;
+    private float estrelles;
+    private int numEstrelles;
+    private ValorarStrategy ValorarLikes;
+    private ValorarStrategy ValorarEstrelles;
     public PuntDeControl(String highlight, Ubicacio ubicacio) {
         this.highlight = highlight;
-        valoracio = new Valoracio();
+        numEstrelles=0;
+        ValorarLikes = null;
+        ValorarEstrelles = null;
     }
 
-    public void setValoracio(int estrelles, boolean like) {
-        valoracio.setEstrelles(estrelles);
-        valoracio.setLike(like);
+    public void setValoracio(ValorarStrategy str, int valoracio) {
+        if (str.Valorar(valoracio) && str.equals(ValorarLikes)){
+            likes =+ valoracio;
+        };
+        if (str.Valorar(valoracio) && str.equals(ValorarEstrelles)){
+            estrelles =+ valoracio;
+            numEstrelles =+ 1;
+        };
     }
 
     public String getHighlight(){
         return highlight;
     }
 
-    public Valoracio getValoracio(){
-        return valoracio;
+    public float  getValoracio(ValorarStrategy str){
+        if (str.equals(ValorarLikes)){
+            return likes;
+        };
+        if (str.equals(ValorarEstrelles)){
+            return estrelles/numEstrelles;
+        };
+        return -2;
     }
 
     public Ubicacio getUbicacio() {

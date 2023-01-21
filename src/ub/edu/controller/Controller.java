@@ -5,6 +5,7 @@ import ub.edu.model.*;
 import ub.edu.model.Facana.FacanaData;
 import ub.edu.model.Facana.FacanaUser;
 import ub.edu.model.Transport.*;
+import ub.edu.model.ValoracioStrategy.ValorarStrategy;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -260,9 +261,9 @@ public class Controller {
         tripUB.actualitzarRankings();
     }
 
-    public String valorarPuntDePasTrackActual( String nomPersona, int estrelles, boolean like){
+    public String valorarPuntDePasTrackActual(ValorarStrategy str,String nomPersona, int valoracio){
         try{
-            tripUB.valorarPuntsDePasTrackActual(nomPersona, estrelles,like);
+            tripUB.valorarPuntsDePasTrackActual(str,nomPersona, valoracio);
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();

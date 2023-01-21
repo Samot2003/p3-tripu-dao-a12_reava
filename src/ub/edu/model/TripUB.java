@@ -3,6 +3,8 @@ package ub.edu.model;
 import ub.edu.model.Facana.FacanaData;
 import ub.edu.model.Facana.FacanaUser;
 import ub.edu.model.Transport.Transport;
+import ub.edu.model.ValoracioStrategy.ValorarEstrelles;
+import ub.edu.model.ValoracioStrategy.ValorarStrategy;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -344,16 +346,18 @@ public class TripUB {
         }
     }
 
-    public void valorarPuntsDePasTrackActual(String nomPersona, int estrelles, boolean like) throws Exception {
+    public void valorarPuntsDePasTrackActual(ValorarStrategy str, String nomPersona, int valoracio) throws Exception {
         if (data.getRutaActual(nomPersona) == null){
             throw new Exception("No hi ha cap ruta en procés");
         }else if (data.getRutaActual(nomPersona).getTramActual() == null){
             throw new Exception("No hi ha cap track en procés");
         }
         TramTrack t = data.getRutaActual(nomPersona).getTramActual();
-        t.getPuntDeControl().setValoracio(estrelles,like);
+        t.getPuntDeControl().setValoracio(str,valoracio);
     }
     public Iterable<String> llistarPuntsDePasRutaActual(String nomPersona) throws Exception {
+        ValorarStrategy ValorarEstrelles=null;
+        ValorarStrategy ValorarLikes=null;
         Ruta ruta = data.getRutaActual(nomPersona);
         List<String> list = new ArrayList<>();
         List<PuntDeControl> llistaPunts = new ArrayList<>();
@@ -373,14 +377,12 @@ public class TripUB {
         }
         List<PuntDeControl> sortedList = llistaPunts;
         sortedList.sort(new Comparator<PuntDeControl>() {
-
             public int compare(PuntDeControl a1, PuntDeControl a2) {
-                return (Integer.compare(a2.getValoracio().getEstrelles(), a1.getValoracio().getEstrelles()));
+                return (Float.compare(a2.getValoracio(ValorarEstrelles), a1.getValoracio(ValorarEstrelles)));
             }
         });
         for (PuntDeControl v: sortedList){
-            String like = "";
-            list.add("PUNT DE PAS [" + v.getHighlight() + "] Estrelles: " + v.getValoracio().getEstrelles() + " Like: " + v.getValoracio().getLike());
+            list.add("PUNT DE PAS [" + v.getHighlight() + "] Estrelles: " + v.getValoracio(ValorarEstrelles) + " Like: " + v.getValoracio(ValorarLikes));
         }
         return list;
     }
