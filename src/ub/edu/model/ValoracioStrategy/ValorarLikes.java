@@ -1,18 +1,16 @@
 package ub.edu.model.ValoracioStrategy;
 
-public class ValorarLikes implements ValorarStrategy{
-    private int like;
-    public boolean Valorar(int e){
-        if(e == 1){
-            like =+ 1;
-        } else if (e == -1) {
+import java.util.ArrayList;
 
-            like =-1 ;
+public class ValorarLikes implements ValorarStrategy{
+    public Object valorar(int e) throws Exception {
+        if (e == 1 ) {
+            return new Like(e);
+        } else if (e == -1) {
+            return new Dislike(e);
         }
-        else{
-            return false;
-        }
-        return true;
+        throw new Exception("La valoracio de likes ha de ser 1 (Like) o -1 (Dislike)");
+
     }
 
 }

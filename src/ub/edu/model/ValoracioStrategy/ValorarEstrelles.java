@@ -2,14 +2,10 @@ package ub.edu.model.ValoracioStrategy;
 
 public class ValorarEstrelles implements ValorarStrategy{
 
-    private static int estrelles;
-
-    public boolean Valorar (int e){
-        if (e > 5 || e < 0){
-            return false;
-        }else{
-            estrelles = e;
-            return true;
+    public Estrelles valorar (int e) throws Exception {
+        if (e < 5 || e > 0) {
+            return new Estrelles(e);
         }
+        throw new Exception("La valoracio d'estrelles ha de ser un numero entre 0 i 5");
     }
 }
