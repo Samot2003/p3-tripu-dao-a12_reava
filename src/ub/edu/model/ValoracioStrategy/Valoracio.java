@@ -9,6 +9,9 @@ public class Valoracio {
     }
     public void valorar(ValorarStrategy str,int e ) throws Exception {
         valoracions.add(str.valorar(e));
+    }
 
+    public float getNumValoracioPerType(ValorarStrategy str){
+        return str.getNum(str,valoracions);
     }
 }

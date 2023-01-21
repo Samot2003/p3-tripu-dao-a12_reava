@@ -261,14 +261,15 @@ public class Controller {
         tripUB.actualitzarRankings();
     }
 
-    public String valorarPuntDePasTrackActual(ValorarStrategy str,String nomPersona, int valoracio){
+    public String valorarPuntDePasTrackActual(PuntDeControl p, ValorarStrategy str, int valoracio){
         try{
-            tripUB.valorarPuntsDePasTrackActual(str,nomPersona, valoracio);
+            tripUB.valorarPuntsDePas(p,str, valoracio);
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();
         }
     }
+    /*
     public Iterable<String> llistarPuntsDePasRutaActual(String usuari){
         List<String> r = new ArrayList<>();
         try{
@@ -278,4 +279,5 @@ public class Controller {
             return r;
         }
     }
+    */
 }

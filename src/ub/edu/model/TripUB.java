@@ -346,15 +346,10 @@ public class TripUB {
         }
     }
 
-    public void valorarPuntsDePasTrackActual(ValorarStrategy str, String nomPersona, int valoracio) throws Exception {
-        if (data.getRutaActual(nomPersona) == null){
-            throw new Exception("No hi ha cap ruta en procés");
-        }else if (data.getRutaActual(nomPersona).getTramActual() == null){
-            throw new Exception("No hi ha cap track en procés");
-        }
-        TramTrack t = data.getRutaActual(nomPersona).getTramActual();
-        t.getPuntDeControl().setValoracio(str,valoracio);
+    public void valorarPuntsDePas(PuntDeControl p, ValorarStrategy str, int valoracio) throws Exception {
+        p.setValoracio(str,valoracio);
     }
+    /*
     public Iterable<String> llistarPuntsDePasRutaActual(String nomPersona) throws Exception {
         ValorarStrategy ValorarEstrelles=null;
         ValorarStrategy ValorarLikes=null;
@@ -385,7 +380,7 @@ public class TripUB {
             list.add("PUNT DE PAS [" + v.getHighlight() + "] Estrelles: " + v.getValoracio(ValorarEstrelles) + " Like: " + v.getValoracio(ValorarLikes));
         }
         return list;
-    }
+    }*/
     public void validateRegisterPersona (String username, String password) throws Exception {
         if  (data.getDataService().getPersonaByUsername(username).isPresent()){
             throw new Exception("Soci Duplicat");

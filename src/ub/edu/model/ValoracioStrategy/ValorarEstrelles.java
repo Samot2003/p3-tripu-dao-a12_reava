@@ -1,5 +1,7 @@
 package ub.edu.model.ValoracioStrategy;
 
+import java.util.ArrayList;
+
 public class ValorarEstrelles implements ValorarStrategy{
 
     public Estrelles valorar (int e) throws Exception {
@@ -7,5 +9,18 @@ public class ValorarEstrelles implements ValorarStrategy{
             return new Estrelles(e);
         }
         throw new Exception("La valoracio d'estrelles ha de ser un numero entre 0 i 5");
+    }
+
+    @Override
+    public float getNum(ValorarStrategy str, ArrayList<Object> valoracions) {
+        float valor = 0;
+        float num = 0;
+        for (Object v: valoracions){
+            if (v.getClass().equals(Estrelles.class)){
+                valor += ((Estrelles) v).getVal();
+                num += 1;
+            }
+        }
+        return (valor/num);
     }
 }
