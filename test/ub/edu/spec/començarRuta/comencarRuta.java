@@ -12,7 +12,7 @@ public class comencarRuta {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
     }
 
     public String comencarRuta(String nomRuta){

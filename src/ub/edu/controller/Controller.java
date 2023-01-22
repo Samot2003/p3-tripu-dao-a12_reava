@@ -11,10 +11,10 @@ public class Controller {
 
     //ControllerData es una classe que inicialitza i emagatzema les dades
     private volatile static Controller uniqueIstance;
-    private TripUB tripUB;
+    private final TripUB tripUB;
 
     private Controller() {
-        tripUB.getInstance();
+        tripUB = TripUB.getInstance();
     }
 
     public static Controller getInstance(){

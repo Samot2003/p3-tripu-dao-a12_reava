@@ -19,12 +19,13 @@ public class llistarPuntsDePasPerValoracio {
     }
 
     public Iterable<String> llistarPuntsDePasValoracio () {
-         return controlador.llistarPuntsDePasRutaActual(p);
+         //return controlador.llistarPuntsDePasRutaActual(p);
+        return null;
     }
 
 
     public void initAll(){
-
+/*
         controlador.iniciarTrackRutaActual(p,"T1");
         controlador.afegirPuntDeControl(p, "a1", new Ubicacio(5,5,5));
         controlador.valorarPuntDePasTrackActual(p, 3, true);
@@ -44,6 +45,8 @@ public class llistarPuntsDePasPerValoracio {
         controlador.afegirPuntDeControl(p, "d4", new Ubicacio(5,5,5));
         controlador.valorarPuntDePasTrackActual(p, 4, true);
         controlador.acabarTrackRutaActual(p);
+
+ */
     }
 
 }

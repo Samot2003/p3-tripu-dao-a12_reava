@@ -14,7 +14,7 @@ public class afegirCheckPointToTrack {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
         controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
     }
 

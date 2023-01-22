@@ -7,12 +7,10 @@ import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
 public class cercarRutesPerLocalitats {
-
-    private Controller controlador;
-
+    Controller controlador;
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
     }
 
     public Iterable<String> cercaRutesPerLocalitats(String nomLocalitat) {

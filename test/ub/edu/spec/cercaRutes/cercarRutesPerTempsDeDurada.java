@@ -7,11 +7,10 @@ import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
 public class cercarRutesPerTempsDeDurada {
-    private Controller controlador;
-
+    Controller controlador;
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
     }
 
     public Iterable<String> cercaRutesPerTempsDeDurada(int temps) {

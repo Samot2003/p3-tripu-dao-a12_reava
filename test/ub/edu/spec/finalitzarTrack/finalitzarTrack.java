@@ -13,7 +13,7 @@ public class finalitzarTrack {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();;
+        controlador = Controller.getInstance();;
         initRuta();
     }
 
