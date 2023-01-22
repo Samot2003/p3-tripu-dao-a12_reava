@@ -11,7 +11,7 @@ public class loginPersona {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public String recuperarContrassenya(String user) {return controlador.recuperarContrassenya(user);}

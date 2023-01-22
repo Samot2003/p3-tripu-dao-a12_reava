@@ -2,14 +2,10 @@ package ub.edu.controller;
 
 import ub.edu.model.*;
 
-import ub.edu.model.Facana.FacanaData;
-import ub.edu.model.Facana.FacanaUser;
-import ub.edu.model.Transport.*;
 import ub.edu.model.ValoracioStrategy.ValorarStrategy;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class Controller {
 

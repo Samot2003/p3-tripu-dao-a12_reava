@@ -9,7 +9,8 @@ import ub.edu.model.Transport.Transport;
 
 public class MainMOCK {
     public static void main(String[] args) {
-        Controller controlador = new Controller();
+        Controller controlador = null;
+        controlador.getInstance();
         String p = "ajaleo@gmail.com";
         controlador.iniciarRuta(p,"La Costa Brava");
         System.out.println(controlador.iniciarTrackRutaActual(p,"T1"));

@@ -11,7 +11,7 @@ public class registrePersona {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
 

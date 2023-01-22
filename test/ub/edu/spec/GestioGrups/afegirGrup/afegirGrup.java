@@ -11,7 +11,7 @@ public class afegirGrup {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public String afegirGrup (String nomGrup, String nomPersona){

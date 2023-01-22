@@ -11,7 +11,7 @@ public class marxarGrup {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public String marxarGrup (String nomGrup, String nomPersona){

@@ -12,7 +12,7 @@ public class cercarRutesPerLocalitats {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public Iterable<String> cercaRutesPerLocalitats(String nomLocalitat) {

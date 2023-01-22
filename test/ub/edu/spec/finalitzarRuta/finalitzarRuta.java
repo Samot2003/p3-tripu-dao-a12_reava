@@ -12,7 +12,7 @@ public class finalitzarRuta {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public String acabarRuta(){

@@ -13,7 +13,7 @@ public class ComencarTramTrack {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();;
         controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
     }
 

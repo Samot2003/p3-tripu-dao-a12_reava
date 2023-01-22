@@ -11,7 +11,7 @@ public class llistaRutes {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public Iterable<String> listCatalegRutesPerNom() {

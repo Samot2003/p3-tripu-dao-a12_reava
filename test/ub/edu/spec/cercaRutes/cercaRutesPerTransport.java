@@ -11,7 +11,7 @@ public class cercaRutesPerTransport {
 
     @BeforeExample
     private void init() {
-        controlador = new Controller();
+        controlador.getInstance();
     }
 
     public Iterable<String> cercaRutesPerTransports(String id) {
