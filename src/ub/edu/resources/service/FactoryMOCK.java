@@ -7,6 +7,19 @@ import ub.edu.resources.dao.MOCK.*;
 
 public class FactoryMOCK implements AbstractFactoryData {
 
+    private volatile static FactoryMOCK uniqueInstance;
+
+    public static FactoryMOCK getInstance(){
+        if (uniqueInstance == null){
+            synchronized (FactoryMOCK.class){
+                if (uniqueInstance == null){
+                    uniqueInstance = new FactoryMOCK();
+                }
+            }
+        }
+        return uniqueInstance;
+    }
+
     @Override
     public DAOPersona createDAOPersona() {
         return new DAOPersonaMOCK();

@@ -14,7 +14,7 @@ public class Controller {
     private final TripUB tripUB;
 
     private Controller() {
-        tripUB = TripUB.getInstance();
+        tripUB = new TripUB();
     }
 
     public static Controller getInstance(){
@@ -25,7 +25,7 @@ public class Controller {
                 }
             }
         }
-        return uniqueIstance;
+        return new Controller();
     }
 
     public String validateRegisterPersona (String username, String password) throws Exception {

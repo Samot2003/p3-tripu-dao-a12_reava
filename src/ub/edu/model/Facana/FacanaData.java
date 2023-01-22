@@ -25,7 +25,7 @@ public class FacanaData {
     private List<Grup> llistaGrup;
 
     public FacanaData() {
-        factory = new FactoryMOCK();
+        factory = FactoryMOCK.getInstance();
         data = new DataService(factory);
         rutaMap = new HashMap<>();
         comarcaMap = new HashMap<>();

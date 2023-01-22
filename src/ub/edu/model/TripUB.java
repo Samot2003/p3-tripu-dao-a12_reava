@@ -15,7 +15,7 @@ public class TripUB {
     private FacanaData data;
     private FacanaUser user;
     private static volatile  TripUB uniqueIstance;
-    private TripUB() {
+    public TripUB() {
         data = new FacanaData();
         user = new FacanaUser();
     }
@@ -28,7 +28,7 @@ public class TripUB {
                 }
             }
         }
-        return uniqueIstance;
+        return new TripUB();
     }
 
     public FacanaUser getUserInfo(){return user;}

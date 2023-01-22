@@ -15,8 +15,8 @@ public class DataService {
     private DAOLocalitat daoLocalitat;
     private DAORelacioLocalitatRuta daoRelacioLocalitatRuta;
     private DAOTransport daoTransport;
-
     private DAORelacioTransportRuta daoRelacioTransportRuta;
+    private volatile static DataService uniqueInstance;
 
     public DataService(AbstractFactoryData factory) {
 
