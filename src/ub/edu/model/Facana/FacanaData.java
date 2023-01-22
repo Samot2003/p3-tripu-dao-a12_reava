@@ -15,7 +15,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class FacanaData {
-
     private Map<String, Ruta> rutaMap;
     private Map<String, Comarca> comarcaMap;
     private Map<String, Localitat> localitatMap;

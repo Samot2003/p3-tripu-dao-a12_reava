@@ -14,11 +14,22 @@ import java.util.regex.Pattern;
 public class Controller {
 
     //ControllerData es una classe que inicialitza i emagatzema les dades
-
+    private volatile static Controller uniqueIstance;
     private TripUB tripUB;
 
-    public Controller() {
-        tripUB = new TripUB();
+    private Controller() {
+        tripUB.getInstance();
+    }
+
+    public static Controller getInstance(){
+        if (uniqueIstance == null){
+            synchronized (Controller.class){
+                if (uniqueIstance == null){
+                    uniqueIstance = new Controller();
+                }
+            }
+        }
+        return uniqueIstance;
     }
 
     public String validateRegisterPersona (String username, String password) throws Exception {

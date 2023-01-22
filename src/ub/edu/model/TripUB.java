@@ -1,5 +1,6 @@
 package ub.edu.model;
 
+import ub.edu.controller.Controller;
 import ub.edu.model.Facana.FacanaData;
 import ub.edu.model.Facana.FacanaUser;
 import ub.edu.model.Transport.Transport;
@@ -13,11 +14,23 @@ import java.util.regex.Pattern;
 public class TripUB {
     private FacanaData data;
     private FacanaUser user;
-
-    public TripUB() {
+    private static volatile  TripUB uniqueIstance;
+    private TripUB() {
         data = new FacanaData();
         user = new FacanaUser();
     }
+
+    public static TripUB getInstance(){
+        if (uniqueIstance == null){
+            synchronized (TripUB.class){
+                if (uniqueIstance == null){
+                    uniqueIstance = new TripUB();
+                }
+            }
+        }
+        return uniqueIstance;
+    }
+
     public FacanaUser getUserInfo(){return user;}
 
     public Iterable<String> llistarCatalegRutesPerNom() throws Exception {
