@@ -14,7 +14,7 @@ public class llistarPuntsDePasPerValoracio {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
         controlador.iniciarRuta(p,"Terres de l'Ebre");
     }
 

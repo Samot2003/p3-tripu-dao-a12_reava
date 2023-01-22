@@ -12,7 +12,7 @@ public class ValorarPuntsDeControl {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
     }
 
     public String valorarPuntsDePasRutaActual(){

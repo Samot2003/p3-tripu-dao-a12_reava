@@ -12,7 +12,7 @@ public class crearGrup {
 
     @BeforeExample
     private void init() {
-        controlador.getInstance();
+        controlador = Controller.getInstance();
     }
 
     public String crearGrup (String nomGrup){
