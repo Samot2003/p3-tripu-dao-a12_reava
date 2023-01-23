@@ -167,7 +167,65 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   
 
   namespace ub.edu.model {
-    class ub.edu.model.Valoracio {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.Estrelles {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.Like {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.Valoracio {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      interface ub.edu.model.ValoracioStrategy.ValoracioType {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.ValorarDislike {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.ValorarEstrelles {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      class ub.edu.model.ValoracioStrategy.ValorarLikes {
+      }
+    }
+  }
+  
+
+  namespace ub.edu.model {
+    namespace ValoracioStrategy {
+      interface ub.edu.model.ValoracioStrategy.ValorarStrategy {
+      }
     }
   }
   
@@ -333,21 +391,21 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   ub.edu.model.Persona o-- ub.edu.model.Ruta : rutaActual
   ub.edu.model.Persona o-- ub.edu.model.Ubicacio : ubicacio
   ub.edu.model.PuntDeControl o-- ub.edu.model.Ubicacio : ubicacio
-  ub.edu.model.PuntDeControl o-- ub.edu.model.Valoracio : valoracio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.ValoracioStrategy.Valoracio : valoracio
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
-  ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
-  ub.edu.model.Ruta o-- ub.edu.model.Localitat : tramActual
-  ub.edu.model.Ruta o-- ub.edu.model.Comarca : tramActual
-  ub.edu.model.Localitat --- ub.edu.model.Comarca : conté
+  ub.edu.model.Ruta o-- ub.edu.model.Tram : tramActual
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
-  ub.edu.model.Persona *-- ub.edu.model.Grup : conté
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControl
   ub.edu.model.Transport.APeu -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.Transport.Bici -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.Transport.Cotxe -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
+  ub.edu.model.ValoracioStrategy.Estrelles .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
+  ub.edu.model.ValoracioStrategy.Like .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
+  ub.edu.model.ValoracioStrategy.ValorarDislike .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
+  ub.edu.model.ValoracioStrategy.ValorarEstrelles .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
+  ub.edu.model.ValoracioStrategy.ValorarLikes .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
   ub.edu.resources.dao.MOCK.DAOComarcaMOCK .up.|> ub.edu.resources.dao.DAOComarca
   ub.edu.resources.dao.MOCK.DAOLocalitatMOCK .up.|> ub.edu.resources.dao.DAOLocalitat
   ub.edu.resources.dao.MOCK.DAOPersonaMOCK .up.|> ub.edu.resources.dao.DAOPersona
@@ -367,7 +425,6 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAORuta : daoRuta
   ub.edu.resources.service.DataService o-- ub.edu.resources.dao.DAOTransport : daoTransport
   ub.edu.resources.service.FactoryMOCK .up.|> ub.edu.resources.service.AbstractFactoryData
-
 
 
 right footer

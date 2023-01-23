@@ -2,32 +2,46 @@ package ub.edu.model;
 
 import ub.edu.model.Estat.Estat;
 import ub.edu.model.Estat.NoComencat;
+import ub.edu.model.ValoracioStrategy.ValorarEstrelles;
+import ub.edu.model.ValoracioStrategy.ValorarStrategy;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TramTrack extends Tram{
 
     private int distancia,desnivellPositiu, desnivellNegatiu;
     private float duracioEstimada;
 
-    private PuntDeControl puntDeControl;
+    private ArrayList<PuntDeControl> puntsDeControl;
 
     public TramTrack(String ID) {
         super(ID);
         estat = new NoComencat();
-        puntDeControl = null;
+        puntsDeControl = new ArrayList<>();
     }
     public String setEstatTramTrack(String nomEstat){
         estat = estat.cambiarEstat(nomEstat);
         return estat.getEstat();
     }
 
-    public void addPuntDeControl(String highLight,Ubicacio ubi){
-        puntDeControl = new PuntDeControl(highLight,ubi);
+    public void addPuntDeControl(PuntDeControl p){
+        if (!puntsDeControl.contains(p)){
+            puntsDeControl.add(p);
+        }
     }
-    public PuntDeControl getPuntDeControl(){
-        return puntDeControl;
+    public PuntDeControl getPuntDeControlByID(String ID) throws Exception {
+        for (PuntDeControl p: puntsDeControl){
+            if (p.getID().equals(ID)){
+                return p;
+            }
+        }
+        throw new Exception("No s'ha trobat el punt de control");
+    }
+
+    public ArrayList<PuntDeControl> getPuntsDeControl(){
+        return puntsDeControl;
     }
 
     public void setDistancia(int distancia){ this.distancia = distancia; }
@@ -45,6 +59,16 @@ public class TramTrack extends Tram{
     public int getDesnivellNegatiu() {return desnivellNegatiu;}
 
     public float getDuracioEstimada() {return duracioEstimada;}
+
+    public ArrayList<PuntDeControl> getPuntsDeControlValorats(ValorarStrategy str) {
+        ArrayList<PuntDeControl> punts = new ArrayList<>();
+        for (PuntDeControl p: puntsDeControl){
+            if(p.getValoracio().getNumValoracioPerType(str) != 0 || str.toString().equals("Estrelles")){
+                punts.add(p);
+            }
+        }
+        return punts;
+    }
 }
 
 

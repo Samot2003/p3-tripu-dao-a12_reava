@@ -67,9 +67,9 @@ title __MODEL's Class Diagram__\n
 
   namespace ub.edu.model {
     class ub.edu.model.PuntDeControl {
-        - highlight : String
+        - ID : String
         + PuntDeControl()
-        + getHighlight()
+        + getID()
         + getUbicacio()
         + getValoracio()
         + setValoracio()
@@ -142,13 +142,16 @@ title __MODEL's Class Diagram__\n
         - desnivellPositiu : int
         - distancia : int
         - duracioEstimada : float
+        - puntsDeControl : ArrayList<PuntDeControl>
         + TramTrack()
         + addPuntDeControl()
         + getDesnivellNegatiu()
         + getDesnivellPositiu()
         + getDistancia()
         + getDuracioEstimada()
-        + getPuntDeControl()
+        + getPuntDeControlByID()
+        + getPuntsDeControl()
+        + getPuntsDeControlValorats()
         + setDesnivellNegatiu()
         + setDesnivellPositiu()
         + setDistancia()
@@ -160,7 +163,7 @@ title __MODEL's Class Diagram__\n
 
   namespace ub.edu.model {
     class ub.edu.model.TripUB {
-        + TripUB()
+        {static} - uniqueIstance : TripUB
         + acabarRuta()
         + acabarTrackRutaActual()
         + actualitzarRankingGrup()
@@ -178,6 +181,8 @@ title __MODEL's Class Diagram__\n
         + cercarRutesPerTempsDeDurada()
         + crearGrup()
         + findPersona()
+        + getAllTramTracks()
+        {static} + getInstance()
         + getRankingGrup()
         + getUserInfo()
         + iniciarRuta()
@@ -194,7 +199,8 @@ title __MODEL's Class Diagram__\n
         + validateRegisterPersona()
         + validateRegistrePersona()
         + validateUsername()
-        + valorarPuntsDePasTrackActual()
+        + valorarPuntsDePas()
+        - TripUB()
     }
   }
   
@@ -215,20 +221,6 @@ title __MODEL's Class Diagram__\n
   
 
   namespace ub.edu.model {
-    class ub.edu.model.Valoracio {
-        - estrelles : int
-        - like : String
-        - likeValorat : boolean
-        + Valoracio()
-        + getEstrelles()
-        + getLike()
-        + setEstrelles()
-        + setLike()
-    }
-  }
-  
-
-  namespace ub.edu.model {
     class ub.edu.model.XarxaPersones {
         - llista : List<Persona>
         + XarxaPersones()
@@ -243,12 +235,11 @@ title __MODEL's Class Diagram__\n
   ub.edu.model.Persona o-- ub.edu.model.Ruta : rutaActual
   ub.edu.model.Persona o-- ub.edu.model.Ubicacio : ubicacio
   ub.edu.model.PuntDeControl o-- ub.edu.model.Ubicacio : ubicacio
-  ub.edu.model.PuntDeControl o-- ub.edu.model.Valoracio : valoracio
+  ub.edu.model.PuntDeControl o-- ub.edu.model.ValoracioStrategy.Valoracio : valoracio
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
-  ub.edu.model.TramTrack o-- ub.edu.model.PuntDeControl : puntDeControl
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
 

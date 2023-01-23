@@ -61,6 +61,7 @@
 
 <div concordion:example="one">
     <p>
+        <span concordion:execute="initGrupsiMembres()"> </span>
         La següent taula mostra els resultats que esperem si demanem al sistema que ens mostri el ranking
         del grup amb el nom: <span concordion:set="#nom">G1</span> ordenada per mes punts a menys punts
     <table concordion:verify-rows="#ranking : getRankingGrup(#nom)">

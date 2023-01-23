@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public interface ValorarStrategy {
 
-    public Object valorar(int e) throws Exception;
+    public ValoracioType valorar(int e) throws Exception;
 
-    public float getNum(ValorarStrategy str, ArrayList<Object> valoracions);
+    public float getNum(ValorarStrategy str, ArrayList<ValoracioType> valoracions);
+
+    public String toString();
 }

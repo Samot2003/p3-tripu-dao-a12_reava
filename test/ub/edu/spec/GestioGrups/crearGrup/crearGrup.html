@@ -18,7 +18,7 @@
 
     <h5>Example del test d'acceptació 11.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema crear un grup
-    <span concordion:set="#nomGrup">Grup1</span> si no eixsisteix un grup amb aquest nom
+    <span concordion:set="#nomGrup">Grup7</span> si no eixsisteix un grup amb aquest nom
     <span concordion:assertEquals="crearGrup(#nomGrup)">S'ha creat el grup correctament</span>.
 
 
@@ -29,7 +29,7 @@
 
     <h5>Example del test d'acceptació 11.0</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema crear un grup
-    <span concordion:set="#nomGrup">Grup1</span> si ja eixsisteix un grup amb aquest nom
+    <span concordion:set="#nomGrup">Grup9</span> si ja eixsisteix un grup amb aquest nom
     <span concordion:execute="initGrup()">.</span> <span concordion:assertEquals="crearGrup(#nomGrup)">Ja existeix un grup amb aquest nom canvia'l siusplau</span>.
 
 </div>

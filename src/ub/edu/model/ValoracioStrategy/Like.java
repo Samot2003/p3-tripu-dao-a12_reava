@@ -1,6 +1,6 @@
 package ub.edu.model.ValoracioStrategy;
 
-public class Like {
+public class Like implements ValoracioType {
 
     private int val;
 

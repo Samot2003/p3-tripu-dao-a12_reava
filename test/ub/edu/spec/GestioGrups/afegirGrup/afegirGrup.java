@@ -7,18 +7,17 @@ import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
 public class afegirGrup {
-    private Controller controlador;
+    final private Controller controlador = Controller.getInstance();
 
     @BeforeExample
     private void init() {
-        controlador = Controller.getInstance();
     }
 
     public String afegirGrup (String nomGrup, String nomPersona){
         return controlador.addMembreGrup(nomGrup,nomPersona);
     }
     public void initGrup(){
-        controlador.crearGrup("Grup1");
+        controlador.crearGrup("LaPandi");
     }
 
 }

@@ -18,15 +18,15 @@ public class finalitzarTrack {
     }
 
     public String finalitzarTramTrack(){
-        return controlador.acabarTrackRutaActual("ajaleo@gmail.com");
+        return controlador.acabarTrackRutaActual();
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
+        controlador.iniciarRuta("La Costa Brava");
     }
 
     public void initTrack(){
-        controlador.iniciarTrackRutaActual("ajaleo@gmail.com","TT1");
+        controlador.iniciarTrackRutaActual("TT1");
     }
 
 }

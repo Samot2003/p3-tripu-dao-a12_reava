@@ -7,12 +7,13 @@ import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
 public class rankingGrup {
-    private Controller controlador;
+    final private Controller controlador= Controller.getInstance();
 
     @BeforeExample
     private void init() {
-        controlador = Controller.getInstance();
-        initGrupsiMembres();
+        controlador.crearGrup("G1");
+        controlador.crearGrup("G2");
+
     }
 
     public Iterable<String> getRankingGrup(String nomGrup) {
@@ -20,15 +21,12 @@ public class rankingGrup {
     }
 
     public void initGrupsiMembres(){
-        controlador.crearGrup("G1");
-        controlador.crearGrup("G2");
         controlador.addMembreGrup("G1","ajaleo@gmail.com");
         controlador.addPuntsToPersona("ajaleo@gmail.com", 6);
         controlador.addMembreGrup("G1","heisenberg@gmail.com");
         controlador.addPuntsToPersona("heisenberg@gmail.com", 43);
         controlador.addMembreGrup("G1","dtomacal@yahoo.cat");
         controlador.addPuntsToPersona("dtomacal@yahoo.cat", 22);
-
     }
 
 }

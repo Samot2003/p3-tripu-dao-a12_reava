@@ -6,52 +6,44 @@
 <body>
 <h1>UC13. Marxar del grup</h1>
 
-<h2>Criteris d'acceptació 0, 1, 2, 3, 4</h2>
+<h2>Criteris d'acceptació 0, 1, 2, 3</h2>
 <p>
-    <b>0</b>: Si no hi han grups el sistema mostrara el missatge: "No hi ha cap grup a la llista afegeix algun primer"
-    <b>1</b>: Si no es troba cap grup amb el nom especificat el sistema mostrara el missatge: "No s'ha trobat cap grup amb aquest nom"
-    <b>2</b>: Si no es troba usuari amb el nom especificat el sistema mostrara el missatge: "L' usuari no ha sigut trobat a la base de dades"
-    <b>3</b>: Si es troba el grup desitjat pero l'usuari indicat no hi pertany: "S'ha trobat el grup pero l'usuari no pertany al grup"
-    <b>4</b>: Si l'usuari s'elimina correctament dell grup el sistema mostrara el missatge: "S'ha eliminat al membre satisfactoriament"
+    <b>0</b>: Si no es troba cap grup amb el nom especificat el sistema mostrara el missatge: "No s'ha trobat cap grup amb aquest nom"
+    <b>1</b>: Si no es troba usuari amb el nom especificat el sistema mostrara el missatge: "L' usuari no ha sigut trobat a la base de dades"
+    <b>2</b>: Si es troba el grup desitjat pero l'usuari indicat no hi pertany: "S'ha trobat el grup pero l'usuari no pertany al grup"
+    <b>3</b>: Si l'usuari s'elimina correctament del grup el sistema mostrara el missatge: "S'ha eliminat al membre satisfactoriament"
 </p>
 
 <div concordion:example="zero">
-    <h5>Example del test d'acceptació 13.0</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema eliminar
-    un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si no hi ha el Grup1 creat <span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">No hi ha cap grup a la llista afegeix algun primer</span>.
-</div>
-
-<div concordion:example="one">
     <h5>Example del test d'acceptació 13.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema eliminar
     un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup5</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si hi ha el Grup1 creat <span concordion:execute="initGrup()"> pero el nom del grup no coincideix amb cap grup creat
+    si hi ha el Grup5 creat <span concordion:execute="initGrup()"> pero el nom del grup no coincideix amb cap grup creat
     </span> <span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">No s'ha trobat cap grup amb aquest nom</span>
 </div>
 
-<div concordion:example="two">
+<div concordion:example="one">
     <h5>Example del test d'acceptació 13.2</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema eliminar
-    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">peepo@gmail.com</span>
-    si hi ha el Grup1 creat <span concordion:execute="initGrup()"> pero el nom del usuari no coincideix amb cap usuari registrat
+    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup3</span> i amb el nom d'usuari <span concordion:set="#nomPersona">peepo@gmail.com</span>
+    si hi ha el Grup3 creat <span concordion:execute="initGrup()"> pero el nom del usuari no coincideix amb cap usuari registrat
     </span> <span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">L' usuari no ha sigut trobat a la base de dades</span>.
 </div>
 
-<div concordion:example="three">
+<div concordion:example="two">
     <h5>Example del test d'acceptació 13.3</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema eliminar
-    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari
-    <span concordion:set="#nomPersona">ajaleo@gmail.com</span> si hi ha el Grup1 creat <span concordion:execute="initGrup()"> </span>
+    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup3</span> i amb el nom d'usuari
+    <span concordion:set="#nomPersona">dtomacal@yahoo.cat</span> si hi ha el Grup3 creat <span concordion:execute="initGrup()"> </span>
     pero aquest usuari no pertany al grup<span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">
     S'ha trobat el grup pero l'usuari no pertany al grup</span>.
 </div>
 
-<div concordion:example="four">
+<div concordion:example="three">
     <h5>Example del test d'acceptació 13.4</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema eliminar
-    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup1</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si hi ha el Grup1 creat <span concordion:execute="initGrupAmbMembre()"> </span> <span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">S'ha eliminat al membre satisfactoriament</span>.
+    un usuari d' un grup amb nom <span concordion:set="#nomGrup">Grup3</span> i amb el nom d'usuari <span concordion:set="#nomPersona">dtomacal@yahoo.cat</span>
+    si hi ha el Grup3 creat <span concordion:execute="initGrupAmbMembre()"> </span> <span concordion:assertEquals="marxarGrup(#nomGrup,#nomPersona)">S'ha eliminat al membre satisfactoriament</span>.
 </div>
 
 </body>

@@ -19,7 +19,7 @@ public class Ruta {
     private ArrayList<TramTrack> tramTracks;
     private Estat estat;
 
-    private TramTrack tramActual;
+    private Tram tramActual;
 
     public Ruta(String titol, String dataText, int numDies) {
         this.nom = titol;
@@ -128,7 +128,7 @@ public class Ruta {
     }
 
     public TramTrack getTramActual(){
-        return tramActual;
+        return (TramTrack)tramActual;
     }
 
     public String getEstatTramActual (){

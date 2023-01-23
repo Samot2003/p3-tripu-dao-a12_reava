@@ -8,17 +8,16 @@ import ub.edu.model.Grup;
 
 @RunWith(ConcordionRunner.class)
 public class crearGrup {
-    private Controller controlador;
+    final private Controller controlador = Controller.getInstance();
 
     @BeforeExample
     private void init() {
-        controlador = Controller.getInstance();
     }
 
     public String crearGrup (String nomGrup){
         return controlador.crearGrup(nomGrup);
     }
     public void initGrup(){
-        controlador.crearGrup("Grup1");
+        controlador.crearGrup("Grup9");
     }
 }

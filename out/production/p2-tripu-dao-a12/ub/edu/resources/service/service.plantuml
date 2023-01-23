@@ -18,6 +18,7 @@ title __SERVICE's Class Diagram__\n
 
   namespace ub.edu.resources.service {
     class ub.edu.resources.service.DataService {
+        {static} - uniqueInstance : DataService
         + DataService()
         + getAllComarques()
         + getAllLocalitats()
@@ -35,6 +36,7 @@ title __SERVICE's Class Diagram__\n
 
   namespace ub.edu.resources.service {
     class ub.edu.resources.service.FactoryMOCK {
+        {static} - uniqueInstance : FactoryMOCK
         + createDAOComarca()
         + createDAOLocalitat()
         + createDAOPersona()
@@ -43,6 +45,7 @@ title __SERVICE's Class Diagram__\n
         + createDAORelacioTransportRuta()
         + createDAORuta()
         + createDAOTransport()
+        {static} + getInstance()
     }
   }
   

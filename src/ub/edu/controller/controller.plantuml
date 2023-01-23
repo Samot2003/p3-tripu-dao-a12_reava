@@ -4,7 +4,8 @@ title __CONTROLLER's Class Diagram__\n
 
   namespace ub.edu.controller {
     class ub.edu.controller.Controller {
-        + Controller()
+        ~ nomPersona : String
+        {static} - uniqueIstance : Controller
         + acabarRuta()
         + acabarTrackRutaActual()
         + actualitzarRankingGrup()
@@ -22,6 +23,7 @@ title __CONTROLLER's Class Diagram__\n
         + cercarRutesPerTempsDeDurada()
         + crearGrup()
         + findPersona()
+        {static} + getInstance()
         + getRankingGrup()
         + iniciarRuta()
         + iniciarTrackRutaActual()
@@ -36,6 +38,7 @@ title __CONTROLLER's Class Diagram__\n
         + validateRegistrePersona()
         + validateUsername()
         + valorarPuntDePasTrackActual()
+        - Controller()
     }
   }
   

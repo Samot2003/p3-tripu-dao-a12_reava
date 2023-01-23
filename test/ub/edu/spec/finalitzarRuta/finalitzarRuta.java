@@ -16,10 +16,10 @@ public class finalitzarRuta {
     }
 
     public String acabarRuta(){
-        return controlador.acabarRuta("ajaleo@gmail.com");
+        return controlador.acabarRuta();
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("ajaleo@gmail.com","Terres de l'Ebre");
+        controlador.iniciarRuta("Terres de l'Ebre");
     }
 }

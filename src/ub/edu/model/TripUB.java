@@ -14,8 +14,11 @@ import java.util.regex.Pattern;
 public class TripUB {
     private FacanaData data;
     private FacanaUser user;
+
+
     private static volatile  TripUB uniqueIstance;
-    public TripUB() {
+
+    private TripUB() {
         data = new FacanaData();
         user = new FacanaUser();
     }
@@ -28,7 +31,7 @@ public class TripUB {
                 }
             }
         }
-        return new TripUB();
+        return uniqueIstance;
     }
 
     public FacanaUser getUserInfo(){return user;}
@@ -234,13 +237,13 @@ public class TripUB {
 
     }
 
-    public void afegirPuntDeControl(String nomPersona, String highlight, Ubicacio ubi) throws Exception {
+    public void afegirPuntDeControl(String nomPersona, PuntDeControl p) throws Exception {
         if (data.getRutaActual(nomPersona)  == null){
             throw new Exception("No hi ha cap ruta iniciada");
         }else if (data.getRutaActual(nomPersona).getTramActual() == null){
             throw new Exception("No hi ha cap track iniciat");
         }else{
-            data.getRutaActual(nomPersona).getTramActual().addPuntDeControl(highlight, ubi);
+            data.getRutaActual(nomPersona).getTramActual().addPuntDeControl(p);
         }
     }
 
@@ -359,41 +362,42 @@ public class TripUB {
         }
     }
 
-    public void valorarPuntsDePas(PuntDeControl p, ValorarStrategy str, int valoracio) throws Exception {
+    public void valorarPuntsDePas(String ID, ValorarStrategy str, int valoracio, String nomPersona) throws Exception {
+        TramTrack t = data.getRutaActual(nomPersona).getTramActual();
+        PuntDeControl p = t.getPuntDeControlByID(ID);
         p.setValoracio(str,valoracio);
     }
-    /*
-    public Iterable<String> llistarPuntsDePasRutaActual(String nomPersona) throws Exception {
-        ValorarStrategy ValorarEstrelles=null;
-        ValorarStrategy ValorarLikes=null;
-        Ruta ruta = data.getRutaActual(nomPersona);
+
+    public ArrayList<TramTrack> getAllTramTracks(){
+        ArrayList<TramTrack> tramTracks = new ArrayList<>();
+        for (Ruta r: data.getRutaList()){
+            for(TramTrack t: r.getLlistaTramTracks()){
+                tramTracks.add(t);
+            }
+        }
+        return tramTracks;
+    }
+
+    public Iterable<String> llistarPuntsDePasRutaActual(ValorarStrategy str) throws Exception {
+
+
         List<String> list = new ArrayList<>();
         List<PuntDeControl> llistaPunts = new ArrayList<>();
-        if (ruta == null){
-            throw new Exception("Ruta no trobada");
+        for(TramTrack t:getAllTramTracks() ) {
+            llistaPunts.addAll(t.getPuntsDeControlValorats(str));
         }
-        System.out.println(ruta.getLlistaTramTracks());
-        for(TramTrack t:ruta.getLlistaTramTracks() ) {
-            if (t.getPuntDeControl().getValoracio() != null){
-                llistaPunts.add(t.getPuntDeControl());
-            }
-        }
-
         if (llistaPunts.isEmpty()){
-            llistaPunts = null;
-            throw new Exception("La llista de punts de pas se la ruta actual esta buida");
+            throw new Exception("La llista de valoracions per " + str.toString() + " està buida");
         }
         List<PuntDeControl> sortedList = llistaPunts;
-        sortedList.sort(new Comparator<PuntDeControl>() {
-            public int compare(PuntDeControl a1, PuntDeControl a2) {
-                return (Float.compare(a2.getValoracio(ValorarEstrelles), a1.getValoracio(ValorarEstrelles)));
-            }
-        });
+        sortedList.sort((a1, a2) -> (Float.compare(a2.getValoracio().getNumValoracioPerType(str), a1.getValoracio().getNumValoracioPerType(str))));
         for (PuntDeControl v: sortedList){
-            list.add("PUNT DE PAS [" + v.getHighlight() + "] Estrelles: " + v.getValoracio(ValorarEstrelles) + " Like: " + v.getValoracio(ValorarLikes));
+            if (list.size() < 10) {
+                list.add("ID: " + v.getID() + " " + str.toString() + " : " + v.getValoracio().getNumValoracioPerType(str));
+            }
         }
         return list;
-    }*/
+    }
     public void validateRegisterPersona (String username, String password) throws Exception {
         if  (data.getDataService().getPersonaByUsername(username).isPresent()){
             throw new Exception("Soci Duplicat");

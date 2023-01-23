@@ -7,21 +7,20 @@ import ub.edu.controller.Controller;
 
 @RunWith(ConcordionRunner.class)
 public class marxarGrup {
-    private Controller controlador;
+    final private Controller controlador = Controller.getInstance();
 
     @BeforeExample
     private void init() {
-        controlador = Controller.getInstance();
     }
 
     public String marxarGrup (String nomGrup, String nomPersona){
-        return controlador.marxarGrup(nomGrup,nomPersona);
+        return controlador.marxarGrup(nomGrup);
     }
     public void initGrup(){
-        controlador.crearGrup("Grup1");
+        controlador.crearGrup("Grup3");
     }
     public void initGrupAmbMembre(){
-        controlador.crearGrup("Grup1");
-        controlador.addMembreGrup("Grup1","ajaleo@gmail.com");
+        controlador.crearGrup("Grup3");
+        controlador.addMembreGrup("Grup3","dtomacal@yahoo.cat");
     }
 }

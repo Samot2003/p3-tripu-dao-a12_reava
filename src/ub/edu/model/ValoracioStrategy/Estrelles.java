@@ -1,6 +1,6 @@
 package ub.edu.model.ValoracioStrategy;
 
-public class Estrelles {
+public class Estrelles implements ValoracioType {
 
     private int val;
 

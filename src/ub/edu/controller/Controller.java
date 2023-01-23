@@ -13,8 +13,11 @@ public class Controller {
     private volatile static Controller uniqueIstance;
     private final TripUB tripUB;
 
+    String nomPersona;
+
     private Controller() {
-        tripUB = new TripUB();
+        tripUB = TripUB.getInstance();
+        nomPersona = "ajaleo@gmail.com";
     }
 
     public static Controller getInstance(){
@@ -25,7 +28,7 @@ public class Controller {
                 }
             }
         }
-        return new Controller();
+        return uniqueIstance;
     }
 
     public String validateRegisterPersona (String username, String password) throws Exception {
@@ -165,7 +168,7 @@ public class Controller {
         }
     }
 
-    public String iniciarRuta(String nomPersona,String nomRuta){
+    public String iniciarRuta(String nomRuta){
         try{
             tripUB.iniciarRuta(nomPersona,nomRuta);
             return "Ruta inciada";
@@ -173,7 +176,7 @@ public class Controller {
             return e.getMessage();
         }
     }
-    public String acabarRuta(String nomPersona){
+    public String acabarRuta(){
         try{
             tripUB.acabarRuta(nomPersona);
             return "Ruta actual finalitzada";
@@ -183,7 +186,7 @@ public class Controller {
     }
 
 
-    public String iniciarTrackRutaActual(String nomPersona,String tramID){
+    public String iniciarTrackRutaActual(String tramID){
         try{
             tripUB.iniciarTrackRutaActual(nomPersona, tramID);
             return "Estat del tram canviat a EnProces";
@@ -191,7 +194,7 @@ public class Controller {
             return e.getMessage();
         }
     }
-    public String acabarTrackRutaActual(String nomPersona){
+    public String acabarTrackRutaActual(){
         try{
             tripUB.acabarTrackRutaActual(nomPersona);
             return "Tram Track finalitzat amb éxit";
@@ -200,9 +203,9 @@ public class Controller {
         }
     }
 
-    public String afegirPuntDeControl(String nomPersona, String highlight, Ubicacio ubi){
+    public String afegirPuntDeControl(PuntDeControl p){
         try{
-            tripUB.afegirPuntDeControl(nomPersona, highlight, ubi);
+            tripUB.afegirPuntDeControl(nomPersona, p);
             return "Punt de Control Inicial establert correctament";
         }catch (Exception e){
             return e.getMessage();
@@ -227,7 +230,7 @@ public class Controller {
         }
     }
 
-    public String marxarGrup (String nomGrup, String nomPersona){
+    public String marxarGrup (String nomGrup){
         try{
             tripUB.marxarGrup(nomGrup, nomPersona);
             return "S'ha eliminat al membre satisfactoriament";
@@ -246,9 +249,9 @@ public class Controller {
         }
     }
 
-    public String addPuntsToPersona(String nom, int punts){
+    public String addPuntsToPersona(String nomPersona,int punts){
         try{
-            tripUB.addPuntsToPersona(nom,punts);
+            tripUB.addPuntsToPersona(nomPersona,punts);
             return "Punts sumats correctament";
         }catch(Exception e){
             return e.getMessage();
@@ -268,23 +271,23 @@ public class Controller {
         tripUB.actualitzarRankings();
     }
 
-    public String valorarPuntDePasTrackActual(PuntDeControl p, ValorarStrategy str, int valoracio){
+    public String valorarPuntDePasTrackActual(String ID, ValorarStrategy str, int valoracio){
         try{
-            tripUB.valorarPuntsDePas(p,str, valoracio);
+            tripUB.valorarPuntsDePas(ID,str, valoracio, nomPersona);
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();
         }
     }
-    /*
-    public Iterable<String> llistarPuntsDePasRutaActual(String usuari){
+
+    public Iterable<String> llistarPuntsDePasRutaActual(ValorarStrategy str){
         List<String> r = new ArrayList<>();
         try{
-            return tripUB.llistarPuntsDePasRutaActual(usuari);
+            return tripUB.llistarPuntsDePasRutaActual(str);
         }catch (Exception e){
             r.add(e.getMessage());
             return r;
         }
     }
-    */
+
 }

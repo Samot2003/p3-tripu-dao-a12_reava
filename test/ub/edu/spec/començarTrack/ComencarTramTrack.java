@@ -14,11 +14,11 @@ public class ComencarTramTrack {
     @BeforeExample
     private void init() {
         controlador = Controller.getInstance();;
-        controlador.iniciarRuta("ajaleo@gmail.com","La Costa Brava");
+        controlador.iniciarRuta("La Costa Brava");
     }
 
     public String comencarTramTrack(String tramID){
-        return controlador.iniciarTrackRutaActual("ajaleo@gmail.com",tramID);
+        return controlador.iniciarTrackRutaActual(tramID);
     }
 
 }

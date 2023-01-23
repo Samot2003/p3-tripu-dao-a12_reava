@@ -10,12 +10,12 @@ import ub.edu.model.Ubicacio;
 public class llistarPuntsDePasPerValoracio {
 
     private Controller controlador;
-    private String p = "ajaleo@gmail.com";
+
 
     @BeforeExample
     private void init() {
         controlador = Controller.getInstance();
-        controlador.iniciarRuta(p,"Terres de l'Ebre");
+        controlador.iniciarRuta("Terres de l'Ebre");
     }
 
     public Iterable<String> llistarPuntsDePasValoracio () {
