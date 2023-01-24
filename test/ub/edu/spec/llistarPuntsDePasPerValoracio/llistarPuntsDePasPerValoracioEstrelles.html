@@ -1,0 +1,127 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US 16.2: llistar punts de pas per valoració d'estrelles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>16.2 : llistar punts de pas per valoració d'estrelles</h1>
+
+<h2>Criteri d'acceptacio 1</h2>
+
+<p>
+    <b>0</b>: Si la llista de Punts de pas valorats no te contigut retornara: [La llista de valoracions per Estrelles està buida]
+    <b>1</b>: Si la llista de Punts de pas valorats te contigut ordenat per Estrelles l'ordenara de major a menor numero d'estrelles
+</p>
+
+<p>
+    Hem afegit els seguents punts de control
+<table>
+    <tr>
+        <th>Punts de Control</th>
+        <th>Estrelles</th>
+    </tr>
+    <tr>
+        <th>p1</th>
+        <th>1</th>
+    </tr>
+
+    <tr>
+        <th>p2</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <th>p3</th>
+        <th>2</th>
+    </tr>
+    <tr>
+        <th>p4</th>
+        <th>2</th>
+    </tr>
+    <tr>
+        <th>p5</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p6</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p7</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p8</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <th>p9</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <th>p10</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>p11</th>
+        <th>5</th>
+    </tr>
+
+
+
+
+
+</table>
+</p>
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 16.2.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    llista amb els punts de pas millor valorats sense tenir cap valorat:
+    <span concordion:assertEquals="llistarPuntsDePasValoracio()">[La llista de valoracions per Estrelles està buida]</span>.
+</div>
+<div concordion:example="one">
+    <p>
+        <h5>Example del test d'acceptació 16.2.1</h5>
+        La següent taula mostra els resultats que esperem si demanem al sistema cercar els punts de pas de la
+        ruta actual per la seva valoració, hem <span concordion:execute="initAll()">valorat</span> els punts de pas de la taula anterior.
+    <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracio ()">
+        <tr>
+            <th concordion:assert-equals="#valoracio">Llistat de punts de pas:</th>
+        </tr>
+    <tr>
+        <td>ID: p11 Estrelles : 5.0</td>
+    </tr>
+    <tr>
+        <td>ID: p2 Estrelles : 4.0</td>
+    </tr>
+    <tr>
+        <td>ID: p8 Estrelles : 4.0</td>
+    </tr>
+    <tr>
+        <td>ID: p9 Estrelles : 4.0</td>
+    </tr>
+    <tr>
+        <td>ID: p5 Estrelles : 3.0</td>
+    </tr>
+    <tr>
+        <td>ID: p6 Estrelles : 3.0</td>
+    </tr>
+    <tr>
+        <td>ID: p7 Estrelles : 3.0</td>
+    </tr>
+    <tr>
+        <td>ID: p3 Estrelles : 2.0</td>
+    </tr>
+    <tr>
+        <td>ID: p4 Estrelles : 2.0</td>
+    </tr>
+    <tr>
+        <td>ID: p1 Estrelles : 1.0</td>
+    </tr>
+    </table>
+    </p>
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
+</div>
+
+
+</body>
+</html>

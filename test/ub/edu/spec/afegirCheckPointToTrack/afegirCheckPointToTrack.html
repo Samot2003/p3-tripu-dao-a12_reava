@@ -20,6 +20,7 @@
     highlight: <span concordion:set="#highlight">p1</span>; al track actual si no hi ha cap track
     en procés.
     <span concordion:assertEquals="afegirCheckPoint(#highlight)">No hi ha cap track iniciat</span>.
+    <span concordion:execute="acabarRuta()"></span>
 </div>
 
 <div concordion:example="one">
@@ -28,6 +29,7 @@
     highlight: <span concordion:set="#highlight">p1</span>; al track actual si hi ha un track
     en procés <span concordion:execute="initTrack()">.</span>
     <span concordion:assertEquals="afegirCheckPoint(#highlight)">Punt de Control Inicial establert correctament</span>.
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
 </div>
 
 </body>

@@ -237,7 +237,7 @@ title __MODEL's Class Diagram__\n
   ub.edu.model.PuntDeControl o-- ub.edu.model.Ubicacio : ubicacio
   ub.edu.model.PuntDeControl o-- ub.edu.model.ValoracioStrategy.Valoracio : valoracio
   ub.edu.model.Ruta o-- ub.edu.model.Estat.Estat : estat
-  ub.edu.model.Ruta o-- ub.edu.model.TramTrack : tramActual
+  ub.edu.model.Ruta o-- ub.edu.model.Tram : tramActual
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data

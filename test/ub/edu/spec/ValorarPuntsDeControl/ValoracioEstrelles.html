@@ -1,0 +1,35 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US15.2: Valorar Punts De Control Estrelles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>US15.2: Valorar Punts De Control Estrelles</h1>
+
+<h2>Criteris d'acceptació 0, 1 </h2>
+<p>
+    <b>0</b>: Si el ID del punt de pas entrat no coincideix amb cap ID, es mostrarà el missatge: "No s'ha trobat el punt de control"
+    <b>1</b>: Si el punt de pas es valora correctament, es mostrarà el missatge: "Punts de control valorats correctament"
+</p>
+
+
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 15.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema valorar un punt de pas on el ID
+    d 'aquest no coincideix amb cap dels que es tenen.<span concordion:set="#id">p2</span>
+    <span concordion:set="#val">1</span><span concordion:execute="initPuntDePas()">.</span>
+    <span concordion:assertEquals="valorarPuntsDePasRutaActual(#id,#val)">No s'ha trobat el punt de control</span>
+    <span concordion:execute="acabarRuta()"></span>
+</div>
+
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 15.1</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema valorar un punt de pas on el ID
+    d 'aquest no coincideix amb cap dels que es tenen.<span concordion:set="#id">p1</span>
+    <span concordion:set="#val">1</span><span concordion:execute="initPuntDePas()">.</span>
+    <span concordion:assertEquals="valorarPuntsDePasRutaActual(#id,#val)">Punts de control valorats correctament</span>
+    <span concordion:execute="acabarRuta()"></span>
+</div>
+
+</body>
+</html>

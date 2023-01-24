@@ -1,35 +1,37 @@
-package ub.edu.spec.afegirCheckPointToTrack;
+package ub.edu.spec.ValorarPuntsDeControl;
 
 import org.concordion.api.BeforeExample;
 import org.concordion.integration.junit4.ConcordionRunner;
 import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
 import ub.edu.model.PuntDeControl;
-import ub.edu.model.TramTrack;
 import ub.edu.model.Ubicacio;
+import ub.edu.model.ValoracioStrategy.ValorarDislike;
 
 @RunWith(ConcordionRunner.class)
-public class afegirCheckPointToTrack {
+public class ValoracioDislikes {
+
     private Controller controlador;
 
     @BeforeExample
     private void init() {
         controlador = Controller.getInstance();
-        controlador.iniciarRuta("La Costa Brava");
     }
 
-    public String afegirCheckPoint (String ID){
-        PuntDeControl p = new PuntDeControl(ID,new Ubicacio(3,5,2));
-        return controlador.afegirPuntDeControl(p);
-    }
-    public void acabarTrack(){
-        controlador.acabarTrackRutaActual();
+    public String valorarPuntsDePasRutaActual(String id, int val){
+        String s=controlador.valorarPuntDePasTrackActual(id,new ValorarDislike(),val);
+        return s;
     }
     public void acabarRuta(){
         controlador.acabarRuta();
     }
-    public void initTrack(){
+
+    public void initPuntDePas(){
+        controlador.iniciarRuta("Terres de l'Ebre");
         controlador.iniciarTrackRutaActual("TT1");
+        PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
+        controlador.afegirPuntDeControl(p1);
     }
+
 
 }

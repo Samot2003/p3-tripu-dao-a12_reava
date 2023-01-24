@@ -1,34 +1,37 @@
-package ub.edu.MOCKmain;
+package ub.edu.spec.llistarPuntsDePasPerValoracio;
 
+import org.concordion.api.BeforeExample;
+import org.concordion.integration.junit4.ConcordionRunner;
+import org.junit.runner.RunWith;
 import ub.edu.controller.Controller;
-import ub.edu.model.*;
-import ub.edu.model.Estat.EnProces;
-import ub.edu.model.Estat.Estat;
-import ub.edu.model.Transport.Transport;
-import ub.edu.model.ValoracioStrategy.ValorarDislike;
+import ub.edu.model.PuntDeControl;
+import ub.edu.model.Ubicacio;
 import ub.edu.model.ValoracioStrategy.ValorarEstrelles;
-import ub.edu.model.ValoracioStrategy.ValorarLikes;
+
+@RunWith(ConcordionRunner.class)
+public class llistarPuntsDePasPerValoracioEstrelles {
+
+    private Controller controlador;
 
 
-public class MainMOCK {
-    public static void  main(String[] args) {
-        Controller controlador = Controller.getInstance();
-        String p = "ajaleo@gmail.com";
-        //System.out.println(controlador.crearGrup("G3"));
-        //System.out.println(controlador.addMembreGrup("G3", "dtomacal@yahoo.cat"));
-        puntdepas(controlador);
+    @BeforeExample
+    private void init() {
+        controlador = Controller.getInstance();
 
     }
 
-    public void marxarGrup(Controller controller){
-        System.out.println(controller.crearGrup("G3"));
-        System.out.println(controller.addMembreGrup("G3", "adtomacal@yahoo.cat"));
-        System.out.println(controller.marxarGrup("G3","dtomacal@yahoo.cat"));
+    public Iterable<String> llistarPuntsDePasValoracio () {
+        return controlador.llistarPuntsDePasRutaActual(new ValorarEstrelles());
     }
 
-    public static void puntdepas(Controller controlador){
-        System.out.println(controlador.llistarPuntsDePasRutaActual(new ValorarEstrelles()));
+    public void acabarTrack(){
+        controlador.acabarTrackRutaActual();
+    }
+    public void acabarRuta(){
+        controlador.acabarRuta();
+    }
 
+    public void initAll(){
         controlador.iniciarRuta("Terres de l'Ebre");
         controlador.iniciarTrackRutaActual("TT1");
         PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
@@ -65,6 +68,6 @@ public class MainMOCK {
         controlador.afegirPuntDeControl(p11);
         controlador.valorarPuntDePasTrackActual("p11", new ValorarEstrelles(),5);
 
-        System.out.println(controlador.llistarPuntsDePasRutaActual(new ValorarEstrelles()));
     }
+
 }
