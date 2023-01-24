@@ -221,6 +221,10 @@ public class Controller {
         }
     }
 
+    public List<String> getGrups(){
+        return tripUB.getGrups();
+    }
+
     public String addMembreGrup (String nomGrup, String nomPersona) {
         try{
             tripUB.addMembreGrup(nomGrup,nomPersona);
@@ -230,7 +234,7 @@ public class Controller {
         }
     }
 
-    public String marxarGrup (String nomGrup){
+    public String marxarGrup (String nomGrup, String nomPersona){
         try{
             tripUB.marxarGrup(nomGrup, nomPersona);
             return "S'ha eliminat al membre satisfactoriament";
@@ -289,5 +293,4 @@ public class Controller {
             return r;
         }
     }
-
 }

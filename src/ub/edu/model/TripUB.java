@@ -264,21 +264,22 @@ public class TripUB {
                 persona=p;
             }
         }
+        boolean trobat = false;
         if(persona == null){
 
             throw new Exception("L' usuari no ha sigut trobat a la base de dades") ;
         }
+
         else if (data.getLlistaGrups().size() != 0) {
             for (Grup grup : data.getLlistaGrups()) {
                 if (grup.getNomGrup().equals(nomGrup)) {
                     grup.addGrup(persona);
-                } else {
-                    throw new Exception("No s'ha trobat cap grup amb aquest nom") ;
+                    trobat = true;
                 }
             }
         }
-        else {
-            throw new Exception("No hi ha cap grup a la llista afegeix algun primer");
+        if (!trobat){
+            throw new Exception("No hi ha cap grup amb aquest nom");
         }
     }
 
@@ -289,6 +290,7 @@ public class TripUB {
                 persona=p;
             }
         }
+        boolean trobat = false;
         if(persona == null){
             throw new Exception("L' usuari no ha sigut trobat a la base de dades") ;
         }
@@ -297,12 +299,12 @@ public class TripUB {
                 if (grup.getNomGrup().equals(nomGrup)) {
                     if (grup.getPersona(persona.getName()) != null) {
                         grup.marxarGrup(persona);
-                    } else {
-                        throw new Exception("S'ha trobat el grup pero l'usuari no pertany al grup");
+                        trobat = true;
                     }
-                } else {
-                    throw new Exception("No s'ha trobat cap grup amb aquest nom");
                 }
+            }
+            if(!trobat) {
+                throw new Exception("L'usuari no pertany al grup");
             }
         }
         else{
@@ -463,5 +465,14 @@ public class TripUB {
             throw new Exception("Correu inexistent");
         }
         return persona.getPwd();
+    }
+
+    public List<String> getGrups(){
+        List<String> s = new ArrayList<>();
+        List<Grup> grups= data.getLlistaGrups();
+        for (Grup g: grups){
+            s.add(g.getNomGrup());
+        }
+        return s;
     }
 }

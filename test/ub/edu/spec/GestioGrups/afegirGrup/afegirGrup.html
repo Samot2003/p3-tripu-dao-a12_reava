@@ -8,25 +8,17 @@
 
 <h2>Criteris d'acceptació 0, 1, 2, 3</h2>
 <p>
-    <b>0</b>: Si no hi han grups el sistema mostrara el missatge: "No hi ha cap grup a la llista afegeix algun primer"
-    <b>1</b>: Si no es troba cap grup amb el nom especificat el sistema mostrara el missatge: "No s'ha trobat cap grup amb aquest nom"
-    <b>2</b>: Si no es troba usuari amb el nom especificat el sistema mostrara el missatge: "L' usuari no ha sigut trobat a la base de dades"
-    <b>3</b>: Si l'usuari s'afegeix correctament al grup el sistema mostrara el missatge: "S'ha agregat el membre satisfactoriament"
+    <b>0</b>: Si no es troba cap grup amb el nom especificat el sistema mostrara el missatge: "No s'ha trobat cap grup amb aquest nom"
+    <b>1</b>: Si no es troba usuari amb el nom especificat el sistema mostrara el missatge: "L' usuari no ha sigut trobat a la base de dades"
+    <b>2</b>: Si l'usuari s'afegeix correctament al grup el sistema mostrara el missatge: "S'ha agregat el membre satisfactoriament"
 </p>
-
-<div concordion:example="zero">
-    <h5>Example del test d'acceptació 12.0</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema afegir
-    un usuari a un grup amb nom <span concordion:set="#nomGrup">LaPandi</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
-    si no hi han el LaPandi creat <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No hi ha cap grup a la llista afegeix algun primer</span>.
-</div>
 
 <div concordion:example="one">
     <h5>Example del test d'acceptació 12.1</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema afegir
     un usuari a un grup amb nom <span concordion:set="#nomGrup">Grup5</span> i amb el nom d'usuari <span concordion:set="#nomPersona">ajaleo@gmail.com</span>
     si hi ha el Grup5 creat <span concordion:execute="initGrup()"> pero el nom del grup no coincideix amb cap grup creat
-    </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No s'ha trobat cap grup amb aquest nom</span>
+    </span> <span concordion:assertEquals="afegirGrup(#nomGrup,#nomPersona)">No hi ha cap grup amb aquest nom</span>
 </div>
 
 <div concordion:example="two">

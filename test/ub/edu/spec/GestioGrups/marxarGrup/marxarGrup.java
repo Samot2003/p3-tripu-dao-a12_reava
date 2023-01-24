@@ -13,14 +13,15 @@ public class marxarGrup {
     private void init() {
     }
 
-    public String marxarGrup (String nomGrup, String nomPersona){
-        return controlador.marxarGrup(nomGrup);
+    public String marxarGrup (String nomGrup, String nomPersona) throws InterruptedException {
+        return controlador.marxarGrup(nomGrup, nomPersona);
     }
-    public void initGrup(){
-        controlador.crearGrup("Grup3");
+    public void initGrup(String nomGrup){
+        controlador.crearGrup(nomGrup);
     }
-    public void initGrupAmbMembre(){
-        controlador.crearGrup("Grup3");
-        controlador.addMembreGrup("Grup3","dtomacal@yahoo.cat");
+    public void initGrupAmbMembre(String nomGrup, String nomPersona) throws InterruptedException {
+        System.out.println(controlador.crearGrup(nomGrup));
+        System.out.println(controlador.getGrups());
+        System.out.println(controlador.addMembreGrup(nomGrup, nomPersona));
     }
 }

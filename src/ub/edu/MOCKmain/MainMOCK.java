@@ -11,9 +11,22 @@ import ub.edu.model.ValoracioStrategy.ValorarLikes;
 
 
 public class MainMOCK {
-    public static void main(String[] args) {
+    public static void  main(String[] args) {
         Controller controlador = Controller.getInstance();
         String p = "ajaleo@gmail.com";
+        System.out.println(controlador.crearGrup("G3"));
+        System.out.println(controlador.addMembreGrup("G3", "dtomacal@yahoo.cat"));
+
+
+    }
+
+    public void marxarGrup(Controller controller){
+        System.out.println(controller.crearGrup("G3"));
+        System.out.println(controller.addMembreGrup("G3", "adtomacal@yahoo.cat"));
+        System.out.println(controller.marxarGrup("G3","dtomacal@yahoo.cat"));
+    }
+
+    public void puntdepas(Controller controlador){
         System.out.println(controlador.iniciarRuta("Terres de l'Ebre"));
         System.out.println(controlador.iniciarTrackRutaActual("TT1"));
         PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
@@ -52,7 +65,5 @@ public class MainMOCK {
         System.out.println(controlador.valorarPuntDePasTrackActual("p11", new ValorarEstrelles(),5));
 
         System.out.println(controlador.llistarPuntsDePasRutaActual(new ValorarEstrelles()));
-
-
     }
 }

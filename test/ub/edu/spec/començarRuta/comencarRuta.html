@@ -20,21 +20,23 @@ La següent linia mostra els resultats que esperem si demanem al sistema canviar
 l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> si ja
 està EnProcés <span concordion:execute="initRuta()">.</span>
 <span concordion:assertEquals="comencarRuta(#nomRuta)">ERROR: La ruta ja està començada</span>.
+    <span concordion:execute="acabarRuta()"></span>
 </div>
 
 <div concordion:example="one">
     <h5>Example del test d'acceptació 5.1</h5>
     La següent línia mostra els resultats que esperem si demanem al sistema canviar
-    l'estat de la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> no està en procés
-    <span concordion:assertEquals="comencarRuta(#nomRuta)">Ruta inciada</span>
+    l'estat de la ruta <span concordion:set="#nomRuta">Ribera del Ter</span> no està en procés
+    <span concordion:assertEquals="comencarRuta(#nomRuta)">Ruta inciada</span><span concordion:execute="acabarRuta()"></span>
 </div>
 
 <div concordion:example="two">
     <h5>Example del test d'acceptació 5.2</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema iniciar
-    la ruta <span concordion:set="#nomRuta">Terres de l'Ebre</span> quan la ruta
+    la ruta <span concordion:set="#nomRuta">De la Cerdanya fins al Mar</span> quan la ruta
     <span concordion:set="#ruta2">La Costa Brava</span> ja esta en procés <span concordion:execute="comencarRuta(#ruta2)">.</span>
     <span concordion:assertEquals="comencarRuta(#nomRuta)">Has de acabar la ruta actual per tal de començar-ne una nova</span>
+    <span concordion:execute="acabarRuta()"></span>
 </div>
 
 
