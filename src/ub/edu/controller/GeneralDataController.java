@@ -4,8 +4,8 @@ import ub.edu.model.TripUB;
 
 public class GeneralDataController {
     private volatile static GeneralDataController uniqueInstance;
-    String nomUsuariActual;
-    TripUB tripUB;
+    private String nomUsuariActual;
+    private TripUB tripUB;
     private GeneralDataController(){
         nomUsuariActual = "ajaleo@gmail.com";
         tripUB = TripUB.getInstance();

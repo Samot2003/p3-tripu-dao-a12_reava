@@ -20,8 +20,17 @@ public class ControllerPuntDePas {
 
     public String afegirPuntDeControl(PuntDeControl p){
         try{
-            data.tripUB.afegirPuntDeControl(data.nomPersona(), p);
+            data.tripUB().afegirPuntDeControl(data.nomPersona(), p);
             return "Punt de Control Inicial establert correctament";
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
+
+    public String removePuntDeControl(String ID){
+        try{
+            data.tripUB().removePuntDeControl(data.nomPersona(), ID);
+            return "Punt de Control eliminat correctament";
         }catch (Exception e){
             return e.getMessage();
         }
@@ -29,7 +38,7 @@ public class ControllerPuntDePas {
 
     public String valorarPuntDePasTrackActual(String ID, ValorarStrategy str, int valoracio){
         try{
-            data.tripUB.valorarPuntsDePas(ID,str, valoracio, data.nomPersona());
+            data.tripUB().valorarPuntsDePas(ID,str, valoracio, data.nomPersona());
             return "Punts de control valorats correctament";
         }catch (Exception e){
             return e.getMessage();
@@ -39,7 +48,7 @@ public class ControllerPuntDePas {
     public Iterable<String> llistarPuntsDePasRutaActual(ValorarStrategy str){
         List<String> r = new ArrayList<>();
         try{
-            return data.tripUB.llistarPuntsDePasRutaActual(str);
+            return data.tripUB().llistarPuntsDePasRutaActual(str);
         }catch (Exception e){
             r.add(e.getMessage());
             return r;

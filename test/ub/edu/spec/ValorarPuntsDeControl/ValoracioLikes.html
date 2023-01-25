@@ -17,9 +17,8 @@
     <h5>Example del test d'acceptació 15.0</h5>
     La següent linia mostra els resultats que esperem si demanem al sistema valorar un punt de pas on el ID
     d 'aquest no coincideix amb cap dels que es tenen.<span concordion:set="#id">p2</span>
-    <span concordion:set="#val">1</span><span concordion:execute="initPuntDePas()">.</span>
-    <span concordion:assertEquals="valorarPuntsDePasRutaActual(#id,#val)">No s'ha trobat el punt de control</span>
-    <span concordion:execute="acabarRuta()"></span>
+    <span concordion:set="#val">1</span><span concordion:assertEquals="valorarPuntsDePasRutaActual(#id,#val)">
+    No s'ha trobat el punt de control</span><span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
 </div>
 
 <div concordion:example="one">
@@ -28,7 +27,8 @@
     d 'aquest no coincideix amb cap dels que es tenen.<span concordion:set="#id">p1</span>
     <span concordion:set="#val">1</span><span concordion:execute="initPuntDePas()">.</span>
     <span concordion:assertEquals="valorarPuntsDePasRutaActual(#id,#val)">Punts de control valorats correctament</span>
-    <span concordion:execute="acabarRuta()"></span>
+    <span concordion:execute="removePuntdeControl(#id)"></span>
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
 
 </div>
 

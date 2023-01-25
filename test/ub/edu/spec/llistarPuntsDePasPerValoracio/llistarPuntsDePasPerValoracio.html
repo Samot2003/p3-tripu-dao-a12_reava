@@ -1,0 +1,257 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <title>US 16: llistar punts de pas per valoració d'estrelles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>16 : llistar punts de pas per valoració d'estrelles</h1>
+
+<h2>Criteris d'acceptacio 0,1,2,3,4,5</h2>
+
+<p>
+    <b>0</b>: Si la llista de Punts de pas valorats per Estrelles no te contigut retornara: [La llista de valoracions per Estrelles està buida]
+    <b>1</b>: Si la llista de Punts de pas valorats per Dislikes no te contigut retornara: [La llista de valoracions per Dislikes està buida]
+    <b>2</b>: Si la llista de Punts de pas valorats per Likes no te contigut retornara: [La llista de valoracions per Likes està buida]
+    <b>3</b>: Si la llista de Punts de pas valorats per Estrelles te contigut el retornara ordenat de major a menor en numero d'estrelles
+    <b>4</b>: Si la llista de Punts de pas valorats per Dislikes te contigut el retornara ordenat de major a menor en numero de Dislikes
+    <b>5</b>: Si la llista de Punts de pas valorats per Likes te contigut el retornara ordenat de major a menor en numero de Likes
+</p>
+
+<p>
+    Hem afegit els seguents punts de control
+<table>
+    <tr>
+        <th>Punts de Control</th>
+        <th>Estrelles</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+    </tr>
+    <tr>
+        <th>p1</th>
+        <th>1</th>
+        <th>4</th>
+        <th>2</th>
+    </tr>
+
+    <tr>
+        <th>p2</th>
+        <th>4</th>
+        <th>1</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p3</th>
+        <th>2</th>
+        <th>2</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p4</th>
+        <th>2</th>
+        <th>2</th>
+        <th>4</th>
+    </tr>
+    <tr>
+        <th>p5</th>
+        <th>3</th>
+        <th>1</th>
+        <th>1</th>
+
+    </tr>
+    <tr>
+        <th>p6</th>
+        <th>3</th>
+        <th>3</th>
+        <th>2</th>
+    </tr>
+    <tr>
+        <th>p7</th>
+        <th>3</th>
+        <th>2</th>
+        <th>3</th>
+    </tr>
+    <tr>
+        <th>p8</th>
+        <th>4</th>
+        <th>1</th>
+        <th>1</th>
+    </tr>
+    <tr>
+        <th>p9</th>
+        <th>4</th>
+        <th>1</th>
+        <th>1</th>
+    </tr>
+    <tr>
+        <th>p10</th>
+        <th>0</th>
+        <th>0</th>
+        <th>0</th>
+    </tr>
+    <tr>
+        <th>p11</th>
+        <th>5</th>
+        <th>4</th>
+        <th>1</th>
+    </tr>
+
+
+
+
+
+</table>
+</p>
+<div concordion:example="zero">
+    <h5>Example del test d'acceptació 16.0</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    llista amb els punts de pas amb mes estrelles sense tenir cap valorat:
+    <span concordion:assertEquals="llistarPuntsDePasValoracioEstrelles()">[La llista de valoracions per Estrelles està buida]</span>.
+</div>
+<div concordion:example="one">
+    <h5>Example del test d'acceptació 16.1</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    llista amb els punts de pas amb mes dislikes sense tenir cap valorat:
+    <span concordion:assertEquals="llistarPuntsDePasValoracioDislikes()">[La llista de valoracions per Dislikes està buida]</span>.
+</div>
+<div concordion:example="two">
+    <h5>Example del test d'acceptació 16.2</h5>
+    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    llista amb els punts de pas amb mes likes sense tenir cap valorat:
+    <span concordion:assertEquals="llistarPuntsDePasValoracioLikes()">[La llista de valoracions per Likes està buida]</span>.
+</div>
+<div concordion:example="three">
+    <p>
+    <h5>Example del test d'acceptació 16.3</h5>
+    La següent taula mostra els resultats que esperem si demanem al sistema llistar els punts de
+    pas segons les sevess <span concordion:execute="initPunts()">estrelles tenint en compte</span>
+    <span concordion:execute="valorarEstrelles()"></span> els punts de pas de la taula anterior.
+    <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracioEstrelles()">
+        <tr>
+            <th concordion:assert-equals="#valoracio">Llistat de punts de pas:</th>
+        </tr>
+        <tr>
+            <td>ID: p11 Estrelles : 5.0</td>
+        </tr>
+        <tr>
+            <td>ID: p2 Estrelles : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p8 Estrelles : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p9 Estrelles : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p5 Estrelles : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p6 Estrelles : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p7 Estrelles : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p3 Estrelles : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p4 Estrelles : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p1 Estrelles : 1.0</td>
+        </tr>
+    </table>
+    </p>
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
+</div>
+
+<div concordion:example="four">
+    <p>
+    <h5>Example del test d'acceptació 16.4</h5>
+    La següent taula mostra els resultats que esperem si demanem al sistema llistar els
+    punts de pas segons els seus <span concordion:execute="initPunts()">dislikes tenint en compte</span>
+    <span concordion:execute="valorarDislikes()"></span> els punts de pas de la taula anterior.
+    <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracioDislikes()">
+        <tr>
+            <th concordion:assert-equals="#valoracio">Llistat de punts de pas:</th>
+        </tr>
+        <tr>
+            <td>ID: p4 Dislikes : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p2 Dislikes : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p3 Dislikes : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p7 Dislikes : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p1 Dislikes : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p6 Dislikes : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p5 Dislikes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p8 Dislikes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p9 Dislikes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p11 Dislikes : 1.0</td>
+        </tr>
+    </table>
+    </p>
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
+</div>
+
+<div concordion:example="five">
+    <p>
+    <h5>Example del test d'acceptació 16.5</h5>
+    La següent taula mostra els resultats que esperem si demanem al sistema llistar els
+    punts de pas segons els seus <span concordion:execute="initPunts()">Likes tenint en compte</span>
+    <span concordion:execute="valorarLikes()"></span> els punts de pas de la taula anterior.
+    <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracioLikes()">
+        <tr>
+            <th concordion:assert-equals="#valoracio">Llistat de punts de pas:</th>
+        </tr>
+        <tr>
+            <td>ID: p1 Likes : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p11 Likes : 4.0</td>
+        </tr>
+        <tr>
+            <td>ID: p6 Likes : 3.0</td>
+        </tr>
+        <tr>
+            <td>ID: p3 Likes : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p4 Likes : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p7 Likes : 2.0</td>
+        </tr>
+        <tr>
+            <td>ID: p2 Likes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p5 Likes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p8 Likes : 1.0</td>
+        </tr>
+        <tr>
+            <td>ID: p9 Likes : 1.0</td>
+        </tr>
+    </table>
+    </p>
+    <span concordion:execute="acabarTrack()"></span><span concordion:execute="acabarRuta()"></span>
+</div>
+</body>
+</html>

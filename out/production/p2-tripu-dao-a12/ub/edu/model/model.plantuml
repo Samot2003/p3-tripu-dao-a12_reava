@@ -180,25 +180,17 @@ title __MODEL's Class Diagram__\n
         + cercaRutesPerTransport()
         + cercarRutesPerTempsDeDurada()
         + crearGrup()
-        + findPersona()
         + getAllTramTracks()
+        + getGrups()
         {static} + getInstance()
+        + getLogicaUsuari()
         + getRankingGrup()
-        + getUserInfo()
         + iniciarRuta()
         + iniciarTrackRutaActual()
-        + isMail()
-        + isPasswordSegur()
         + llistarCatalegRutesPerDurada()
         + llistarCatalegRutesPerNom()
         + llistarPuntsDePasRutaActual()
-        + loguejarPersona()
         + marxarGrup()
-        + recuperarContrassenya()
-        + validatePassword()
-        + validateRegisterPersona()
-        + validateRegistrePersona()
-        + validateUsername()
         + valorarPuntsDePas()
         - TripUB()
     }
@@ -241,7 +233,7 @@ title __MODEL's Class Diagram__\n
   ub.edu.model.Tram o-- ub.edu.model.Estat.Estat : estat
   ub.edu.model.TramTrack -up-|> ub.edu.model.Tram
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
-  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : facanaUser
 
 
 right footer

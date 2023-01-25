@@ -15,7 +15,7 @@ public class ControllerGrups{
 
     public String crearGrup (String nomGrup){
         try{
-            data.tripUB.crearGrup(nomGrup);
+            data.tripUB().crearGrup(nomGrup);
             return "S'ha creat el grup correctament";
         }catch(Exception e){
             return e.getMessage();
@@ -23,12 +23,12 @@ public class ControllerGrups{
     }
 
     public List<String> getGrups(){
-        return data.tripUB.getGrups();
+        return data.tripUB().getGrups();
     }
 
     public String addMembreGrup (String nomGrup, String nomPersona) {
         try{
-            data.tripUB.addMembreGrup(nomGrup,nomPersona);
+            data.tripUB().addMembreGrup(nomGrup,nomPersona);
             return "S'ha agregat el membre satisfactoriament";
         }catch (Exception e){
             return e.getMessage();
@@ -37,7 +37,7 @@ public class ControllerGrups{
 
     public String marxarGrup (String nomGrup, String nomPersona){
         try{
-            data.tripUB.marxarGrup(nomGrup, nomPersona);
+            data.tripUB().marxarGrup(nomGrup, nomPersona);
             return "S'ha eliminat al membre satisfactoriament";
         }catch (Exception e){
             return e.getMessage();
@@ -47,7 +47,7 @@ public class ControllerGrups{
     public Iterable<String> getRankingGrup( String nomGrup){
         List<String> ret = new ArrayList<>();
         try{
-            return data.tripUB.getRankingGrup(nomGrup);
+            return data.tripUB().getRankingGrup(nomGrup);
         }catch (Exception e){
             ret.add(e.getMessage());
             return ret;
@@ -56,7 +56,7 @@ public class ControllerGrups{
 
     public String actualitzarRankingGrup(String nomGrup){
         try{
-            data.tripUB.actualitzarRankingGrup(nomGrup);
+            data.tripUB().actualitzarRankingGrup(nomGrup);
             return "Ranking actualitzat";
         }catch(Exception e){
             return e.getMessage();
@@ -64,6 +64,6 @@ public class ControllerGrups{
     }
 
     public void actualitzarRankings(){
-        data.tripUB.actualitzarRankings();
+        data.tripUB().actualitzarRankings();
     }
 }

@@ -245,6 +245,16 @@ public class TripUB {
         }
     }
 
+    public void removePuntDeControl(String nomPersona, String ID) throws Exception {
+        if (data.getRutaActual(nomPersona)  == null){
+            throw new Exception("No hi ha cap ruta iniciada");
+        }else if (data.getRutaActual(nomPersona).getTramActual() == null){
+            throw new Exception("No hi ha cap track iniciat");
+        }else{
+            data.getRutaActual(nomPersona).getTramActual().removePuntdeControl(ID);
+        }
+    }
+
     public void crearGrup (String nomGrup) throws Exception {
         for (Grup g: data.getLlistaGrups()) {
             if (g.getNomGrup().equals(nomGrup)) {

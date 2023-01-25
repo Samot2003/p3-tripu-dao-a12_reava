@@ -24,7 +24,7 @@ public class MainMOCK {
     }
 
     public static void puntdepas(Controller controlador){
-        System.out.println(controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarEstrelles()));
+       /* System.out.println(controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarEstrelles()));
 
         controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
         controlador.getControllerRuta().iniciarTrackRutaActual("TT1");
@@ -62,6 +62,6 @@ public class MainMOCK {
         controlador.getControllerPuntDePas().afegirPuntDeControl(p11);
         controlador.getControllerPuntDePas().valorarPuntDePasTrackActual("p11", new ValorarEstrelles(),5);
 
-        System.out.println(controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarEstrelles()));
+        System.out.println(controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarEstrelles())); */
     }
 }

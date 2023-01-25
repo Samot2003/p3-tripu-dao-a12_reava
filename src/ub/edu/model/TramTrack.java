@@ -39,7 +39,13 @@ public class TramTrack extends Tram{
         }
         throw new Exception("No s'ha trobat el punt de control");
     }
-
+    public void removePuntdeControl(String ID) {
+        for (PuntDeControl p : puntsDeControl) {
+            if (p.getID().equals(ID)) {
+                puntsDeControl.remove(p);
+            }
+        }
+    }
     public ArrayList<PuntDeControl> getPuntsDeControl(){
         return puntsDeControl;
     }

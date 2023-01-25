@@ -10,7 +10,7 @@ public class ControllerUsuari {
         data = GeneralDataController.getInstance();
     }
     public String findPersona(String username) {
-        boolean found = data.tripUB.getLogicaUsuari().findPersona(username);
+        boolean found = data.tripUB().getLogicaUsuari().findPersona(username);
         if (found) return "Persona ja existent en el Sistema";
         else return "Persona desconeguda";
     }

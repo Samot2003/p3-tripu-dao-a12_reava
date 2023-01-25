@@ -22,6 +22,7 @@ public class afegirCheckPointToTrack {
         PuntDeControl p = new PuntDeControl(ID,new Ubicacio(3,5,2));
         return controlador.getControllerPuntDePas().afegirPuntDeControl(p);
     }
+    public void removePuntdeControl(String ID){controlador.getControllerPuntDePas().removePuntDeControl(ID);}
     public void acabarTrack(){
         controlador.getControllerRuta().acabarTrackRutaActual();
     }
