@@ -68,4 +68,8 @@ public class ControllerUsuari {
             return e.getMessage();
         }
     }
+
+    public void setUsuariActual(String nomUsuari){
+        data.setNomUsuariActual(nomUsuari);
+    }
 }
