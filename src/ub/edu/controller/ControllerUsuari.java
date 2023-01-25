@@ -17,7 +17,7 @@ public class ControllerUsuari {
 
     public String validatePassword(String b) {
         try{
-            data.tripUB.getLogicaUsuari().validatePassword(b);
+            data.tripUB().getLogicaUsuari().validatePassword(b);
             return "Contrassenya segura";
         }catch (Exception e){
             return e.getMessage();
@@ -27,7 +27,7 @@ public class ControllerUsuari {
 
     public String validateUsername(String b) {
         try{
-            data.tripUB.getLogicaUsuari().validateUsername(b);
+            data.tripUB().getLogicaUsuari().validateUsername(b);
             return "Correu en format correcte";
         }catch (Exception e){
             return e.getMessage();
@@ -36,7 +36,7 @@ public class ControllerUsuari {
 
     public String validateRegistrePersona(String username, String password) {
         try {
-            data.tripUB.getLogicaUsuari().validateRegistrePersona(username,password);
+            data.tripUB().getLogicaUsuari().validateRegistrePersona(username,password);
             return "Registre vàlid";
         } catch (Exception e) {
             return e.getMessage();
@@ -45,7 +45,7 @@ public class ControllerUsuari {
 
     public String loguejarPersona(String username, String password){
         try{
-            data.tripUB.getLogicaUsuari().loguejarPersona(username, password);
+            data.tripUB().getLogicaUsuari().loguejarPersona(username, password);
             return "Login correcte";
         }catch (Exception e){
             return e.getMessage();
@@ -54,7 +54,7 @@ public class ControllerUsuari {
 
     public String recuperarContrassenya(String username){
         try{
-            return data.tripUB.getLogicaUsuari().recuperarContrassenya(username);
+            return data.tripUB().getLogicaUsuari().recuperarContrassenya(username);
         } catch (Exception e) {
             return e.getMessage();
         }
@@ -62,7 +62,7 @@ public class ControllerUsuari {
 
     public String addPuntsToPersona(String nomPersona,int punts){
         try{
-            data.tripUB.addPuntsToPersona(nomPersona,punts);
+            data.tripUB().addPuntsToPersona(nomPersona,punts);
             return "Punts sumats correctament";
         }catch(Exception e){
             return e.getMessage();
