@@ -14,14 +14,14 @@ public class marxarGrup {
     }
 
     public String marxarGrup (String nomGrup, String nomPersona) throws InterruptedException {
-        return controlador.marxarGrup(nomGrup, nomPersona);
+        return controlador.getControllerGrups().marxarGrup(nomGrup, nomPersona);
     }
     public void initGrup(String nomGrup){
-        controlador.crearGrup(nomGrup);
+        controlador.getControllerGrups().crearGrup(nomGrup);
     }
     public void initGrupAmbMembre(String nomGrup, String nomPersona) throws InterruptedException {
-        System.out.println(controlador.crearGrup(nomGrup));
-        System.out.println(controlador.getGrups());
-        System.out.println(controlador.addMembreGrup(nomGrup, nomPersona));
+        System.out.println(controlador.getControllerGrups().crearGrup(nomGrup));
+        System.out.println(controlador.getControllerGrups().getGrups());
+        System.out.println(controlador.getControllerGrups().addMembreGrup(nomGrup, nomPersona));
     }
 }

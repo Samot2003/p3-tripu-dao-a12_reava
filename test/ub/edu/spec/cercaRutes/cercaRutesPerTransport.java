@@ -15,11 +15,11 @@ public class cercaRutesPerTransport {
     }
 
     public Iterable<String> cercaRutesPerTransports(String id) {
-        return controlador.cercaRutesPerTransport(id);
+        return controlador.getControllerRuta().cercaRutesPerTransport(id);
     }
 
     public void afegirTransports() {
-        controlador.afegirTransport("Bici","b4", 9);
+        controlador.getControllerRuta().afegirTransport("Bici","b4", 9);
 
     }
 

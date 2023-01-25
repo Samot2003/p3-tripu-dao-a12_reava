@@ -14,8 +14,8 @@ public class loginPersona {
         controlador = Controller.getInstance();
     }
 
-    public String recuperarContrassenya(String user) {return controlador.recuperarContrassenya(user);}
+    public String recuperarContrassenya(String user) {return controlador.getControllerUsuari().recuperarContrassenya(user);}
 
-    public String loginPersona(String user, String pass) {return controlador.loguejarPersona(user, pass);}
+    public String loginPersona(String user, String pass) {return controlador.getControllerUsuari().loguejarPersona(user, pass);}
 
 }

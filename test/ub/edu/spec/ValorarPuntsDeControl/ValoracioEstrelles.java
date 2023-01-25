@@ -19,17 +19,17 @@ public class ValoracioEstrelles {
     }
 
     public String valorarPuntsDePasRutaActual(String id, int val){
-        String s=controlador.valorarPuntDePasTrackActual(id,new ValorarEstrelles(),val);
+        String s=controlador.getControllerPuntDePas().valorarPuntDePasTrackActual(id,new ValorarEstrelles(),val);
         return s;
     }
     public void acabarRuta(){
-        controlador.acabarRuta();
+        controlador.getControllerRuta().acabarRuta();
     }
     public void initPuntDePas(){
-        controlador.iniciarRuta("Terres de l'Ebre");
-        controlador.iniciarTrackRutaActual("TT1");
+        controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
+        controlador.getControllerRuta().iniciarTrackRutaActual("TT1");
         PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
-        controlador.afegirPuntDeControl(p1);
+        controlador.getControllerPuntDePas().afegirPuntDeControl(p1);
     }
 
 

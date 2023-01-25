@@ -15,9 +15,9 @@ public class crearGrup {
     }
 
     public String crearGrup (String nomGrup){
-        return controlador.crearGrup(nomGrup);
+        return controlador.getControllerGrups().crearGrup(nomGrup);
     }
     public void initGrup(){
-        controlador.crearGrup("Grup9");
+        controlador.getControllerGrups().crearGrup("Grup9");
     }
 }

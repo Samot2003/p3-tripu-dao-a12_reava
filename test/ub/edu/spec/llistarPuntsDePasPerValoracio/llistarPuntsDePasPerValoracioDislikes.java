@@ -21,19 +21,20 @@ public class llistarPuntsDePasPerValoracioDislikes {
     }
 
     public Iterable<String> llistarPuntsDePasValoracio () {
-        return controlador.llistarPuntsDePasRutaActual(new ValorarDislike());
+        return controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarDislike());
     }
 
     public void acabarTrack(){
-        controlador.acabarTrackRutaActual();
+        controlador.getControllerRuta().acabarTrackRutaActual();
     }
     public void acabarRuta(){
-        controlador.acabarRuta();
+        controlador.getControllerRuta().acabarRuta();
     }
 
     public void initAll(){
-        controlador.iniciarRuta("Terres de l'Ebre");
-        controlador.iniciarTrackRutaActual("TT1");
+        /*
+        controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
+        controlador.getControllerRuta().iniciarTrackRutaActual("TT1");
         PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
         controlador.afegirPuntDeControl(p1);
         controlador.valorarPuntDePasTrackActual("p1", new ValorarDislike(),1);
@@ -67,6 +68,8 @@ public class llistarPuntsDePasPerValoracioDislikes {
         PuntDeControl p11 = new PuntDeControl("p11",new Ubicacio(1,1,1));
         controlador.afegirPuntDeControl(p11);
         controlador.valorarPuntDePasTrackActual("p11", new ValorarDislike(),5);
+
+         */
 
     }
 

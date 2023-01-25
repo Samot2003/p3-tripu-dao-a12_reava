@@ -14,6 +14,36 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerGrups {
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerPuntDePas {
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerRuta {
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerUsuari {
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.GeneralDataController {
+    }
+  }
+  
+
   namespace ub.edu.model {
     class ub.edu.model.Comarca {
     }
@@ -378,7 +408,15 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   }
   
 
-  ub.edu.controller.Controller o-- ub.edu.model.TripUB : tripUB
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerGrups : controllerGrups
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerPuntDePas : controllerPuntDePas
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerRuta : controllerRuta
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerUsuari : controllerUsuari
+  ub.edu.controller.ControllerGrups o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerPuntDePas o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerRuta o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerUsuari o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.GeneralDataController o-- ub.edu.model.TripUB : tripUB
   ub.edu.model.Estat.Acabat -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.EnProces -up-|> ub.edu.model.Estat.Estat
   ub.edu.model.Estat.NoComencat -up-|> ub.edu.model.Estat.Estat
@@ -400,7 +438,7 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   ub.edu.model.Transport.Bici -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.Transport.Cotxe -up-|> ub.edu.model.Transport.Transport
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaData : data
-  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : user
+  ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : facanaUser
   ub.edu.model.ValoracioStrategy.Estrelles .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
   ub.edu.model.ValoracioStrategy.Like .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
   ub.edu.model.ValoracioStrategy.ValorarDislike .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy

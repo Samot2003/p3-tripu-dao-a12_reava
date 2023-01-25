@@ -48,7 +48,6 @@ title __FACANA's Class Diagram__\n
           + loguejarPersona()
           + recuperarContrassenya()
           + validatePassword()
-          + validateRegisterPersona()
           + validateRegistrePersona()
           + validateUsername()
       }

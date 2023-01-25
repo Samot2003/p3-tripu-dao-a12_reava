@@ -15,11 +15,11 @@ public class llistaRutes {
     }
 
     public Iterable<String> listCatalegRutesPerNom() {
-        return controlador.llistarCatalegRutesPerNom();
+        return controlador.getControllerRuta().llistarCatalegRutesPerNom();
     }
 
     public Iterable<String>  listCatalegRutesPerDurada() {
-        return controlador.llistarCatalegRutesPerDurada();
+        return controlador.getControllerRuta().llistarCatalegRutesPerDurada();
     }
 
 }

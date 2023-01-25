@@ -11,22 +11,22 @@ public class rankingGrup {
 
     @BeforeExample
     private void init() {
-        controlador.crearGrup("G1");
-        controlador.crearGrup("G2");
+        controlador.getControllerGrups().crearGrup("G1");
+        controlador.getControllerGrups().crearGrup("G2");
 
     }
 
     public Iterable<String> getRankingGrup(String nomGrup) {
-        return controlador.getRankingGrup(nomGrup);
+        return controlador.getControllerGrups().getRankingGrup(nomGrup);
     }
 
     public void initGrupsiMembres(){
-        controlador.addMembreGrup("G1","ajaleo@gmail.com");
-        controlador.addPuntsToPersona("ajaleo@gmail.com", 6);
-        controlador.addMembreGrup("G1","heisenberg@gmail.com");
-        controlador.addPuntsToPersona("heisenberg@gmail.com", 43);
-        controlador.addMembreGrup("G1","dtomacal@yahoo.cat");
-        controlador.addPuntsToPersona("dtomacal@yahoo.cat", 22);
+        controlador.getControllerGrups().addMembreGrup("G1","ajaleo@gmail.com");
+        controlador.getControllerUsuari().addPuntsToPersona("ajaleo@gmail.com", 6);
+        controlador.getControllerGrups().addMembreGrup("G1","heisenberg@gmail.com");
+        controlador.getControllerUsuari().addPuntsToPersona("heisenberg@gmail.com", 43);
+        controlador.getControllerGrups().addMembreGrup("G1","dtomacal@yahoo.cat");
+        controlador.getControllerUsuari().addPuntsToPersona("dtomacal@yahoo.cat", 22);
     }
 
 }

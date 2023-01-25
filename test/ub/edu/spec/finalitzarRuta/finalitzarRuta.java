@@ -16,10 +16,10 @@ public class finalitzarRuta {
     }
 
     public String acabarRuta(){
-        return controlador.acabarRuta();
+        return controlador.getControllerRuta().acabarRuta();
     }
 
     public void initRuta(){
-        controlador.iniciarRuta("Terres de l'Ebre");
+        controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
     }
 }

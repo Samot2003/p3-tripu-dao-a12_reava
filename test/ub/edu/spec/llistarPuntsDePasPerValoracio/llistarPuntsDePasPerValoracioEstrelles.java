@@ -21,19 +21,20 @@ public class llistarPuntsDePasPerValoracioEstrelles {
     }
 
     public Iterable<String> llistarPuntsDePasValoracio () {
-        return controlador.llistarPuntsDePasRutaActual(new ValorarEstrelles());
+        return controlador.getControllerPuntDePas().llistarPuntsDePasRutaActual(new ValorarEstrelles());
     }
 
     public void acabarTrack(){
-        controlador.acabarTrackRutaActual();
+        controlador.getControllerRuta().acabarTrackRutaActual();
     }
     public void acabarRuta(){
-        controlador.acabarRuta();
+        controlador.getControllerRuta().acabarRuta();
     }
 
     public void initAll(){
-        controlador.iniciarRuta("Terres de l'Ebre");
-        controlador.iniciarTrackRutaActual("TT1");
+        /*
+        controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
+        controlador.getControllerRuta().iniciarTrackRutaActual("TT1");
         PuntDeControl p1 = new PuntDeControl("p1",new Ubicacio(1,1,1));
         controlador.afegirPuntDeControl(p1);
         controlador.valorarPuntDePasTrackActual("p1", new ValorarEstrelles(),1);
@@ -68,6 +69,7 @@ public class llistarPuntsDePasPerValoracioEstrelles {
         controlador.afegirPuntDeControl(p11);
         controlador.valorarPuntDePasTrackActual("p11", new ValorarEstrelles(),5);
 
+         */
     }
 
 }

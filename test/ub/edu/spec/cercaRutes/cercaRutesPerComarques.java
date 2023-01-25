@@ -16,11 +16,11 @@ public class cercaRutesPerComarques {
     }
 
     public Iterable<String> cercaRutesPerComarques(String nomComarca) {
-        return controlador.cercaRutesPerComarca(nomComarca);
+        return controlador.getControllerRuta().cercaRutesPerComarca(nomComarca);
     }
 
     public void afegirComarques() {
-        controlador.afegirComarca("Barcelonès");
+        controlador.getControllerRuta().afegirComarca("Barcelonès");
 
     }
 

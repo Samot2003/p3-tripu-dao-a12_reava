@@ -14,10 +14,10 @@ public class afegirGrup {
     }
 
     public String afegirGrup (String nomGrup, String nomPersona){
-        return controlador.addMembreGrup(nomGrup,nomPersona);
+        return controlador.getControllerGrups().addMembreGrup(nomGrup,nomPersona);
     }
     public void initGrup(){
-        controlador.crearGrup("LaPandi");
+        controlador.getControllerGrups().crearGrup("LaPandi");
     }
 
 }

@@ -4,46 +4,98 @@ title __CONTROLLER's Class Diagram__\n
 
   namespace ub.edu.controller {
     class ub.edu.controller.Controller {
-        ~ nomPersona : String
         {static} - uniqueIstance : Controller
-        + acabarRuta()
-        + acabarTrackRutaActual()
+        + getControllerGrups()
+        + getControllerPuntDePas()
+        + getControllerRuta()
+        + getControllerUsuari()
+        {static} + getInstance()
+        - Controller()
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerGrups {
+        + ControllerGrups()
         + actualitzarRankingGrup()
         + actualitzarRankings()
         + addMembreGrup()
-        + addPuntsToPersona()
+        + crearGrup()
+        + getGrups()
+        + getRankingGrup()
+        + marxarGrup()
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerPuntDePas {
+        + ControllerPuntDePas()
+        + afegirPuntDeControl()
+        + llistarPuntsDePasRutaActual()
+        + valorarPuntDePasTrackActual()
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerRuta {
+        + ControllerRuta()
+        + acabarRuta()
+        + acabarTrackRutaActual()
         + afegirComarca()
         + afegirLocalitat()
-        + afegirPuntDeControl()
         + afegirRuta()
         + afegirTransport()
         + cercaRutesPerComarca()
         + cercaRutesPerLocalitat()
         + cercaRutesPerTransport()
         + cercarRutesPerTempsDeDurada()
-        + crearGrup()
-        + findPersona()
-        {static} + getInstance()
-        + getRankingGrup()
         + iniciarRuta()
         + iniciarTrackRutaActual()
         + llistarCatalegRutesPerDurada()
         + llistarCatalegRutesPerNom()
-        + llistarPuntsDePasRutaActual()
-        + loguejarPersona()
-        + marxarGrup()
-        + recuperarContrassenya()
-        + validatePassword()
-        + validateRegisterPersona()
-        + validateRegistrePersona()
-        + validateUsername()
-        + valorarPuntDePasTrackActual()
-        - Controller()
     }
   }
   
 
-  ub.edu.controller.Controller o-- ub.edu.model.TripUB : tripUB
+  namespace ub.edu.controller {
+    class ub.edu.controller.ControllerUsuari {
+        + ControllerUsuari()
+        + addPuntsToPersona()
+        + findPersona()
+        + loguejarPersona()
+        + recuperarContrassenya()
+        + validatePassword()
+        + validateRegistrePersona()
+        + validateUsername()
+    }
+  }
+  
+
+  namespace ub.edu.controller {
+    class ub.edu.controller.GeneralDataController {
+        ~ nomUsuariActual : String
+        {static} - uniqueInstance : GeneralDataController
+        {static} + getInstance()
+        + nomPersona()
+        + setNomUsuariActual()
+        + tripUB()
+        - GeneralDataController()
+    }
+  }
+  
+
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerGrups : controllerGrups
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerPuntDePas : controllerPuntDePas
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerRuta : controllerRuta
+  ub.edu.controller.Controller o-- ub.edu.controller.ControllerUsuari : controllerUsuari
+  ub.edu.controller.ControllerGrups o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerPuntDePas o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerRuta o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.ControllerUsuari o-- ub.edu.controller.GeneralDataController : data
+  ub.edu.controller.GeneralDataController o-- ub.edu.model.TripUB : tripUB
 
 
 right footer

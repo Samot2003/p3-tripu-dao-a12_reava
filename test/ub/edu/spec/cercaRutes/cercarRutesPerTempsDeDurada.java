@@ -14,7 +14,7 @@ public class cercarRutesPerTempsDeDurada {
     }
 
     public Iterable<String> cercaRutesPerTempsDeDurada(int temps) {
-        return controlador.cercarRutesPerTempsDeDurada(temps);
+        return controlador.getControllerRuta().cercarRutesPerTempsDeDurada(temps);
     }
 
 }

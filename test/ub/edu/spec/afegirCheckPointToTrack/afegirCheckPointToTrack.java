@@ -15,21 +15,21 @@ public class afegirCheckPointToTrack {
     @BeforeExample
     private void init() {
         controlador = Controller.getInstance();
-        controlador.iniciarRuta("La Costa Brava");
+        controlador.getControllerRuta().iniciarRuta("La Costa Brava");
     }
 
     public String afegirCheckPoint (String ID){
         PuntDeControl p = new PuntDeControl(ID,new Ubicacio(3,5,2));
-        return controlador.afegirPuntDeControl(p);
+        return controlador.getControllerPuntDePas().afegirPuntDeControl(p);
     }
     public void acabarTrack(){
-        controlador.acabarTrackRutaActual();
+        controlador.getControllerRuta().acabarTrackRutaActual();
     }
     public void acabarRuta(){
-        controlador.acabarRuta();
+        controlador.getControllerRuta().acabarRuta();
     }
     public void initTrack(){
-        controlador.iniciarTrackRutaActual("TT1");
+        controlador.getControllerRuta().iniciarTrackRutaActual("TT1");
     }
 
 }

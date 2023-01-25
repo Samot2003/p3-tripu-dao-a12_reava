@@ -16,14 +16,14 @@ public class comencarRuta {
     }
 
     public String comencarRuta(String nomRuta){
-        String s = controlador.iniciarRuta(nomRuta);
+        String s = controlador.getControllerRuta().iniciarRuta(nomRuta);
         return s;
     }
 
     public void acabarRuta(){
-        controlador.acabarRuta();
+        controlador.getControllerRuta().acabarRuta();
     }
     public void initRuta(){
-        controlador.iniciarRuta("Terres de l'Ebre");
+        controlador.getControllerRuta().iniciarRuta("Terres de l'Ebre");
     }
 }

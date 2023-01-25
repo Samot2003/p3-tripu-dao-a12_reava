@@ -5,6 +5,8 @@ title __MOCKMAIN's Class Diagram__\n
   namespace ub.edu.MOCKmain {
     class ub.edu.MOCKmain.MainMOCK {
         {static} + main()
+        + marxarGrup()
+        {static} + puntdepas()
     }
   }
   

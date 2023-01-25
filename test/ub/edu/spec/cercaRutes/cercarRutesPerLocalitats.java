@@ -14,11 +14,11 @@ public class cercarRutesPerLocalitats {
     }
 
     public Iterable<String> cercaRutesPerLocalitats(String nomLocalitat) {
-        return controlador.cercaRutesPerLocalitat(nomLocalitat);
+        return controlador.getControllerRuta().cercaRutesPerLocalitat(nomLocalitat);
     }
 
     public void afegirLocalitats() {
-        controlador.afegirLocalitat("Barcelona");
+        controlador.getControllerRuta().afegirLocalitat("Barcelona");
 
     }
 
