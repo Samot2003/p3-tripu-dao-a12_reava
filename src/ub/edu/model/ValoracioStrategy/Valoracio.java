@@ -4,11 +4,18 @@ import java.util.ArrayList;
 
 public class Valoracio {
     private ArrayList<ValoracioType> valoracions;
+
+    private ValorarStrategy str;
     public Valoracio(){
         valoracions = new ArrayList<>();
+        str = null;
     }
-    public void valorar(ValorarStrategy str,int e ) throws Exception {
+    public void valorar(int e) throws Exception {
         valoracions.add(str.valorar(e));
+    }
+
+    public void setStrategy(ValorarStrategy str){
+        this.str = str;
     }
 
     public float getNumValoracioPerType(ValorarStrategy str){

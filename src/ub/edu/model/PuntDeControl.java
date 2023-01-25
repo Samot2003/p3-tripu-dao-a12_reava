@@ -13,7 +13,8 @@ public class PuntDeControl{
     }
 
     public void setValoracio(ValorarStrategy str, int val) throws Exception {
-        valoracio.valorar(str,val);
+        valoracio.setStrategy(str);
+        valoracio.valorar(val);
         System.out.println(valoracio.getValoracions());
     }
 
