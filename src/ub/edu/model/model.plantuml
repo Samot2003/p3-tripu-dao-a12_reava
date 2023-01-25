@@ -152,6 +152,7 @@ title __MODEL's Class Diagram__\n
         + getPuntDeControlByID()
         + getPuntsDeControl()
         + getPuntsDeControlValorats()
+        + removePuntdeControl()
         + setDesnivellNegatiu()
         + setDesnivellPositiu()
         + setDistancia()
@@ -191,6 +192,7 @@ title __MODEL's Class Diagram__\n
         + llistarCatalegRutesPerNom()
         + llistarPuntsDePasRutaActual()
         + marxarGrup()
+        + removePuntDeControl()
         + valorarPuntsDePas()
         - TripUB()
     }

@@ -31,6 +31,7 @@ title __VALORACIOSTRATEGY's Class Diagram__\n
           + Valoracio()
           + getNumValoracioPerType()
           + getValoracions()
+          + setStrategy()
           + valorar()
       }
     }
@@ -92,9 +93,11 @@ title __VALORACIOSTRATEGY's Class Diagram__\n
 
   ub.edu.model.ValoracioStrategy.Estrelles .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
   ub.edu.model.ValoracioStrategy.Like .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
+  ub.edu.model.ValoracioStrategy.Valoracio o-- ub.edu.model.ValoracioStrategy.ValorarStrategy : str
   ub.edu.model.ValoracioStrategy.ValorarDislike .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
   ub.edu.model.ValoracioStrategy.ValorarEstrelles .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
   ub.edu.model.ValoracioStrategy.ValorarLikes .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
+  ub.edu.model.ValoracioStrategy.ValoracioType -- ub.edu.model.ValoracioStrategy.Valoracio : conté
 
 
 right footer

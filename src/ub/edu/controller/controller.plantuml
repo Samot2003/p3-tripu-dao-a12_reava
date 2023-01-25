@@ -34,6 +34,7 @@ title __CONTROLLER's Class Diagram__\n
         + ControllerPuntDePas()
         + afegirPuntDeControl()
         + llistarPuntsDePasRutaActual()
+        + removePuntDeControl()
         + valorarPuntDePasTrackActual()
     }
   }
@@ -67,6 +68,7 @@ title __CONTROLLER's Class Diagram__\n
         + findPersona()
         + loguejarPersona()
         + recuperarContrassenya()
+        + setUsuariActual()
         + validatePassword()
         + validateRegistrePersona()
         + validateUsername()
@@ -76,7 +78,7 @@ title __CONTROLLER's Class Diagram__\n
 
   namespace ub.edu.controller {
     class ub.edu.controller.GeneralDataController {
-        ~ nomUsuariActual : String
+        - nomUsuariActual : String
         {static} - uniqueInstance : GeneralDataController
         {static} + getInstance()
         + nomPersona()

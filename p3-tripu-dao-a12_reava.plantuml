@@ -441,6 +441,7 @@ title __P2-TRIPU-DAO-A12's Class Diagram__\n
   ub.edu.model.TripUB o-- ub.edu.model.Facana.FacanaUser : facanaUser
   ub.edu.model.ValoracioStrategy.Estrelles .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
   ub.edu.model.ValoracioStrategy.Like .up.|> ub.edu.model.ValoracioStrategy.ValoracioType
+  ub.edu.model.ValoracioStrategy.Valoracio o-- ub.edu.model.ValoracioStrategy.ValorarStrategy : str
   ub.edu.model.ValoracioStrategy.ValorarDislike .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
   ub.edu.model.ValoracioStrategy.ValorarEstrelles .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
   ub.edu.model.ValoracioStrategy.ValorarLikes .up.|> ub.edu.model.ValoracioStrategy.ValorarStrategy
