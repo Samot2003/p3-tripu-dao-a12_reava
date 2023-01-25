@@ -7,6 +7,7 @@ public class ValorarLikes implements ValorarStrategy{
         return  new Like(1);
     }
 
+
     @Override
     public float getNum(ValorarStrategy str, ArrayList<ValoracioType> valoracions) {
         int suma = 0;
