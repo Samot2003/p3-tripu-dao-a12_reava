@@ -6,19 +6,19 @@
 <body>
 <h1>16 : llistar punts de pas per valoració d'estrelles</h1>
 
-<h2>Criteris d'acceptacio 0,1,2,3,4,5</h2>
+<h2>Criteris d'acceptació 0,1,2,3,4,5</h2>
 
 <p>
-    <b>0</b>: Si la llista de Punts de pas valorats per Estrelles no te contigut retornara: [La llista de valoracions per Estrelles està buida]
-    <b>1</b>: Si la llista de Punts de pas valorats per Dislikes no te contigut retornara: [La llista de valoracions per Dislikes està buida]
-    <b>2</b>: Si la llista de Punts de pas valorats per Likes no te contigut retornara: [La llista de valoracions per Likes està buida]
-    <b>3</b>: Si la llista de Punts de pas valorats per Estrelles te contigut el retornara ordenat de major a menor en numero d'estrelles
-    <b>4</b>: Si la llista de Punts de pas valorats per Dislikes te contigut el retornara ordenat de major a menor en numero de Dislikes
-    <b>5</b>: Si la llista de Punts de pas valorats per Likes te contigut el retornara ordenat de major a menor en numero de Likes
+    <b>0</b>: Si la llista de Punts de pas valorats per Estrelles no te contigut retornarà: [La llista de valoracions per Estrelles està buida]
+    <b>1</b>: Si la llista de Punts de pas valorats per Dislikes no te contigut retornarà: [La llista de valoracions per Dislikes està buida]
+    <b>2</b>: Si la llista de Punts de pas valorats per Likes no te contigut retornarà: [La llista de valoracions per Likes està buida]
+    <b>3</b>: Si la llista de Punts de pas valorats per Estrelles te contigut el retornarà ordenat de major a menor en numero d'estrelles
+    <b>4</b>: Si la llista de Punts de pas valorats per Dislikes te contigut el retornarà ordenat de major a menor en numero de Dislikes
+    <b>5</b>: Si la llista de Punts de pas valorats per Likes te contigut el retornarà ordenat de major a menor en numero de Likes
 </p>
 
 <p>
-    Hem afegit els seguents punts de control
+    Hem afegit els següents punts de control
 <table>
     <tr>
         <th>Punts de Control</th>
@@ -100,22 +100,21 @@
 
 
 </table>
-</p>
 <div concordion:example="zero">
     <h5>Example del test d'acceptació 16.0</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema crear una
-    llista amb els punts de pas amb mes estrelles sense tenir cap valorat:
+    La següent línia mostra els resultats que esperem si demanem al sistema crear una
+    llista amb els punts de pas amb més estrelles sense tenir cap valorat:
     <span concordion:assertEquals="llistarPuntsDePasValoracioEstrelles()">[La llista de valoracions per Estrelles està buida]</span>.
 </div>
 <div concordion:example="one">
     <h5>Example del test d'acceptació 16.1</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    La següent línia mostra els resultats que esperem si demanem al sistema crear una
     llista amb els punts de pas amb mes dislikes sense tenir cap valorat:
     <span concordion:assertEquals="llistarPuntsDePasValoracioDislikes()">[La llista de valoracions per Dislikes està buida]</span>.
 </div>
 <div concordion:example="two">
     <h5>Example del test d'acceptació 16.2</h5>
-    La següent linia mostra els resultats que esperem si demanem al sistema crear una
+    La següent línia mostra els resultats que esperem si demanem al sistema crear una
     llista amb els punts de pas amb mes likes sense tenir cap valorat:
     <span concordion:assertEquals="llistarPuntsDePasValoracioLikes()">[La llista de valoracions per Likes està buida]</span>.
 </div>
@@ -123,7 +122,7 @@
     <p>
     <h5>Example del test d'acceptació 16.3</h5>
     La següent taula mostra els resultats que esperem si demanem al sistema llistar els punts de
-    pas segons les sevess <span concordion:execute="initPunts()">estrelles tenint en compte</span>
+    pas segons les seves <span concordion:execute="initPunts()">estrelles tenint en compte</span>
     <span concordion:execute="valorarEstrelles()"></span> els punts de pas de la taula anterior.
     <table concordion:verify-rows="#valoracio : llistarPuntsDePasValoracioEstrelles()">
         <tr>
